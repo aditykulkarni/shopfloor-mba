@@ -1,104 +1,527 @@
 {
-  "gmat": {
-    "title": "GMAT strand, all months",
-    "videos": [
-      {"title": "GMAT exam structure and official preparation", "by": "GMAC, the organisation that runs the exam", "url": "https://www.mba.com/exams/gmat-exam/about/exam-structure", "note": "The authoritative source for format, scoring, fees and practice exams. Check it before you book."}
-    ],
-    "books": [
-      {"title": "GMAT Official Guide (current edition)", "author": "GMAC", "sections": "The review chapters for Quantitative Reasoning, Verbal Reasoning and Data Insights, then the practice questions in order of difficulty.", "why": "Real retired exam questions. Use these for all timed practice."}
-    ]
-  },
-  "months": [
-    {"n": 1, "title": "The language of business", "subject": "Financial and managerial accounting", "summary": "Read the three financial statements, judge a company by its ratios, understand costs and build a first business case.", "gmat": "Exam format, percentages and ratios, algebra, rates, critical reasoning, reading comprehension, data sufficiency, tables.", "files": ["content/m1a.html", "content/m1b.html"], "weeks": [],
-     "videos": [
-       {"title": "Introduction to Financial Accounting", "by": "Brian Bushee, Wharton, on Coursera", "url": "https://www.coursera.org/learn/wharton-accounting", "note": "The best-known MBA-level accounting course online. Weeks 1 to 4 match this month's Weeks 1 to 3."},
-       {"title": "Accounting and financial statements", "by": "Khan Academy", "url": "https://www.khanacademy.org/economics-finance-domain/core-finance/accounting-and-financial-stateme", "note": "Short, slow-paced videos. Use these first if the Wharton course feels fast."}
-     ],
-     "books": [
-       {"title": "Financial Intelligence", "author": "Karen Berman and Joe Knight", "sections": "Part Two (income statement), Part Three (balance sheet), Part Four (cash), Part Five (ratios), Part Six (ROI), Part Seven (working capital).", "why": "Written for managers who are not accountants. If you buy one book this month, buy this."},
-       {"title": "Romancing the Balance Sheet", "author": "Anil Lamba", "sections": "The chapters on reading the balance sheet, on funds flow and on working capital.", "why": "Indian examples and terminology, in plain language."},
-       {"title": "Cost Accounting: A Managerial Emphasis", "author": "Horngren, Datar and Rajan", "sections": "The chapters on cost-volume-profit analysis, activity-based costing, the master budget, and flexible budgets and variances.", "why": "The standard MBA text for Week 4. Chapter numbers differ between editions, so go by chapter title."}
-     ]},
-    {"n": 2, "title": "Markets and evidence", "subject": "Managerial economics and statistics", "summary": "How prices form, how competitors react, and how to reason from data without fooling yourself.", "gmat": "Number properties, exponents, inequalities, counting, assumption and evaluate questions, first official practice test.", "files": ["content/m2a.html", "content/m2b.html"], "weeks": [],
-     "videos": [
-       {"title": "14.01 Principles of Microeconomics", "by": "Jonathan Gruber, MIT OpenCourseWare", "url": "https://ocw.mit.edu/courses/14-01-principles-of-microeconomics-fall-2018/", "note": "A full university course. The lectures on supply and demand, elasticity, costs, monopoly and oligopoly cover Weeks 5 and 6."},
-       {"title": "Game Theory (ECON 159)", "by": "Ben Polak, Open Yale Courses", "url": "https://oyc.yale.edu/economics/econ-159", "note": "Lectures 1 to 6 are enough for Week 6. Very clear and entertaining."},
-       {"title": "Statistics and probability", "by": "Khan Academy", "url": "https://www.khanacademy.org/math/statistics-probability", "note": "Work through the units on summarising data, probability, sampling distributions, confidence intervals and significance tests for Weeks 7 and 8."}
-     ],
-     "books": [
-       {"title": "Principles of Economics", "author": "N. Gregory Mankiw", "sections": "The chapters on supply and demand, elasticity, the costs of production, competitive markets, monopoly and oligopoly.", "why": "The clearest introductory text. Any recent edition will do."},
-       {"title": "The Art of Strategy", "author": "Avinash Dixit and Barry Nalebuff", "sections": "Part I, especially the chapters on the prisoners' dilemma and on strategic moves.", "why": "Game theory through stories, with almost no mathematics."},
-       {"title": "Naked Statistics", "author": "Charles Wheelan", "sections": "The chapters on descriptive statistics, probability, the central limit theorem, inference, regression and programme evaluation.", "why": "Builds intuition before formulas. Read it alongside Weeks 7 and 8."}
-     ]},
-    {"n": 3, "title": "Money over time", "subject": "Corporate finance", "summary": "Value an investment properly: discounting, net present value, cost of capital and how companies are valued.", "gmat": "Two-part analysis, graphics, sets and statistics, harder critical reasoning, timed mixed sets.", "files": ["content/m3a.html", "content/m3b.html"], "weeks": [],
-     "videos": [
-       {"title": "15.401 Finance Theory I", "by": "Andrew Lo, MIT OpenCourseWare", "url": "https://ocw.mit.edu/courses/15-401-finance-theory-i-fall-2008/", "note": "Full video lectures from the MIT Sloan MBA. The sessions on present value, capital budgeting, risk and return, and CAPM match Weeks 9 to 11."},
-       {"title": "Introduction to Corporate Finance", "by": "Michael Roberts, Wharton, on Coursera", "url": "https://www.coursera.org/learn/wharton-finance", "note": "Shorter and more applied than the MIT course. Good for time value of money and NPV."},
-       {"title": "Corporate finance and valuation classes", "by": "Aswath Damodaran, NYU Stern", "url": "https://pages.stern.nyu.edu/~adamodar/", "note": "His site links to free recordings of his full MBA classes, plus data on betas, risk premiums and multiples by industry and country. I could not load the page while writing this, so confirm the link works."}
-     ],
-     "books": [
-       {"title": "Principles of Corporate Finance", "author": "Brealey, Myers and Allen", "sections": "Chapter 2 (present values), chapters 5 and 6 (NPV and investment decisions), chapters 7 to 9 (risk and cost of capital), chapter 10 (project analysis), chapters 17 and 18 (debt policy).", "why": "The standard MBA finance text. Chapter numbers are from recent editions and may shift slightly."},
-       {"title": "The Little Book of Valuation", "author": "Aswath Damodaran", "sections": "The chapters on intrinsic valuation and on relative valuation.", "why": "Valuation in 200 small pages, by the person most associated with the subject."},
-       {"title": "Valuation: Measuring and Managing the Value of Companies", "author": "Koller, Goedhart and Wessels (McKinsey)", "sections": "Part One, on the foundations of value.", "why": "What consultants and bankers actually use. Read Part One only for now."}
-     ]},
-    {"n": 4, "title": "Customers and revenue", "subject": "Marketing, pricing and sales strategy", "summary": "Choose customers, position an offer, price on value and understand the economics of a subscription business.", "gmat": "Reading comprehension at speed, inference questions, table analysis, harder data sufficiency, timed sets.", "files": ["content/m4a.html", "content/m4b.html"], "weeks": [],
-     "videos": [
-       {"title": "Introduction to Marketing", "by": "Barbara Kahn, Peter Fader and Jagmohan Raju, Wharton, on Coursera", "url": "https://www.coursera.org/learn/wharton-marketing", "note": "Covers positioning, customer centricity and go-to-market. Fader's part on customer value fits Week 16 well."}
-     ],
-     "books": [
-       {"title": "Obviously Awesome", "author": "April Dunford", "sections": "Part 2, the components of positioning, and Part 3, the ten-step process.", "why": "The most practical book on positioning for B2B technology."},
-       {"title": "Crossing the Chasm", "author": "Geoffrey Moore", "sections": "Part 1 on the adoption life cycle, then the chapters on targeting the point of attack and on the whole product.", "why": "The standard account of how technology products reach mainstream industrial buyers."},
-       {"title": "The Strategy and Tactics of Pricing", "author": "Thomas Nagle and Georg Müller", "sections": "The chapters on value creation, price structure and value communication.", "why": "The reference on value-based pricing."},
-       {"title": "Monetizing Innovation", "author": "Madhavan Ramanujam and Georg Tacke", "sections": "Chapters 1 to 4, then the chapters on segmentation and price structure.", "why": "How to design the price before the product. Useful for anyone heading towards product management."},
-       {"title": "Marketing Management", "author": "Philip Kotler and Kevin Lane Keller", "sections": "The chapters on market segments and targets, business markets, and marketing channels.", "why": "The comprehensive MBA text. Use it as a reference."}
-     ]},
-    {"n": 5, "title": "Making and moving things", "subject": "Operations and supply chain management", "summary": "Your home ground, at MBA depth: process analysis, variability, quality and supply chain strategy as a general manager sees them.", "gmat": "Timed review sets in all three sections and a second official practice test.", "files": ["content/m5a.html", "content/m5b.html"], "weeks": [],
-     "videos": [
-       {"title": "Introduction to Operations Management", "by": "Christian Terwiesch, Wharton, on Coursera", "url": "https://www.coursera.org/learn/wharton-operations", "note": "Process analysis, productivity, variability and quality, taught by the co-author of the main textbook. Follows Weeks 17 to 19 closely."},
-       {"title": "MicroMasters in Supply Chain Management", "by": "MIT, on edX", "url": "https://micromasters.mit.edu/scm/", "note": "Far more than you need. The first course, on supply chain analytics, deepens Weeks 18 and 20 if you want it."}
-     ],
-     "books": [
-       {"title": "The Goal", "author": "Eliyahu Goldratt", "sections": "All of it. It is a novel and reads in a weekend.", "why": "On most MBA operations reading lists. The bottleneck idea stays with you for life."},
-       {"title": "Matching Supply with Demand", "author": "Gérard Cachon and Christian Terwiesch", "sections": "The chapters on process capacity, variability and waiting time, the newsvendor model, and risk pooling.", "why": "The MBA operations text, quantitative and clear."},
-       {"title": "Factory Physics", "author": "Wallace Hopp and Mark Spearman", "sections": "The chapters on variability basics and on the corrupting influence of variability.", "why": "The deepest treatment of why factories behave as they do. An engineer will enjoy it."},
-       {"title": "The Toyota Way", "author": "Jeffrey Liker", "sections": "Part Two, the fourteen principles.", "why": "Lean as a management system, not a toolkit."}
-     ]},
-    {"n": 6, "title": "Where to compete and how to win", "subject": "Strategy and macroeconomics", "summary": "Analyse an industry, explain why some firms stay profitable, and read the economy that surrounds them.", "gmat": "Harder drills in every section, based on your practice test results.", "files": ["content/m6a.html", "content/m6b.html"], "weeks": [],
-     "videos": [
-       {"title": "Foundations of Business Strategy", "by": "Michael Lenox and Jared Harris, Darden (University of Virginia), on Coursera", "url": "https://www.coursera.org/learn/uva-darden-foundations-business-strategy", "note": "Industry analysis, competitive advantage and strategy formulation with short cases. Matches Weeks 21 and 22."},
-       {"title": "Macroeconomics", "by": "Khan Academy", "url": "https://www.khanacademy.org/economics-finance-domain/macroeconomics", "note": "Units on GDP, inflation, monetary and fiscal policy and exchange rates for Week 24."}
-     ],
-     "books": [
-       {"title": "Good Strategy Bad Strategy", "author": "Richard Rumelt", "sections": "Chapters 1 to 5, ending with the kernel of good strategy.", "why": "The clearest statement of what strategy is and is not."},
-       {"title": "Understanding Michael Porter", "author": "Joan Magretta", "sections": "Chapters 1 to 4.", "why": "Porter's ideas in 200 readable pages, checked by Porter himself."},
-       {"title": "7 Powers", "author": "Hamilton Helmer", "sections": "The seven chapters, one for each power.", "why": "The best framework for judging whether an advantage will last."},
-       {"title": "The Innovator's Dilemma", "author": "Clayton Christensen", "sections": "Chapters 1, 2 and 5.", "why": "The original account of disruption."},
-       {"title": "Playing to Win", "author": "A.G. Lafley and Roger Martin", "sections": "Chapter 1, the five choices.", "why": "A practical structure for writing a strategy."}
-     ]},
-    {"n": 7, "title": "Leading people", "subject": "Organisational behaviour, leadership and negotiation", "summary": "Motivate a team, design an organisation, lead change and negotiate. This is the material most engineers skip and most senior roles depend on.", "gmat": "Timed sectional drills, an error-log clinic and a third practice test.", "files": ["content/m7a.html", "content/m7b.html"], "weeks": [],
-     "videos": [
-       {"title": "Introduction to Negotiation", "by": "Barry Nalebuff, Yale, on Coursera", "url": "https://www.coursera.org/learn/negotiation", "note": "Rigorous and practical, with negotiation exercises. The first three modules cover Week 27."},
-       {"title": "Managing Social and Human Capital", "by": "Michael Useem and Peter Cappelli, Wharton, on Coursera", "url": "https://www.coursera.org/learn/wharton-social-human-capital", "note": "Motivation, reward systems, organisation design and leading change. Matches Weeks 25 and 26."}
-     ],
-     "books": [
-       {"title": "High Output Management", "author": "Andrew Grove", "sections": "The chapters on managerial leverage, meetings and one-on-ones, task-relevant maturity and performance appraisal.", "why": "Written by an engineer who ran Intel. The best single book for a first-time manager."},
-       {"title": "Getting to Yes", "author": "Roger Fisher, William Ury and Bruce Patton", "sections": "Chapters 1 to 6.", "why": "The foundation of modern negotiation teaching."},
-       {"title": "Leading Change", "author": "John Kotter", "sections": "Chapters 1 and 2, then the eight steps.", "why": "The standard model for the work you say you want to lead."},
-       {"title": "Thinking, Fast and Slow", "author": "Daniel Kahneman", "sections": "Part II (heuristics and biases) and Part III (overconfidence).", "why": "The research behind every decision-making session in this course."},
-       {"title": "The Pyramid Principle", "author": "Barbara Minto", "sections": "Part One, logic in writing.", "why": "How consultants structure everything they write."}
-     ]},
-    {"n": 8, "title": "Putting it together", "subject": "Product, digital strategy and capstone", "summary": "Product management, technology strategy and entrepreneurship, ending with a full board-level recommendation and exam readiness.", "gmat": "Final reviews, two full mock exams under test conditions and a test-day plan.", "files": ["content/m8a.html", "content/m8b.html"], "weeks": [],
-     "videos": [
-       {"title": "Digital Product Management: Modern Fundamentals", "by": "Alex Cowan, Darden (University of Virginia), on Coursera", "url": "https://www.coursera.org/learn/uva-darden-digital-product-management", "note": "Discovery, hypothesis-driven development and working with engineering. Matches Week 29."},
-       {"title": "AI For Everyone", "by": "Andrew Ng, DeepLearning.AI, on Coursera", "url": "https://www.coursera.org/learn/ai-for-everyone", "note": "A non-technical course on what AI can and cannot do and how to choose projects. Matches Week 30."},
-       {"title": "Startup School", "by": "Y Combinator", "url": "https://www.startupschool.org/", "note": "Free course for founders. The sessions on evaluating ideas, talking to users and unit economics fit Week 31."}
-     ],
-     "books": [
-       {"title": "Inspired", "author": "Marty Cagan", "sections": "The parts on the right people and on product discovery.", "why": "The reference book on modern product management."},
-       {"title": "Prediction Machines", "author": "Ajay Agrawal, Joshua Gans and Avi Goldfarb", "sections": "Parts One and Two.", "why": "An economist's way to judge any AI use case. It will outlast any particular technology."},
-       {"title": "Competing in the Age of AI", "author": "Marco Iansiti and Karim Lakhani", "sections": "Chapters 1 to 5.", "why": "How software and data change the way firms scale."},
-       {"title": "The Lean Startup", "author": "Eric Ries", "sections": "Part One and the chapter on testing.", "why": "Build, measure, learn, at the source."},
-       {"title": "The Mom Test", "author": "Rob Fitzpatrick", "sections": "All of it. About 130 pages.", "why": "How to talk to customers so that they tell you the truth."}
-     ]}
+ "gmat": {
+  "title": "GMAT strand, all months",
+  "videos": [
+   {
+    "title": "GMAT exam structure and official preparation",
+    "by": "GMAC, the organisation that runs the exam",
+    "url": "https://www.mba.com/exams/gmat-exam/about/exam-structure",
+    "note": "The authoritative source for format, scoring, fees and practice exams. Check it before you book."
+   }
+  ],
+  "books": [
+   {
+    "title": "GMAT Official Guide (current edition)",
+    "author": "GMAC",
+    "sections": "The review chapters for Quantitative Reasoning, Verbal Reasoning and Data Insights, then the practice questions in order of difficulty.",
+    "why": "Real retired exam questions. Use these for all timed practice."
+   }
   ]
+ },
+ "months": [
+  {
+   "n": 1,
+   "title": "The language of business",
+   "subject": "Financial and managerial accounting",
+   "summary": "Read the three financial statements, judge a company by its ratios, understand costs and build a first business case.",
+   "gmat": "Exam format, percentages and ratios, algebra, rates, critical reasoning, reading comprehension, data sufficiency, tables.",
+   "files": [
+    "content/m1a.html",
+    "content/m1b.html"
+   ],
+   "weeks": [],
+   "videos": [
+    {
+     "title": "Introduction to Financial Accounting",
+     "by": "Brian Bushee, Wharton, on Coursera",
+     "url": "https://www.coursera.org/learn/wharton-accounting",
+     "note": "The best-known MBA-level accounting course online. Weeks 1 to 4 match this month's Weeks 1 to 3."
+    },
+    {
+     "title": "Accounting and financial statements",
+     "by": "Khan Academy",
+     "url": "https://www.khanacademy.org/economics-finance-domain/core-finance/accounting-and-financial-stateme",
+     "note": "Short, slow-paced videos. Use these first if the Wharton course feels fast."
+    }
+   ],
+   "books": [
+    {
+     "title": "Financial Intelligence",
+     "author": "Karen Berman and Joe Knight",
+     "sections": "Part Two (income statement), Part Three (balance sheet), Part Four (cash), Part Five (ratios), Part Six (ROI), Part Seven (working capital).",
+     "why": "Written for managers who are not accountants. If you buy one book this month, buy this."
+    },
+    {
+     "title": "Romancing the Balance Sheet",
+     "author": "Anil Lamba",
+     "sections": "The chapters on reading the balance sheet, on funds flow and on working capital.",
+     "why": "Indian examples and terminology, in plain language."
+    },
+    {
+     "title": "Cost Accounting: A Managerial Emphasis",
+     "author": "Horngren, Datar and Rajan",
+     "sections": "The chapters on cost-volume-profit analysis, activity-based costing, the master budget, and flexible budgets and variances.",
+     "why": "The standard MBA text for Week 4. Chapter numbers differ between editions, so go by chapter title."
+    }
+   ],
+   "free": [
+    {
+     "title": "Principles of Accounting, Volume 1: Financial Accounting",
+     "url": "https://openstax.org/details/books/principles-financial-accounting",
+     "sections": "The chapters on the role of accounting, the financial statements, the accounting cycle, inventory, receivables, long-term assets and the statement of cash flows. Covers Weeks 1 to 3."
+    },
+    {
+     "title": "Principles of Accounting, Volume 2: Managerial Accounting",
+     "url": "https://openstax.org/details/books/principles-managerial-accounting",
+     "sections": "The chapters on cost behaviour, cost-volume-profit analysis, activity-based costing, budgeting and variance analysis. Covers Week 4."
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "title": "Markets and evidence",
+   "subject": "Managerial economics and statistics",
+   "summary": "How prices form, how competitors react, and how to reason from data without fooling yourself.",
+   "gmat": "Number properties, exponents, inequalities, counting, assumption and evaluate questions, first official practice test.",
+   "files": [
+    "content/m2a.html",
+    "content/m2b.html"
+   ],
+   "weeks": [],
+   "videos": [
+    {
+     "title": "14.01 Principles of Microeconomics",
+     "by": "Jonathan Gruber, MIT OpenCourseWare",
+     "url": "https://ocw.mit.edu/courses/14-01-principles-of-microeconomics-fall-2018/",
+     "note": "A full university course. The lectures on supply and demand, elasticity, costs, monopoly and oligopoly cover Weeks 5 and 6."
+    },
+    {
+     "title": "Game Theory (ECON 159)",
+     "by": "Ben Polak, Open Yale Courses",
+     "url": "https://oyc.yale.edu/economics/econ-159",
+     "note": "Lectures 1 to 6 are enough for Week 6. Very clear and entertaining."
+    },
+    {
+     "title": "Statistics and probability",
+     "by": "Khan Academy",
+     "url": "https://www.khanacademy.org/math/statistics-probability",
+     "note": "Work through the units on summarising data, probability, sampling distributions, confidence intervals and significance tests for Weeks 7 and 8."
+    }
+   ],
+   "books": [
+    {
+     "title": "Principles of Economics",
+     "author": "N. Gregory Mankiw",
+     "sections": "The chapters on supply and demand, elasticity, the costs of production, competitive markets, monopoly and oligopoly.",
+     "why": "The clearest introductory text. Any recent edition will do."
+    },
+    {
+     "title": "The Art of Strategy",
+     "author": "Avinash Dixit and Barry Nalebuff",
+     "sections": "Part I, especially the chapters on the prisoners' dilemma and on strategic moves.",
+     "why": "Game theory through stories, with almost no mathematics."
+    },
+    {
+     "title": "Naked Statistics",
+     "author": "Charles Wheelan",
+     "sections": "The chapters on descriptive statistics, probability, the central limit theorem, inference, regression and programme evaluation.",
+     "why": "Builds intuition before formulas. Read it alongside Weeks 7 and 8."
+    }
+   ],
+   "free": [
+    {
+     "title": "Principles of Economics 3e",
+     "url": "https://openstax.org/details/books/principles-economics-3e",
+     "sections": "The chapters on demand and supply, elasticity, production and costs, perfect competition, monopoly, and monopolistic competition and oligopoly. Covers Weeks 5 and 6."
+    },
+    {
+     "title": "Introductory Business Statistics 2e",
+     "url": "https://openstax.org/details/books/introductory-business-statistics-2e",
+     "sections": "The chapters on descriptive statistics, probability, the normal distribution, the central limit theorem, confidence intervals, hypothesis testing and linear regression. Covers Weeks 7 and 8."
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "title": "Money over time",
+   "subject": "Corporate finance",
+   "summary": "Value an investment properly: discounting, net present value, cost of capital and how companies are valued.",
+   "gmat": "Two-part analysis, graphics, sets and statistics, harder critical reasoning, timed mixed sets.",
+   "files": [
+    "content/m3a.html",
+    "content/m3b.html"
+   ],
+   "weeks": [],
+   "videos": [
+    {
+     "title": "15.401 Finance Theory I",
+     "by": "Andrew Lo, MIT OpenCourseWare",
+     "url": "https://ocw.mit.edu/courses/15-401-finance-theory-i-fall-2008/",
+     "note": "Full video lectures from the MIT Sloan MBA. The sessions on present value, capital budgeting, risk and return, and CAPM match Weeks 9 to 11."
+    },
+    {
+     "title": "Introduction to Corporate Finance",
+     "by": "Michael Roberts, Wharton, on Coursera",
+     "url": "https://www.coursera.org/learn/wharton-finance",
+     "note": "Shorter and more applied than the MIT course. Good for time value of money and NPV."
+    },
+    {
+     "title": "Corporate finance and valuation classes",
+     "by": "Aswath Damodaran, NYU Stern",
+     "url": "https://pages.stern.nyu.edu/~adamodar/",
+     "note": "His site links to free recordings of his full MBA classes, plus data on betas, risk premiums and multiples by industry and country. I could not load the page while writing this, so confirm the link works."
+    }
+   ],
+   "books": [
+    {
+     "title": "Principles of Corporate Finance",
+     "author": "Brealey, Myers and Allen",
+     "sections": "Chapter 2 (present values), chapters 5 and 6 (NPV and investment decisions), chapters 7 to 9 (risk and cost of capital), chapter 10 (project analysis), chapters 17 and 18 (debt policy).",
+     "why": "The standard MBA finance text. Chapter numbers are from recent editions and may shift slightly."
+    },
+    {
+     "title": "The Little Book of Valuation",
+     "author": "Aswath Damodaran",
+     "sections": "The chapters on intrinsic valuation and on relative valuation.",
+     "why": "Valuation in 200 small pages, by the person most associated with the subject."
+    },
+    {
+     "title": "Valuation: Measuring and Managing the Value of Companies",
+     "author": "Koller, Goedhart and Wessels (McKinsey)",
+     "sections": "Part One, on the foundations of value.",
+     "why": "What consultants and bankers actually use. Read Part One only for now."
+    }
+   ],
+   "free": [
+    {
+     "title": "Principles of Finance",
+     "url": "https://openstax.org/details/books/principles-finance",
+     "sections": "The chapters on the time value of money, risk and return, how companies think about investing (NPV and IRR), the cost of capital, and valuation. Covers the whole month."
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "title": "Customers and revenue",
+   "subject": "Marketing, pricing and sales strategy",
+   "summary": "Choose customers, position an offer, price on value and understand the economics of a subscription business.",
+   "gmat": "Reading comprehension at speed, inference questions, table analysis, harder data sufficiency, timed sets.",
+   "files": [
+    "content/m4a.html",
+    "content/m4b.html"
+   ],
+   "weeks": [],
+   "videos": [
+    {
+     "title": "Introduction to Marketing",
+     "by": "Barbara Kahn, Peter Fader and Jagmohan Raju, Wharton, on Coursera",
+     "url": "https://www.coursera.org/learn/wharton-marketing",
+     "note": "Covers positioning, customer centricity and go-to-market. Fader's part on customer value fits Week 16 well."
+    }
+   ],
+   "books": [
+    {
+     "title": "Obviously Awesome",
+     "author": "April Dunford",
+     "sections": "Part 2, the components of positioning, and Part 3, the ten-step process.",
+     "why": "The most practical book on positioning for B2B technology."
+    },
+    {
+     "title": "Crossing the Chasm",
+     "author": "Geoffrey Moore",
+     "sections": "Part 1 on the adoption life cycle, then the chapters on targeting the point of attack and on the whole product.",
+     "why": "The standard account of how technology products reach mainstream industrial buyers."
+    },
+    {
+     "title": "The Strategy and Tactics of Pricing",
+     "author": "Thomas Nagle and Georg Müller",
+     "sections": "The chapters on value creation, price structure and value communication.",
+     "why": "The reference on value-based pricing."
+    },
+    {
+     "title": "Monetizing Innovation",
+     "author": "Madhavan Ramanujam and Georg Tacke",
+     "sections": "Chapters 1 to 4, then the chapters on segmentation and price structure.",
+     "why": "How to design the price before the product. Useful for anyone heading towards product management."
+    },
+    {
+     "title": "Marketing Management",
+     "author": "Philip Kotler and Kevin Lane Keller",
+     "sections": "The chapters on market segments and targets, business markets, and marketing channels.",
+     "why": "The comprehensive MBA text. Use it as a reference."
+    }
+   ],
+   "free": [
+    {
+     "title": "Principles of Marketing",
+     "url": "https://openstax.org/subjects/business",
+     "sections": "Listed on the OpenStax business page. Read the chapters on market segmentation, targeting and positioning, business markets and purchasing behaviour, pricing, and distribution. Covers Weeks 13 to 15."
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "title": "Making and moving things",
+   "subject": "Operations and supply chain management",
+   "summary": "Your home ground, at MBA depth: process analysis, variability, quality and supply chain strategy as a general manager sees them.",
+   "gmat": "Timed review sets in all three sections and a second official practice test.",
+   "files": [
+    "content/m5a.html",
+    "content/m5b.html"
+   ],
+   "weeks": [],
+   "videos": [
+    {
+     "title": "Introduction to Operations Management",
+     "by": "Christian Terwiesch, Wharton, on Coursera",
+     "url": "https://www.coursera.org/learn/wharton-operations",
+     "note": "Process analysis, productivity, variability and quality, taught by the co-author of the main textbook. Follows Weeks 17 to 19 closely."
+    },
+    {
+     "title": "MicroMasters in Supply Chain Management",
+     "by": "MIT, on edX",
+     "url": "https://micromasters.mit.edu/scm/",
+     "note": "Far more than you need. The first course, on supply chain analytics, deepens Weeks 18 and 20 if you want it."
+    }
+   ],
+   "books": [
+    {
+     "title": "The Goal",
+     "author": "Eliyahu Goldratt",
+     "sections": "All of it. It is a novel and reads in a weekend.",
+     "why": "On most MBA operations reading lists. The bottleneck idea stays with you for life."
+    },
+    {
+     "title": "Matching Supply with Demand",
+     "author": "Gérard Cachon and Christian Terwiesch",
+     "sections": "The chapters on process capacity, variability and waiting time, the newsvendor model, and risk pooling.",
+     "why": "The MBA operations text, quantitative and clear."
+    },
+    {
+     "title": "Factory Physics",
+     "author": "Wallace Hopp and Mark Spearman",
+     "sections": "The chapters on variability basics and on the corrupting influence of variability.",
+     "why": "The deepest treatment of why factories behave as they do. An engineer will enjoy it."
+    },
+    {
+     "title": "The Toyota Way",
+     "author": "Jeffrey Liker",
+     "sections": "Part Two, the fourteen principles.",
+     "why": "Lean as a management system, not a toolkit."
+    }
+   ],
+   "free": []
+  },
+  {
+   "n": 6,
+   "title": "Where to compete and how to win",
+   "subject": "Strategy and macroeconomics",
+   "summary": "Analyse an industry, explain why some firms stay profitable, and read the economy that surrounds them.",
+   "gmat": "Harder drills in every section, based on your practice test results.",
+   "files": [
+    "content/m6a.html",
+    "content/m6b.html"
+   ],
+   "weeks": [],
+   "videos": [
+    {
+     "title": "Foundations of Business Strategy",
+     "by": "Michael Lenox and Jared Harris, Darden (University of Virginia), on Coursera",
+     "url": "https://www.coursera.org/learn/uva-darden-foundations-business-strategy",
+     "note": "Industry analysis, competitive advantage and strategy formulation with short cases. Matches Weeks 21 and 22."
+    },
+    {
+     "title": "Macroeconomics",
+     "by": "Khan Academy",
+     "url": "https://www.khanacademy.org/economics-finance-domain/macroeconomics",
+     "note": "Units on GDP, inflation, monetary and fiscal policy and exchange rates for Week 24."
+    }
+   ],
+   "books": [
+    {
+     "title": "Good Strategy Bad Strategy",
+     "author": "Richard Rumelt",
+     "sections": "Chapters 1 to 5, ending with the kernel of good strategy.",
+     "why": "The clearest statement of what strategy is and is not."
+    },
+    {
+     "title": "Understanding Michael Porter",
+     "author": "Joan Magretta",
+     "sections": "Chapters 1 to 4.",
+     "why": "Porter's ideas in 200 readable pages, checked by Porter himself."
+    },
+    {
+     "title": "7 Powers",
+     "author": "Hamilton Helmer",
+     "sections": "The seven chapters, one for each power.",
+     "why": "The best framework for judging whether an advantage will last."
+    },
+    {
+     "title": "The Innovator's Dilemma",
+     "author": "Clayton Christensen",
+     "sections": "Chapters 1, 2 and 5.",
+     "why": "The original account of disruption."
+    },
+    {
+     "title": "Playing to Win",
+     "author": "A.G. Lafley and Roger Martin",
+     "sections": "Chapter 1, the five choices.",
+     "why": "A practical structure for writing a strategy."
+    }
+   ],
+   "free": [
+    {
+     "title": "Principles of Management",
+     "url": "https://openstax.org/details/books/principles-management",
+     "sections": "The chapters on the external and internal environment and on the strategic management process. A lighter companion to Weeks 21 and 22."
+    },
+    {
+     "title": "Principles of Economics 3e",
+     "url": "https://openstax.org/details/books/principles-economics-3e",
+     "sections": "The macroeconomics chapters: GDP, growth, unemployment, inflation, monetary policy, fiscal policy, and exchange rates and trade. Covers Week 24."
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "title": "Leading people",
+   "subject": "Organisational behaviour, leadership and negotiation",
+   "summary": "Motivate a team, design an organisation, lead change and negotiate. This is the material most engineers skip and most senior roles depend on.",
+   "gmat": "Timed sectional drills, an error-log clinic and a third practice test.",
+   "files": [
+    "content/m7a.html",
+    "content/m7b.html"
+   ],
+   "weeks": [],
+   "videos": [
+    {
+     "title": "Introduction to Negotiation",
+     "by": "Barry Nalebuff, Yale, on Coursera",
+     "url": "https://www.coursera.org/learn/negotiation",
+     "note": "Rigorous and practical, with negotiation exercises. The first three modules cover Week 27."
+    },
+    {
+     "title": "Managing Social and Human Capital",
+     "by": "Michael Useem and Peter Cappelli, Wharton, on Coursera",
+     "url": "https://www.coursera.org/learn/wharton-social-human-capital",
+     "note": "Motivation, reward systems, organisation design and leading change. Matches Weeks 25 and 26."
+    }
+   ],
+   "books": [
+    {
+     "title": "High Output Management",
+     "author": "Andrew Grove",
+     "sections": "The chapters on managerial leverage, meetings and one-on-ones, task-relevant maturity and performance appraisal.",
+     "why": "Written by an engineer who ran Intel. The best single book for a first-time manager."
+    },
+    {
+     "title": "Getting to Yes",
+     "author": "Roger Fisher, William Ury and Bruce Patton",
+     "sections": "Chapters 1 to 6.",
+     "why": "The foundation of modern negotiation teaching."
+    },
+    {
+     "title": "Leading Change",
+     "author": "John Kotter",
+     "sections": "Chapters 1 and 2, then the eight steps.",
+     "why": "The standard model for the work you say you want to lead."
+    },
+    {
+     "title": "Thinking, Fast and Slow",
+     "author": "Daniel Kahneman",
+     "sections": "Part II (heuristics and biases) and Part III (overconfidence).",
+     "why": "The research behind every decision-making session in this course."
+    },
+    {
+     "title": "The Pyramid Principle",
+     "author": "Barbara Minto",
+     "sections": "Part One, logic in writing.",
+     "why": "How consultants structure everything they write."
+    }
+   ],
+   "free": [
+    {
+     "title": "Organizational Behavior",
+     "url": "https://openstax.org/subjects/business",
+     "sections": "Listed on the OpenStax business page. Read the chapters on work motivation, group and team behaviour, leadership, conflict and negotiation, and organisational change. Covers Weeks 25 to 28."
+    },
+    {
+     "title": "Principles of Management",
+     "url": "https://openstax.org/details/books/principles-management",
+     "sections": "The chapters on organisational structure and change, managing teams, and managerial communication."
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "title": "Putting it together",
+   "subject": "Product, digital strategy and capstone",
+   "summary": "Product management, technology strategy and entrepreneurship, ending with a full board-level recommendation and exam readiness.",
+   "gmat": "Final reviews, two full mock exams under test conditions and a test-day plan.",
+   "files": [
+    "content/m8a.html",
+    "content/m8b.html"
+   ],
+   "weeks": [],
+   "videos": [
+    {
+     "title": "Digital Product Management: Modern Fundamentals",
+     "by": "Alex Cowan, Darden (University of Virginia), on Coursera",
+     "url": "https://www.coursera.org/learn/uva-darden-digital-product-management",
+     "note": "Discovery, hypothesis-driven development and working with engineering. Matches Week 29."
+    },
+    {
+     "title": "AI For Everyone",
+     "by": "Andrew Ng, DeepLearning.AI, on Coursera",
+     "url": "https://www.coursera.org/learn/ai-for-everyone",
+     "note": "A non-technical course on what AI can and cannot do and how to choose projects. Matches Week 30."
+    },
+    {
+     "title": "Startup School",
+     "by": "Y Combinator",
+     "url": "https://www.startupschool.org/",
+     "note": "Free course for founders. The sessions on evaluating ideas, talking to users and unit economics fit Week 31."
+    }
+   ],
+   "books": [
+    {
+     "title": "Inspired",
+     "author": "Marty Cagan",
+     "sections": "The parts on the right people and on product discovery.",
+     "why": "The reference book on modern product management."
+    },
+    {
+     "title": "Prediction Machines",
+     "author": "Ajay Agrawal, Joshua Gans and Avi Goldfarb",
+     "sections": "Parts One and Two.",
+     "why": "An economist's way to judge any AI use case. It will outlast any particular technology."
+    },
+    {
+     "title": "Competing in the Age of AI",
+     "author": "Marco Iansiti and Karim Lakhani",
+     "sections": "Chapters 1 to 5.",
+     "why": "How software and data change the way firms scale."
+    },
+    {
+     "title": "The Lean Startup",
+     "author": "Eric Ries",
+     "sections": "Part One and the chapter on testing.",
+     "why": "Build, measure, learn, at the source."
+    },
+    {
+     "title": "The Mom Test",
+     "author": "Rob Fitzpatrick",
+     "sections": "All of it. About 130 pages.",
+     "why": "How to talk to customers so that they tell you the truth."
+    }
+   ],
+   "free": [
+    {
+     "title": "Entrepreneurship",
+     "url": "https://openstax.org/subjects/business",
+     "sections": "Listed on the OpenStax business page. Read the chapters on identifying opportunities, the business model and plan, entrepreneurial finance, and launch. Covers Week 31."
+    }
+   ]
+  }
+ ]
 }
