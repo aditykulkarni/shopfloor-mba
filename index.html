@@ -65,6 +65,7 @@ h1,h2,h3,h4{font-family:var(--display);text-wrap:balance;line-height:1.15;margin
 
 .mhead{display:flex;gap:10px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:11px 16px}
 .side .mhead:first-child{border-top:0}
+.side>.wk:first-child{padding-top:8px}
 .mhead:hover{background:var(--bg)}
 .mhead b{font-family:var(--mono);font-weight:500;font-size:12px;color:var(--muted);white-space:nowrap}
 .mhead span{font-family:var(--display);font-weight:700;font-size:15px;min-width:0}
@@ -126,6 +127,23 @@ h1,h2,h3,h4{font-family:var(--display);text-wrap:balance;line-height:1.15;margin
 .entry p{margin:8px 0 0;font-size:15px;max-width:68ch}
 .entry .sec{font-family:var(--read);font-size:16px}
 .entry .buy{font-size:14px}
+.tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tools a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--ink);min-width:0}
+.tools a:hover{border-color:var(--accent)}
+.tools b{display:block;font-family:var(--display);font-size:17px}
+.tools span{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.fs td{vertical-align:top}
+.fs .fx{font-family:var(--mono);font-size:13.5px;min-width:220px}
+.fs .fn{color:var(--muted);font-size:13px}
+.sel{font:14px var(--ui);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 10px;max-width:100%}
+.fcbar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:10px 0 16px;font-size:14px}
+.fcbar label{font-weight:600}
+.fc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:28px 24px;min-height:210px;max-width:640px;display:flex;flex-direction:column;gap:14px}
+.fcm{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.fcq{font-family:var(--display);font-weight:700;font-size:clamp(22px,3.4vw,30px);line-height:1.2}
+.fca{font-family:var(--read);font-size:19px;line-height:1.5;border-top:1px solid var(--line);padding-top:14px}
+.fcbtns{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
+.opt.pick{border-color:var(--accent);background:var(--tint);font-weight:600}
 .entry .lab{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:6px}
 
 /* session */
@@ -193,6 +211,8 @@ details.model>*:not(summary){margin-inline:16px}
   .side{position:fixed;inset:0;top:calc(env(safe-area-inset-top,0px) + 49px);height:auto;z-index:15;border-right:0}
   .side:not(.show){display:none}
   .rhythm{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tools{grid-template-columns:minmax(0,1fr)}
+  .fs .fx{min-width:150px}
   .rm{grid-template-columns:minmax(0,1fr) auto}
   .rm .no{grid-column:1/-1;padding:0}
   .bar .meter span{display:none}
@@ -220,8 +240,8 @@ details.model>*:not(summary){margin-inline:16px}
 <script>
 (function(){
 var KIND={lesson:'Lesson',gmat:'GMAT',case:'Case study',review:'Review'};
-var months=[],items=[],byId={},gmatRes=null,openM={},autoOpen=null;
-var state={done:{},quiz:{},notes:{},qt:{},nt:{}};
+var months=[],items=[],byId={},gmatRes=null,rev=null,bank=[],exam=null,fcMonth=0,fcQueue=null,fcShown=false,openM={},autoOpen=null;
+var state={done:{},quiz:{},notes:{},qt:{},nt:{},fc:{}};
 var saveDelay=900,ready=false;
 var LS='shopfloor-mba-v1';
 var remote=null, syncNote='Progress is saved in this browser.';
@@ -230,7 +250,7 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return
 function yt(q){return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q)}
 
 /* ---------- storage ---------- */
-function loadLocal(){try{var r=JSON.parse(localStorage.getItem(LS)||'null');if(r){state.done=r.done||{};state.quiz=r.quiz||{};state.notes=r.notes||{};state.qt=r.qt||{};state.nt=r.nt||{}}}catch(e){}}
+function loadLocal(){try{var r=JSON.parse(localStorage.getItem(LS)||'null');if(r){state.done=r.done||{};state.quiz=r.quiz||{};state.notes=r.notes||{};state.qt=r.qt||{};state.nt=r.nt||{};state.fc=r.fc||{}}}catch(e){}}
 function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
 function makeSaver(getBody,key){
   var timer=null,busy=false,dirty=false;
@@ -244,11 +264,13 @@ function makeSaver(getBody,key){
   }
   return function(){saveLocal();if(!remote)return;clearTimeout(timer);timer=setTimeout(run,saveDelay)};
 }
-var saveProgress=makeSaver(function(){return {done:state.done,quiz:state.quiz,qt:state.qt}},'p');
+var saveProgress=makeSaver(function(){return {done:state.done,quiz:state.quiz,qt:state.qt,fc:state.fc}},'p');
 var saveNotes=makeSaver(function(){return {notes:state.notes,nt:state.nt}},'n');
 
 function merge(p,n){
   var rd=p.done||{},rq=p.quiz||{},rqt=p.qt||{},rn=n.notes||{},rnt=n.nt||{},k,push=false,pushN=false;
+  var rf=p.fc||{};for(k in state.fc){if(!rf[k])push=true}
+  for(k in rf){state.fc[k]=rf[k]}
   for(k in state.done){if(!rd[k])push=true}
   for(k in rd){state.done[k]=rd[k]}
   for(k in rq){if(!state.quiz[k]||(rqt[k]||0)>=(state.qt[k]||0)){state.quiz[k]=rq[k];state.qt[k]=rqt[k]||0}}
@@ -264,7 +286,7 @@ var GH_LS='shopfloor-mba-gh',SKIP_LS='shopfloor-mba-skip',LS0=LS,gh=null,ghSha=n
 function ghCfg(){try{return JSON.parse(localStorage.getItem(GH_LS)||'null')}catch(e){return null}}
 function skipped(){try{return localStorage.getItem(SKIP_LS)==='1'}catch(e){return false}}
 function slugOf(n){return String(n||'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')}
-function emptyState(){return {done:{},quiz:{},notes:{},qt:{},nt:{}}}
+function emptyState(){return {done:{},quiz:{},notes:{},qt:{},nt:{},fc:{}}}
 function hasData(s){return Object.keys(s.done).length||Object.keys(s.quiz).length||Object.keys(s.notes).length}
 function b64e(s){var b=new TextEncoder().encode(s),o='';for(var i=0;i<b.length;i++)o+=String.fromCharCode(b[i]);return btoa(o)}
 function b64d(s){var r=atob(s.replace(/\s/g,'')),b=new Uint8Array(r.length);for(var i=0;i<r.length;i++)b[i]=r.charCodeAt(i);return new TextDecoder().decode(b)}
@@ -293,7 +315,7 @@ function ghPull(){
   });
 }
 function ghPush(retry){
-  var data={name:gh.name,done:state.done,quiz:state.quiz,qt:state.qt,notes:state.notes,nt:state.nt,updated:new Date().toISOString()};
+  var data={name:gh.name,done:state.done,quiz:state.quiz,qt:state.qt,fc:state.fc,notes:state.notes,nt:state.nt,updated:new Date().toISOString()};
   var body={message:'Update progress for '+gh.slug,content:b64e(JSON.stringify(data,null,1))};
   if(ghSha)body.sha=ghSha;
   return ghFetch(ghFile(),'PUT',body).then(function(r){
@@ -408,6 +430,20 @@ function getText(path){
   if(C)return Promise.resolve(C.files[path]||'');
   return fetch(path).then(function(r){return r.text()});
 }
+function buildBank(){
+  var skip=/(the table|the example|same argument|the equation|the passage|in the [^.?]{0,40} case|the scenario|using the)/i;
+  bank=[];
+  items.forEach(function(it){
+    if(it.type==='gmat'||it.type==='case')return;
+    it.el.querySelectorAll('.q').forEach(function(q){
+      var pr=q.querySelector('p');if(!pr||skip.test(pr.textContent))return;
+      bank.push({m:it.month.n,src:it.title,p:pr.innerHTML,a:q.dataset.a,why:q.querySelector('.why').innerHTML,
+        o:[].map.call(q.querySelectorAll('li'),function(li){return {o:li.dataset.o,h:li.innerHTML}})});
+    });
+  });
+}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=a[i];a[i]=a[j];a[j]=x}return a}
+function loadRevision(){return getText('content/revision.json').then(function(t){try{rev=JSON.parse(t)}catch(e){rev=null}}).catch(function(){rev=null})}
 function load(){
   return getJSON('content/syllabus.json').then(function(s){
     months=s.months;gmatRes=s.gmat||null;
@@ -423,6 +459,7 @@ function load(){
     return Promise.all(jobs);
   }).then(function(parts){
     parts.sort(function(a,b){return a.m.n-b.m.n||a.i-b.i});
+    setTimeout(buildBank,0);
     parts.forEach(function(p){
       p.doc.querySelectorAll('section[data-week]').forEach(function(sec){
         var w={n:+sec.dataset.week,title:sec.dataset.title,goal:sec.dataset.goal,items:[]};
@@ -445,7 +482,7 @@ function meter(){
 }
 function nextUp(list){list=list||items;for(var i=0;i<list.length;i++){if(!state.done[list[i].id])return list[i]}return null}
 function sidebar(cur,curMonth){
-  var h='';
+  var h='<div class="wk">Revision</div>'+[['formulas','Formula sheet','Every formula, by month'],['cards','Flashcards','Key terms, one at a time'],['exams','Exams','Quick quiz, mid-course and final']].map(function(r){return '<a class="it lib'+(cur===r[0]?' on':'')+'" href="#'+r[0]+'"><i class="dot"></i><span>'+r[1]+'<small>'+r[2]+'</small></span></a>'}).join('');
   months.forEach(function(m){
     var built=m.items.length>0,open=!!openM[m.n];
     h+='<button class="mhead" type="button" data-m="'+m.n+'" aria-expanded="'+(open?'true':'false')+'"><b>Month '+m.n+'</b><span>'+esc(m.title)+'</span><em>'+(built?doneIn(m.items)+'/'+m.items.length:'Later')+'</em></button>';
@@ -476,6 +513,7 @@ function home(){
   if(rev.length){
     h+='<section class="sect"><h2>Review scores</h2><div class="scores">'+rev.map(function(i){var q=state.quiz[i.id];return '<div><b>'+q.score+'/'+q.total+'</b>Week '+i.week.n+'</div>'}).join('')+'</div></section>';
   }
+  h+='<section class="sect"><h2>Revision tools</h2><p>Use these at the end of each week and before the month tests.</p><div class="tools"><a href="#formulas"><b>Formula sheet</b><span>Every formula in the course, by month</span></a><a href="#cards"><b>Flashcards</b><span>'+cardCount()+' key terms to recall</span></a><a href="#exams"><b>Exams</b><span>Quick quiz, mid-course exam and final exam</span></a></div></section>';
   h+='<section class="sect"><h2>How each week runs</h2><p>Seven sessions a week. Miss a day and carry on; the order matters more than the calendar. At this pace the course takes 32 weeks.</p><div class="rhythm">'+
     [['Day 1','lesson','Lesson'],['Day 2','lesson','Lesson'],['Day 3','gmat','GMAT session'],['Day 4','lesson','Lesson'],['Day 5','case','Case study'],['Day 6','gmat','GMAT session'],['Day 7','review','Graded quiz and a task for your job']]
     .map(function(d){return '<div><b>'+d[0]+'</b><span class="k-'+d[1]+'">'+d[2]+'</span></div>'}).join('')+'</div></section>';
@@ -502,6 +540,96 @@ function library(m){
   if(gmatRes){h+='<section><h2>'+esc(gmatRes.title)+'</h2>'+vids(gmatRes.videos||[])+books(gmatRes.books||[])+'</section>'}
   h+='<div class="foot"><div class="nav"><a href="#home">Course home</a></div><div class="nav"><a class="btn" href="#'+(nextUp(m.items)||m.items[0]).id+'">Go to this month\'s sessions</a></div></div></div>';
   $('#main').innerHTML=h;
+}
+
+/* ---------- revision ---------- */
+function cardCount(){var n=0;if(rev)rev.months.forEach(function(m){n+=m.cards.length});return n}
+function monthName(n){var m=months.filter(function(x){return x.n===n})[0];return m?m.title:''}
+function monthSelect(id,val,allLabel){return '<select id="'+id+'" class="sel"><option value="0">'+allLabel+'</option>'+months.map(function(m){return '<option value="'+m.n+'"'+(val===m.n?' selected':'')+'>Month '+m.n+': '+esc(m.title)+'</option>'}).join('')+'</select>'}
+function formulaPage(){
+  if(!rev){$('#main').innerHTML='<p class="empty">The revision material did not load. Reload the page.</p>';return}
+  var h='<div class="libr"><header><span class="kind k-review">Revision</span><h1>Formula sheet</h1><p>Every formula used in the course. Cover the middle column and try to write each one from its name.</p></header>';
+  rev.months.forEach(function(m){
+    h+='<section><h2>Month '+m.n+' · '+esc(monthName(m.n))+'</h2><div class="tw"><table class="stmt fs"><tbody>'+m.formulas.map(function(f){return '<tr><td>'+esc(f[0])+'</td><td class="fx">'+esc(f[1])+'</td><td class="fn">'+esc(f[2])+'</td></tr>'}).join('')+'</tbody></table></div></section>';
+  });
+  h+='<div class="foot"><div class="nav"><a href="#home">Course home</a><a href="#cards">Flashcards</a><a href="#exams">Exams</a></div></div></div>';
+  $('#main').innerHTML=h;
+}
+function fcList(){var l=[];if(rev)rev.months.forEach(function(m){if(fcMonth&&m.n!==fcMonth)return;m.cards.forEach(function(c,i){l.push({id:'c'+m.n+'-'+i,m:m.n,q:c[0],a:c[1]})})});return l}
+function cardPage(){
+  if(!rev){$('#main').innerHTML='<p class="empty">The revision material did not load. Reload the page.</p>';return}
+  var all=fcList(),known=all.filter(function(c){return state.fc[c.id]}).length;
+  if(!fcQueue)fcQueue=shuffle(all.filter(function(c){return !state.fc[c.id]}));
+  var c=fcQueue[0];
+  var h='<div class="libr"><header><span class="kind k-review">Revision</span><h1>Flashcards</h1><p>Say the meaning aloud before you turn the card. Cards you know drop out; the rest come back until you do.</p></header>'+
+    '<section><div class="fcbar"><label for="fc-month">Deck</label>'+monthSelect('fc-month',fcMonth,'All months')+'<span class="pill open">'+known+' of '+all.length+' known</span></div>';
+  if(c){
+    h+='<div class="fc"><div class="fcm">Month '+c.m+' · '+fcQueue.length+' left in this round</div><div class="fcq">'+esc(c.q)+'</div>'+(fcShown?'<div class="fca">'+esc(c.a)+'</div>':'')+'</div><div class="fcbtns">'+
+      (fcShown?'<button class="btn" id="fc-yes" type="button">I knew it</button><button class="btn ghost" id="fc-no" type="button">Not yet</button>':'<button class="btn" id="fc-show" type="button">Show the meaning</button>')+'</div>';
+  }else{
+    h+='<div class="fc"><div class="fcq">'+(all.length?'You know every card in this deck.':'No cards in this deck.')+'</div></div><div class="fcbtns"><button class="btn ghost" id="fc-reset" type="button">Start this deck again</button></div>';
+  }
+  h+='</section><div class="foot"><div class="nav"><a href="#home">Course home</a><a href="#formulas">Formula sheet</a><a href="#exams">Exams</a></div></div></div>';
+  $('#main').innerHTML=h;
+  $('#fc-month').onchange=function(){fcMonth=+this.value;fcQueue=null;fcShown=false;cardPage()};
+  var b;
+  if((b=$('#fc-show')))b.onclick=function(){fcShown=true;cardPage();var y=$('#fc-yes');if(y)y.focus()};
+  if((b=$('#fc-yes')))b.onclick=function(){state.fc[c.id]=1;fcQueue.shift();fcShown=false;saveProgress();cardPage();var s=$('#fc-show');if(s)s.focus()};
+  if((b=$('#fc-no')))b.onclick=function(){fcQueue.push(fcQueue.shift());fcShown=false;cardPage();var s=$('#fc-show');if(s)s.focus()};
+  if((b=$('#fc-reset')))b.onclick=function(){all.forEach(function(x){delete state.fc[x.id]});fcQueue=null;saveProgress();cardPage()};
+}
+var EXAMS={quick:{title:'Quick quiz',n:10,mins:15,months:null},mid:{title:'Mid-course exam',n:40,mins:60,months:[1,2,3,4]},final:{title:'Final exam',n:60,mins:90,months:[1,2,3,4,5,6,7,8]}};
+function startExam(kind,month){
+  var cfg=EXAMS[kind],ms=kind==='quick'?(month?[month]:months.map(function(m){return m.n})):cfg.months,qs=[];
+  var per=Math.ceil(cfg.n/ms.length);
+  ms.forEach(function(n){qs=qs.concat(shuffle(bank.filter(function(q){return q.m===n})).slice(0,per))});
+  qs=shuffle(qs).slice(0,cfg.n);qs.sort(function(a,b){return a.m-b.m});
+  exam={kind:kind,title:cfg.title+(kind==='quick'&&month?', Month '+month:''),mins:cfg.mins,qs:qs,ans:{},done:false};
+}
+function examPage(){
+  var main=$('#main');
+  if(!exam){
+    var h='<div class="libr"><header><span class="kind k-review">Revision</span><h1>Exams</h1><p>Questions are drawn at random from the lesson and review quizzes, so every sitting is different. Nothing is marked until you submit. GMAT questions are not included; the GMAT strand has its own practice tests.</p></header><section><div class="entries">';
+    ['quick','mid','final'].forEach(function(k){
+      var c=EXAMS[k],r=state.quiz['exam-'+k];
+      h+='<div class="entry"><h3>'+c.title+'</h3><div class="by">'+c.n+' questions · about '+c.mins+' minutes · '+(k==='quick'?'one month or the whole course':k==='mid'?'Months 1 to 4. Take it after Week 16.':'All eight months. Take it after Week 32.')+'</div>'+
+        (r&&r.total?'<p>Last score '+r.score+' of '+r.total+(r.best!=null?' · best '+r.best+' of '+r.total:'')+'</p>':'')+
+        '<div class="fcbar">'+(k==='quick'?'<label for="quick-month">Scope</label>'+monthSelect('quick-month',0,'Whole course'):'')+'<button class="btn" type="button" data-start="'+k+'">Start</button></div></div>';
+    });
+    h+='</div></section><div class="foot"><div class="nav"><a href="#home">Course home</a><a href="#formulas">Formula sheet</a><a href="#cards">Flashcards</a></div></div></div>';
+    main.innerHTML=h;
+    main.querySelectorAll('[data-start]').forEach(function(b){b.onclick=function(){var k=b.dataset.start,qm=$('#quick-month');startExam(k,k==='quick'&&qm?+qm.value:0);examPage();window.scrollTo(0,0)}});
+    return;
+  }
+  var e=exam,answered=Object.keys(e.ans).length,score=0,byM={};
+  if(e.done){e.qs.forEach(function(q,i){var ok=e.ans[i]===q.a;if(ok)score++;byM[q.m]=byM[q.m]||[0,0];byM[q.m][1]++;if(ok)byM[q.m][0]++})}
+  var h='<div class="sess"><header><span class="kind k-review">Exam</span><h1>'+esc(e.title)+'</h1><div class="meta">'+e.qs.length+' questions · about '+e.mins+' minutes'+(e.done?'':' · answers can be changed until you submit')+'</div></header>';
+  if(e.done){
+    var pct=Math.round(100*score/e.qs.length);
+    h+='<div class="result"><span><b>'+score+' of '+e.qs.length+' correct ('+pct+'%).</b> '+(pct>=80?'Strong. Check the misses below.':pct>=60?'A pass. Revisit the months with the lowest scores.':'Go back over the weakest months before trying again.')+'</span></div>'+
+      '<div class="tw" style="margin-top:16px"><table class="stmt"><thead><tr><th>Month</th><th class="n">Correct</th><th class="n">Questions</th></tr></thead><tbody>'+Object.keys(byM).map(function(n){return '<tr><td>Month '+n+': '+esc(monthName(+n))+'</td><td class="n">'+byM[n][0]+'</td><td class="n">'+byM[n][1]+'</td></tr>'}).join('')+'</tbody></table></div>';
+  }
+  h+='<div class="quiz">';
+  e.qs.forEach(function(q,i){
+    h+='<div class="qq"><p class="qp"><span class="qn">Question '+(i+1)+' of '+e.qs.length+' · Month '+q.m+'</span>'+q.p+'</p><div class="opts">'+q.o.map(function(o){
+      var cls='opt',tag='';
+      if(e.done){if(o.o===q.a){cls+=' right';tag='<span class="tag">Correct</span>'}else if(e.ans[i]===o.o){cls+=' wrong';tag='<span class="tag">Your answer</span>'}}
+      else if(e.ans[i]===o.o){cls+=' pick'}
+      return '<button type="button" class="'+cls+'" data-q="'+i+'" data-o="'+o.o+'"'+(e.done?' disabled':'')+' aria-pressed="'+(e.ans[i]===o.o?'true':'false')+'">'+o.h+tag+'</button>'}).join('')+'</div>'+
+      (e.done?'<p class="why">'+(e.ans[i]?'':'Not answered. ')+q.why+' <em>From: '+esc(q.src)+'.</em></p>':'')+'</div>';
+  });
+  h+='</div><div class="foot"><div class="nav"><a href="#home">Course home</a>'+(e.done?'':'<span class="sync" id="ex-count">'+answered+' of '+e.qs.length+' answered</span>')+'</div><div class="nav">'+
+    (e.done?'<button class="btn" type="button" id="ex-new">Back to exams</button>':'<button class="linkbtn" type="button" id="ex-quit">Abandon this exam</button><button class="btn" type="button" id="ex-submit">Submit for marking</button>')+'</div></div></div>';
+  main.innerHTML=h;
+  if(!e.done){
+    main.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){var qi=+b.dataset.q;e.ans[qi]=b.dataset.o;
+      main.querySelectorAll('.opt[data-q="'+qi+'"]').forEach(function(x){var on=x===b;x.classList.toggle('pick',on);x.setAttribute('aria-pressed',on?'true':'false')});
+      $('#ex-count').textContent=Object.keys(e.ans).length+' of '+e.qs.length+' answered'}});
+    $('#ex-submit').onclick=function(){
+      e.done=true;var s=e.qs.filter(function(q,i){return e.ans[i]===q.a}).length,key='exam-'+e.kind,old=state.quiz[key]||{};
+      state.quiz[key]={score:s,total:e.qs.length,best:Math.max(s,old.total===e.qs.length&&old.best!=null?old.best:0)};state.qt[key]=Date.now();saveProgress();examPage();window.scrollTo(0,0)};
+    $('#ex-quit').onclick=function(){exam=null;examPage();window.scrollTo(0,0)};
+  }else{$('#ex-new').onclick=function(){exam=null;examPage();window.scrollTo(0,0)}}
 }
 
 /* ---------- session ---------- */
@@ -601,8 +729,9 @@ function route(keep){
   if(autoOpen!==cm){openM[cm]=true;autoOpen=cm}
   var wantSign=HOSTED&&(id==='sync'||id==='signin'||(ready&&!gh&&ghState!=='checking'&&!skipped()));
   if(keep&&wantSign&&$('#gh-form')&&ae&&ae.tagName==='INPUT'){meter();paintSync();return}
-  if(wantSign)signPage();else if(it)session(it);else if(lib)library(lib);else home();
-  sidebar(wantSign?null:it?it.id:lib?id:null,cm);meter();paintSync();
+  var tool=/^(formulas|cards|exams)$/.test(id)?id:null;
+  if(wantSign)signPage();else if(it)session(it);else if(lib)library(lib);else if(tool==='formulas')formulaPage();else if(tool==='cards')cardPage();else if(tool==='exams')examPage();else home();
+  sidebar(wantSign?null:it?it.id:(lib||tool)?id:null,cm);meter();paintSync();
   $('#side').classList.remove('show');$('#menuBtn').setAttribute('aria-expanded','false');
   if(!keep)window.scrollTo(0,0);
 }
@@ -610,7 +739,7 @@ $('#menuBtn').onclick=function(){var s=$('#side').classList.toggle('show');this.
 window.addEventListener('hashchange',function(){route(false)});
 
 loadLocal();
-load().then(function(){var c=HOSTED?ghCfg():null;if(c&&c.name&&c.repo&&c.token){ghState='checking'}ready=true;route(false);connect()}).catch(function(){
+load().then(loadRevision).then(function(){var c=HOSTED?ghCfg():null;if(c&&c.name&&c.repo&&c.token){ghState='checking'}ready=true;route(false);connect()}).catch(function(){
   $('#main').innerHTML='<p class="empty">The course content did not load. Reload the page. </p>';
 });
 })();
