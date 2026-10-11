@@ -127,7 +127,14 @@ h1,h2,h3,h4{font-family:var(--display);text-wrap:balance;line-height:1.15;margin
 .entry p{margin:8px 0 0;font-size:15px;max-width:68ch}
 .entry .sec{font-family:var(--read);font-size:16px}
 .entry .buy{font-size:14px}
-.tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.gctx{margin:6px 0 2px}
+.gctx .passage{font-family:var(--read);font-size:17px;line-height:1.6}
+.gctx .passage p{margin:0 0 12px}
+.gtimer{position:sticky;top:calc(env(safe-area-inset-top,0px) + 49px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline;font-size:14px;color:var(--muted)}
+.gtimer b{font-family:var(--mono);font-size:20px;font-weight:500;color:var(--ink)}
+.gtimer b.low{color:var(--bad)}
+.qq .qp br{display:block;content:"";margin-top:6px}
 .tools a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--ink);min-width:0}
 .tools a:hover{border-color:var(--accent)}
 .tools b{display:block;font-family:var(--display);font-size:17px}
@@ -240,7 +247,7 @@ details.model>*:not(summary){margin-inline:16px}
 <script>
 (function(){
 var KIND={lesson:'Lesson',gmat:'GMAT',case:'Case study',review:'Review'};
-var months=[],items=[],byId={},gmatRes=null,rev=null,bank=[],exam=null,fcMonth=0,fcQueue=null,fcShown=false,openM={},autoOpen=null;
+var months=[],items=[],byId={},gmatRes=null,rev=null,bank=[],exam=null,gm=null,gt=null,gtTimer=null,fcMonth=0,fcQueue=null,fcShown=false,openM={},autoOpen=null;
 var state={done:{},quiz:{},notes:{},qt:{},nt:{},fc:{}};
 var saveDelay=900,ready=false;
 var LS='shopfloor-mba-v1';
@@ -443,6 +450,7 @@ function buildBank(){
   });
 }
 function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=a[i];a[i]=a[j];a[j]=x}return a}
+function loadGmat(){return getText('content/gmat.json').then(function(t){try{gm=JSON.parse(t)}catch(e){gm=null}}).catch(function(){gm=null})}
 function loadRevision(){return getText('content/revision.json').then(function(t){try{rev=JSON.parse(t)}catch(e){rev=null}}).catch(function(){rev=null})}
 function load(){
   return getJSON('content/syllabus.json').then(function(s){
@@ -482,7 +490,7 @@ function meter(){
 }
 function nextUp(list){list=list||items;for(var i=0;i<list.length;i++){if(!state.done[list[i].id])return list[i]}return null}
 function sidebar(cur,curMonth){
-  var h='<div class="wk">Revision</div>'+[['formulas','Formula sheet','Every formula, by month'],['cards','Flashcards','Key terms, one at a time'],['exams','Exams','Quick quiz, mid-course and final']].map(function(r){return '<a class="it lib'+(cur===r[0]?' on':'')+'" href="#'+r[0]+'"><i class="dot"></i><span>'+r[1]+'<small>'+r[2]+'</small></span></a>'}).join('');
+  var h='<div class="wk">Revision</div>'+[['formulas','Formula sheet','Every formula, by month'],['cards','Flashcards','Key terms, one at a time'],['exams','Exams','Quick quiz, mid-course and final'],['gmat','GMAT practice','Timed tests and topic practice']].map(function(r){return '<a class="it lib'+(cur===r[0]?' on':'')+'" href="#'+r[0]+'"><i class="dot"></i><span>'+r[1]+'<small>'+r[2]+'</small></span></a>'}).join('');
   months.forEach(function(m){
     var built=m.items.length>0,open=!!openM[m.n];
     h+='<button class="mhead" type="button" data-m="'+m.n+'" aria-expanded="'+(open?'true':'false')+'"><b>Month '+m.n+'</b><span>'+esc(m.title)+'</span><em>'+(built?doneIn(m.items)+'/'+m.items.length:'Later')+'</em></button>';
@@ -513,7 +521,7 @@ function home(){
   if(rev.length){
     h+='<section class="sect"><h2>Review scores</h2><div class="scores">'+rev.map(function(i){var q=state.quiz[i.id];return '<div><b>'+q.score+'/'+q.total+'</b>Week '+i.week.n+'</div>'}).join('')+'</div></section>';
   }
-  h+='<section class="sect"><h2>Revision tools</h2><p>Use these at the end of each week and before the month tests.</p><div class="tools"><a href="#formulas"><b>Formula sheet</b><span>Every formula in the course, by month</span></a><a href="#cards"><b>Flashcards</b><span>'+cardCount()+' key terms to recall</span></a><a href="#exams"><b>Exams</b><span>Quick quiz, mid-course exam and final exam</span></a></div></section>';
+  h+='<section class="sect"><h2>Revision tools</h2><p>Use these at the end of each week and before the month tests.</p><div class="tools"><a href="#formulas"><b>Formula sheet</b><span>Every formula in the course, by month</span></a><a href="#cards"><b>Flashcards</b><span>'+cardCount()+' key terms to recall</span></a><a href="#exams"><b>Exams</b><span>Quick quiz, mid-course exam and final exam</span></a><a href="#gmat"><b>GMAT practice</b><span>Timed section tests, a full mock and practice by topic</span></a></div></section>';
   h+='<section class="sect"><h2>How each week runs</h2><p>Seven sessions a week. Miss a day and carry on; the order matters more than the calendar. At this pace the course takes 32 weeks.</p><div class="rhythm">'+
     [['Day 1','lesson','Lesson'],['Day 2','lesson','Lesson'],['Day 3','gmat','GMAT session'],['Day 4','lesson','Lesson'],['Day 5','case','Case study'],['Day 6','gmat','GMAT session'],['Day 7','review','Graded quiz and a task for your job']]
     .map(function(d){return '<div><b>'+d[0]+'</b><span class="k-'+d[1]+'">'+d[2]+'</span></div>'}).join('')+'</div></section>';
@@ -632,6 +640,111 @@ function examPage(){
   }else{$('#ex-new').onclick=function(){exam=null;examPage();window.scrollTo(0,0)}}
 }
 
+/* ---------- GMAT practice ---------- */
+var GSEC={quant:'Quantitative Reasoning',verbal:'Verbal Reasoning',di:'Data Insights'};
+var GTEST={full:{title:'Full mock exam',desc:'All three sections back to back: 64 questions, 45 minutes a section.'},quant:{title:'Quantitative Reasoning test',desc:'21 questions, 45 minutes. No calculator.'},verbal:{title:'Verbal Reasoning test',desc:'23 questions, 45 minutes. Two passages and critical reasoning.'},di:{title:'Data Insights test',desc:'20 questions, 45 minutes. Calculator allowed.'}};
+function gBlocks(list){var by={},out=[];list.forEach(function(q){if(q.ctx){if(!by[q.ctx]){by[q.ctx]=[];out.push(by[q.ctx])}by[q.ctx].push(q)}else out.push([q])});return out}
+function gFlat(blocks){var o=[];blocks.forEach(function(b){o=o.concat(b)});return o}
+function gSec(sec){return gm.q.filter(function(q){return q.sec===sec})}
+function gGroups(sec,topic,n){var by={};gSec(sec).filter(function(q){return q.topic===topic}).forEach(function(q){(by[q.ctx]=by[q.ctx]||[]).push(q)});return shuffle(Object.keys(by)).slice(0,n).map(function(k){return by[k]})}
+function gSingles(sec,test,n){return shuffle(gSec(sec).filter(test)).slice(0,n).map(function(q){return [q]})}
+function gBuild(sec){
+  if(sec==='quant')return shuffle(gSec('quant')).slice(0,21);
+  if(sec==='verbal')return gFlat(shuffle(gGroups('verbal','Reading comprehension',2).concat(gSingles('verbal',function(q){return !q.ctx},15))));
+  return gFlat(shuffle(gSingles('di',function(q){return q.topic==='Data sufficiency'},8).concat(gGroups('di','Table analysis',2),gGroups('di','Two-part analysis',2))));
+}
+function gPart(sec,qs,secs){return {sec:sec,secs:secs,ans:{},qs:qs.map(function(q){var o=q.o.map(function(h,i){return {i:i,h:h}});return {q:q,o:q.topic==='Data sufficiency'?o:shuffle(o)}})}}
+function gStart(kind,sec,topic){
+  if(kind==='practice'){
+    var pool=gSec(sec).filter(function(q){return !topic||q.topic===topic}),qs=[];
+    shuffle(gBlocks(pool)).forEach(function(b){if(qs.length<10)qs=qs.concat(b)});
+    gt={kind:kind,title:'Practice: '+GSEC[sec]+(topic?', '+topic:''),timed:false,parts:[gPart(sec,qs,0)],cur:0,done:false};
+  }else{
+    var secs=kind==='full'?['quant','verbal','di']:[kind];
+    gt={kind:kind,title:GTEST[kind].title,timed:true,parts:secs.map(function(s){return gPart(s,gBuild(s),45*60)}),cur:0,done:false};
+    gt.parts[0].deadline=Date.now()+gt.parts[0].secs*1000;
+    clearInterval(gtTimer);gtTimer=setInterval(gTick,1000);
+  }
+}
+function gTick(){
+  if(!gt||gt.done||!gt.timed){clearInterval(gtTimer);return}
+  var left=Math.round((gt.parts[gt.cur].deadline-Date.now())/1000);
+  if(left<=0){gFinishPart();return}
+  var el=$('#gm-clock');if(el){el.textContent=Math.floor(left/60)+':'+('0'+left%60).slice(-2);el.className=left<300?'low':''}
+}
+function gFinishPart(){
+  if(!gt||gt.done)return;
+  if(gt.cur<gt.parts.length-1){gt.cur++;gt.parts[gt.cur].deadline=Date.now()+gt.parts[gt.cur].secs*1000}
+  else{
+    gt.done=true;clearInterval(gtTimer);
+    if(gt.kind!=='practice'){var s=0,n=0;gt.parts.forEach(function(p){p.qs.forEach(function(x,i){n++;if(p.ans[i]===x.q.a)s++})});
+      var key='gmat-'+gt.kind,old=state.quiz[key]||{};state.quiz[key]={score:s,total:n,best:Math.max(s,old.total===n&&old.best!=null?old.best:0)};state.qt[key]=Date.now();saveProgress()}
+  }
+  if((location.hash||'').slice(1)==='gmat'){gmatPage();window.scrollTo(0,0)}
+}
+function gCtx(id){var c=gm.ctx[id]||'';return '<div class="gctx">'+(id.charAt(0)==='p'?'<blockquote class="passage">'+c+'</blockquote>':c)+'</div>'}
+function gQuestions(part,pi,marked){
+  var h='',prev=null;
+  part.qs.forEach(function(x,i){
+    var q=x.q;
+    if(q.ctx&&q.ctx!==prev)h+=gCtx(q.ctx);
+    prev=q.ctx||null;
+    h+='<div class="qq"><p class="qp"><span class="qn">Question '+(i+1)+' of '+part.qs.length+' · '+esc(q.topic)+(q.ctx?' · refers to the '+(q.ctx.charAt(0)==='p'?'passage':q.ctx.charAt(0)==='t'?'table':'scenario')+' above':'')+'</span>'+q.stem+'</p><div class="opts">'+x.o.map(function(o){
+      var cls='opt',tag='';
+      if(marked){if(o.i===q.a){cls+=' right';tag='<span class="tag">Correct</span>'}else if(part.ans[i]===o.i){cls+=' wrong';tag='<span class="tag">Your answer</span>'}}
+      else if(part.ans[i]===o.i)cls+=' pick';
+      return '<button type="button" class="'+cls+'" data-p="'+pi+'" data-q="'+i+'" data-o="'+o.i+'"'+(marked?' disabled':'')+' aria-pressed="'+(part.ans[i]===o.i?'true':'false')+'">'+esc(o.h)+tag+'</button>'}).join('')+'</div>'+
+      (marked?'<p class="why">'+(part.ans[i]==null?'Not answered. ':'')+esc(q.why)+'</p>':'')+'</div>';
+  });
+  return h;
+}
+function gWrapTables(root){root.querySelectorAll('.gctx table').forEach(function(t){var w=document.createElement('div');w.className='tw';t.parentNode.insertBefore(w,t);w.appendChild(t)})}
+function gmatPage(){
+  var main=$('#main');
+  if(!gm){main.innerHTML='<p class="empty">The GMAT questions did not load. Reload the page.</p>';return}
+  if(!gt){
+    var h='<div class="libr"><header><span class="kind k-gmat">GMAT</span><h1>GMAT practice</h1><p>'+gm.q.length+' questions written for this course, separate from the ones inside the GMAT sessions. Tests are timed and marked only when you finish; you then see every answer with its explanation and a breakdown by topic.</p></header><section><h2>Timed tests</h2><div class="entries">';
+    ['full','quant','verbal','di'].forEach(function(k){var r=state.quiz['gmat-'+k];
+      h+='<div class="entry"><h3>'+GTEST[k].title+'</h3><div class="by">'+GTEST[k].desc+'</div>'+(r&&r.total?'<p>Last score '+r.score+' of '+r.total+' · best '+r.best+' of '+r.total+'</p>':'')+'<div class="fcbar"><button class="btn" type="button" data-gstart="'+k+'">Start</button></div></div>'});
+    h+='</div></section><section><h2>Practice by topic</h2><p class="sync">Ten questions, untimed. Choose a section, then a topic.</p><div class="fcbar"><label for="gp-sec">Section</label><select id="gp-sec" class="sel">'+Object.keys(GSEC).map(function(s){return '<option value="'+s+'">'+GSEC[s]+'</option>'}).join('')+'</select><label for="gp-topic">Topic</label><select id="gp-topic" class="sel"></select><button class="btn" type="button" id="gp-go">Start practice</button></div></section>'+
+      '<section><p class="sync">These tests give a number correct, not a GMAT score. The real exam adapts to you and scores on a 205 to 805 scale, which a fixed question set cannot reproduce. Use the official practice exams on mba.com to estimate your score, and use this section to drill and to practise timing. With a bank of this size, questions will repeat after a few tests.</p></section>'+
+      '<div class="foot"><div class="nav"><a href="#home">Course home</a><a href="#res-m1">GMAT books and official material</a></div></div></div>';
+    main.innerHTML=h;
+    var ss=$('#gp-sec'),ts=$('#gp-topic');
+    function fill(){var seen={},o='<option value="">All topics</option>';gSec(ss.value).forEach(function(q){if(!seen[q.topic]){seen[q.topic]=1;o+='<option>'+esc(q.topic)+'</option>'}});ts.innerHTML=o}
+    ss.onchange=fill;fill();
+    $('#gp-go').onclick=function(){gStart('practice',ss.value,ts.value);gmatPage();window.scrollTo(0,0)};
+    main.querySelectorAll('[data-gstart]').forEach(function(b){b.onclick=function(){gStart(b.dataset.gstart);gmatPage();window.scrollTo(0,0)}});
+    return;
+  }
+  var h='<div class="sess"><header><span class="kind k-gmat">GMAT</span><h1>'+esc(gt.title)+'</h1>';
+  if(gt.done){
+    var tot=0,sc=0,bySec={},byTop={};
+    gt.parts.forEach(function(p){p.qs.forEach(function(x,i){var ok=p.ans[i]===x.q.a;tot++;if(ok)sc++;
+      var a=bySec[p.sec]=bySec[p.sec]||[0,0];a[1]++;if(ok)a[0]++;var b=byTop[x.q.topic]=byTop[x.q.topic]||[0,0];b[1]++;if(ok)b[0]++})});
+    var pct=tot?Math.round(100*sc/tot):0;
+    function tbl(title,obj,name){return '<div class="tw" style="margin-top:14px"><table class="stmt"><thead><tr><th>'+title+'</th><th class="n">Correct</th><th class="n">Questions</th></tr></thead><tbody>'+Object.keys(obj).map(function(k){return '<tr><td>'+esc(name?name(k):k)+'</td><td class="n">'+obj[k][0]+'</td><td class="n">'+obj[k][1]+'</td></tr>'}).join('')+'</tbody></table></div>'}
+    h+='<div class="meta">Marked. Explanations are under each question.</div></header><div class="result"><span><b>'+sc+' of '+tot+' correct ('+pct+'%).</b> '+(pct>=80?'Strong. Study the misses, since they are the cheapest points left.':pct>=60?'Solid base. The topic table shows where to drill next.':'Drill the weakest topics below with untimed practice before the next timed test.')+'</span></div>'+
+      (gt.parts.length>1?tbl('Section',bySec,function(k){return GSEC[k]}):'')+tbl('Topic',byTop);
+    gt.parts.forEach(function(p,pi){h+='<h2 style="margin-top:28px;font-size:22px">'+GSEC[p.sec]+'</h2><div class="quiz">'+gQuestions(p,pi,true)+'</div>'});
+    h+='<div class="foot"><div class="nav"><a href="#home">Course home</a></div><div class="nav"><button class="btn" type="button" id="gm-new">Back to GMAT practice</button></div></div></div>';
+    main.innerHTML=h;gWrapTables(main);
+    $('#gm-new').onclick=function(){gt=null;gmatPage();window.scrollTo(0,0)};
+    return;
+  }
+  var p=gt.parts[gt.cur],last=gt.cur===gt.parts.length-1;
+  h+='<div class="meta">'+(gt.parts.length>1?'Section '+(gt.cur+1)+' of '+gt.parts.length+': ':'')+GSEC[p.sec]+' · '+p.qs.length+' questions'+(p.sec==='di'?' · calculator allowed':p.sec==='quant'?' · no calculator':'')+'</div></header>'+
+    '<div class="gtimer">'+(gt.timed?'<span>Time left <b id="gm-clock">45:00</b></span>':'<span>Untimed practice</span>')+'<span id="gm-count">'+Object.keys(p.ans).length+' of '+p.qs.length+' answered</span></div>'+
+    '<div class="quiz">'+gQuestions(p,gt.cur,false)+'</div>'+
+    '<div class="foot"><div class="nav"><button class="linkbtn" type="button" id="gm-quit">Abandon</button></div><div class="nav"><button class="btn" type="button" id="gm-next">'+(last?'Finish and mark':'Finish this section and start the next')+'</button></div></div></div>';
+  main.innerHTML=h;gWrapTables(main);gTick();
+  main.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){var qi=+b.dataset.q;p.ans[qi]=+b.dataset.o;
+    main.querySelectorAll('.opt[data-q="'+qi+'"]').forEach(function(x){var on=x===b;x.classList.toggle('pick',on);x.setAttribute('aria-pressed',on?'true':'false')});
+    $('#gm-count').textContent=Object.keys(p.ans).length+' of '+p.qs.length+' answered'}});
+  $('#gm-next').onclick=gFinishPart;
+  $('#gm-quit').onclick=function(){clearInterval(gtTimer);gt=null;gmatPage();window.scrollTo(0,0)};
+}
+
 /* ---------- session ---------- */
 function buildQuiz(src,it,qi0,graded){
   var qs=[].slice.call(src.querySelectorAll('.q'));
@@ -729,8 +842,8 @@ function route(keep){
   if(autoOpen!==cm){openM[cm]=true;autoOpen=cm}
   var wantSign=HOSTED&&(id==='sync'||id==='signin'||(ready&&!gh&&ghState!=='checking'&&!skipped()));
   if(keep&&wantSign&&$('#gh-form')&&ae&&ae.tagName==='INPUT'){meter();paintSync();return}
-  var tool=/^(formulas|cards|exams)$/.test(id)?id:null;
-  if(wantSign)signPage();else if(it)session(it);else if(lib)library(lib);else if(tool==='formulas')formulaPage();else if(tool==='cards')cardPage();else if(tool==='exams')examPage();else home();
+  var tool=/^(formulas|cards|exams|gmat)$/.test(id)?id:null;
+  if(wantSign)signPage();else if(it)session(it);else if(lib)library(lib);else if(tool==='formulas')formulaPage();else if(tool==='cards')cardPage();else if(tool==='exams')examPage();else if(tool==='gmat')gmatPage();else home();
   sidebar(wantSign?null:it?it.id:(lib||tool)?id:null,cm);meter();paintSync();
   $('#side').classList.remove('show');$('#menuBtn').setAttribute('aria-expanded','false');
   if(!keep)window.scrollTo(0,0);
@@ -739,7 +852,7 @@ $('#menuBtn').onclick=function(){var s=$('#side').classList.toggle('show');this.
 window.addEventListener('hashchange',function(){route(false)});
 
 loadLocal();
-load().then(loadRevision).then(function(){var c=HOSTED?ghCfg():null;if(c&&c.name&&c.repo&&c.token){ghState='checking'}ready=true;route(false);connect()}).catch(function(){
+load().then(loadRevision).then(loadGmat).then(function(){var c=HOSTED?ghCfg():null;if(c&&c.name&&c.repo&&c.token){ghState='checking'}ready=true;route(false);connect()}).catch(function(){
   $('#main').innerHTML='<p class="empty">The course content did not load. Reload the page. </p>';
 });
 })();
