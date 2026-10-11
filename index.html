@@ -125,6 +125,7 @@ h1,h2,h3,h4{font-family:var(--display);text-wrap:balance;line-height:1.15;margin
 .entry .by{font-size:13px;color:var(--muted);margin-top:2px}
 .entry p{margin:8px 0 0;font-size:15px;max-width:68ch}
 .entry .sec{font-family:var(--read);font-size:16px}
+.entry .buy{font-size:14px}
 .entry .lab{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:6px}
 
 /* session */
@@ -492,10 +493,12 @@ function home(){
 /* ---------- library ---------- */
 function library(m){
   function vids(list){return '<div class="entries">'+list.map(function(v){return '<div class="entry"><h3><a href="'+esc(v.url)+'" target="_blank" rel="noopener">'+esc(v.title)+'</a></h3><div class="by">'+esc(v.by)+'</div><p>'+esc(v.note)+'</p></div>'}).join('')+'</div>'}
-  function books(list){return '<div class="entries">'+list.map(function(b){return '<div class="entry"><h3>'+esc(b.title)+'</h3><div class="by">'+esc(b.author)+'</div><p class="sec"><span class="lab">Read</span>'+esc(b.sections)+'</p><p><span class="lab">Why</span>'+esc(b.why)+'</p></div>'}).join('')+'</div>'}
+  function books(list){return '<div class="entries">'+list.map(function(b){return '<div class="entry"><h3>'+esc(b.title)+'</h3><div class="by">'+esc(b.author)+'</div><p class="sec"><span class="lab">Read</span>'+esc(b.sections)+'</p><p><span class="lab">Why</span>'+esc(b.why)+'</p><p class="buy"><a href="https://www.amazon.in/s?k='+encodeURIComponent(b.title+' '+b.author)+'" target="_blank" rel="noopener">Find it on Amazon India</a></p></div>'}).join('')+'</div>'}
+  function frees(list){return '<div class="entries">'+list.map(function(b){return '<div class="entry"><h3><a href="'+esc(b.url)+'" target="_blank" rel="noopener">'+esc(b.title)+'</a></h3><div class="by">OpenStax, Rice University · free to read online or download as a PDF</div><p class="sec"><span class="lab">Read</span>'+esc(b.sections)+'</p></div>'}).join('')+'</div>'}
   var h='<div class="libr"><header><span class="kind k-lesson">Month '+m.n+' · Videos and books</span><h1>'+esc(m.title)+'</h1><p>The sessions in this course stand alone. Use these when you want a lecturer\'s voice or more depth. Each session also has its own "Watch" link, which opens a YouTube search for that exact topic, and a "Read" pointer to a book section.</p></header>';
   h+='<section><h2>Video courses</h2>'+vids(m.videos||[])+'<p class="sync">Coursera courses can usually be followed without paying; a certificate costs extra. Check the enrolment page. MIT, Yale and Khan Academy material is free.</p></section>';
-  h+='<section><h2>Books and the sections that matter</h2>'+books(m.books||[])+'<p class="sync">Chapter numbers change between editions, so sections are described by topic. One book a month is enough; the first listed is the one to choose.</p></section>';
+  h+='<section><h2>Free textbooks</h2>'+((m.free||[]).length?frees(m.free)+'<p class="sync">OpenStax books are legally free. On the book\'s page choose "View online" or "Download a PDF". They are plainer than the books below and cover the same ground.</p>':'<p class="sync">There is no free textbook that covers this month well. The Wharton video course above and The Goal are the best low-cost route.</p>')+'</section>';
+  h+='<section><h2>Books and the sections that matter</h2>'+books(m.books||[])+'<p class="sync">Chapter numbers change between editions, so sections are described by topic. One book a month is enough; the first listed is the one to choose. The Amazon link opens a search for the title, so pick the paperback or Kindle edition sold by Amazon or the publisher.</p></section>';
   if(gmatRes){h+='<section><h2>'+esc(gmatRes.title)+'</h2>'+vids(gmatRes.videos||[])+books(gmatRes.books||[])+'</section>'}
   h+='<div class="foot"><div class="nav"><a href="#home">Course home</a></div><div class="nav"><a class="btn" href="#'+(nextUp(m.items)||m.items[0]).id+'">Go to this month\'s sessions</a></div></div></div>';
   $('#main').innerHTML=h;
