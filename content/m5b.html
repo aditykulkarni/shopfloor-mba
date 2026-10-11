@@ -1,0 +1,393 @@
+<section data-week="19" data-title="Lean, quality and Six Sigma" data-goal="Explain the Toyota system and put a price on poor quality.">
+
+<article data-id="m5w19d1" data-type="lesson" data-title="The Toyota Production System" data-mins="60" data-watch="Toyota Production System lean manufacturing explained just in time jidoka kanban" data-read="Liker, The Toyota Way: Part Two, the business principles; Womack and Jones, Lean Thinking: Part I">
+<p class="lede">You will have met lean tools on shop floors. An MBA course treats lean as a management system with an economic logic, and asks why so many companies that copied the tools failed to get the results.</p>
+<h3>The aim</h3>
+<p>Shorten the time between a customer order and payment by removing everything that adds no value. From Little's law, shorter time means less inventory. From the queueing formula, short time at high utilisation is possible only with low variability. Lean is a long campaign against variability and delay.</p>
+<h3>Two pillars</h3>
+<ul>
+<li><strong>Just-in-time</strong>: make only what is needed, when it is needed, in the amount needed. Its tools are takt time, continuous flow, pull systems and levelled production.</li>
+<li><strong>Jidoka</strong>: build quality in. Stop when a problem occurs, so defects are not passed on and causes are found while fresh. Its tools are the andon cord and mistake-proofing.</li>
+</ul>
+<h3>Seven wastes</h3>
+<p>Overproduction, waiting, transport, over-processing, inventory, motion and defects. Toyota's Taiichi Ohno regarded overproduction as the worst, because it creates most of the others.</p>
+<h3>Key practices</h3>
+<table class="stmt">
+<thead><tr><th>Practice</th><th>What it does</th><th>Economic effect</th></tr></thead>
+<tbody>
+<tr><td>Kanban (pull)</td><td>Upstream makes only what downstream has used</td><td>Caps work-in-progress</td></tr>
+<tr><td>Quick changeover (SMED)</td><td>Cuts set-up time from hours to minutes</td><td>Smaller batches, less inventory, more flexibility</td></tr>
+<tr><td>Levelling (heijunka)</td><td>Spreads volume and mix evenly</td><td>Lower arrival variability for every station and supplier</td></tr>
+<tr><td>Standard work</td><td>One best current method</td><td>Lower process variability; a baseline for improvement</td></tr>
+<tr><td>Value stream mapping</td><td>Shows material and information flow with times</td><td>Reveals that most lead time is waiting</td></tr>
+<tr><td>Kaizen</td><td>Continuous small improvements by those doing the work</td><td>Productivity that compounds</td></tr>
+</tbody>
+</table>
+<h3>Why imitation often fails</h3>
+<ul>
+<li><strong>Tools without the system.</strong> Kanban in an unstable process produces shortages.</li>
+<li><strong>Inventory cut first.</strong> Stock removed before variability is reduced exposes the plant, as last week's passage argued.</li>
+<li><strong>No stop-and-fix culture.</strong> If stopping the line is punished, problems stay hidden.</li>
+<li><strong>Measures that contradict it.</strong> Utilisation targets and absorption costing reward overproduction.</li>
+<li><strong>Treating it as a cost-cutting project.</strong> People will not suggest improvements that remove their own jobs.</li>
+</ul>
+<p>The last two are management failures. Lean succeeds or fails on how managers measure and behave.</p>
+<h3>Lean and digital</h3>
+<p>Digital tools can strengthen lean: simulation tests a levelled schedule before it is tried, and digital work instructions support standard work. They can also automate waste. The test is whether lead time and variability fall.</p>
+<div class="callout"><h4>In your job</h4><p>Lean practitioners in a customer's plant can be your strongest allies or your sharpest critics. Speak their language: show how a layout or process plan changes lead time, work-in-progress and travel distance on a value stream map, before mentioning software.</p></div>
+<div class="quiz">
+<div class="q" data-a="c"><p>Which waste did Ohno consider the most serious?</p><ol><li data-o="a">Motion</li><li data-o="b">Transport</li><li data-o="c">Overproduction</li></ol><p class="why">It creates inventory, hides defects and consumes capacity.</p></div>
+<div class="q" data-a="a"><p>Quick changeover matters economically because it:</p><ol><li data-o="a">Makes small batches affordable</li><li data-o="b">Raises machine speed</li><li data-o="c">Removes the need for maintenance</li></ol><p class="why">Lower set-up cost means a smaller economic batch and less inventory.</p></div>
+<div class="q" data-a="b"><p>A plant introduces kanban while keeping utilisation targets for every machine. The likely result is:</p><ol><li data-o="a">A smooth transition</li><li data-o="b">Conflict, because the targets reward making parts nobody has asked for</li><li data-o="c">Lower quality</li></ol><p class="why">The measurement system contradicts pull production.</p></div>
+</div>
+</article>
+
+<article data-id="m5w19d2" data-type="lesson" data-title="Quality: cost, capability and control" data-mins="75" data-watch="cost of quality prevention appraisal failure; process capability Cp Cpk explained; control charts SPC" data-read="Juran, Juran on Quality by Design: the chapter on the cost of poor quality; Montgomery, Introduction to Statistical Quality Control: the chapters on control charts and process capability">
+<p class="lede">Quality has a cost structure, and most of the cost is invisible in ordinary accounts. Making it visible is how quality gets investment.</p>
+<h3>The cost of quality</h3>
+<table class="stmt">
+<thead><tr><th>Category</th><th>Examples</th></tr></thead>
+<tbody>
+<tr><td>Prevention</td><td>Process design, training, mistake-proofing, supplier development</td></tr>
+<tr><td>Appraisal</td><td>Inspection, testing, audits</td></tr>
+<tr><td>Internal failure</td><td>Scrap, rework, downtime, re-inspection</td></tr>
+<tr><td>External failure</td><td>Warranty, returns, recalls, penalties, lost customers</td></tr>
+</tbody>
+</table>
+<p>A common rule of thumb is that a defect costs about ten times more at each later stage: 1 to prevent, 10 to catch in the plant, 100 after it reaches the customer. The exact ratios vary, and the direction does not. Money moved from failure to prevention usually pays back several times. In many manufacturers the total cost of quality runs to several percent of sales, most of it failure cost buried in overhead.</p>
+<h3>Common cause and special cause</h3>
+<p>Every process varies. <strong>Common-cause</strong> variation is the normal noise of a stable process. <strong>Special-cause</strong> variation comes from something specific: a worn tool, a new material batch. A control chart plots a measure over time with limits at three standard deviations from the mean. Points inside the limits are noise. A point outside, or a clear pattern, signals a special cause worth investigating.</p>
+<p>The discipline this teaches managers is restraint. Reacting to every fluctuation, which Deming called tampering, makes a stable process worse. Not every bad month has a cause that someone should be blamed for.</p>
+<h3>Process capability</h3>
+<p>Capability compares what the customer allows with what the process does.</p>
+<p class="formula">Cp = (upper spec limit − lower spec limit) ÷ (6 × standard deviation)</p>
+<p class="formula">Cpk = distance from the mean to the nearer spec limit ÷ (3 × standard deviation)</p>
+<p>A shaft is specified at 10.00 ± 0.06 mm. The process has a standard deviation of 0.015 mm.</p>
+<ul>
+<li>Cp = 0.12 ÷ 0.09 = 1.33. The process is narrow enough.</li>
+<li>If the mean has drifted to 10.02, the nearer limit is 0.04 away. Cpk = 0.04 ÷ 0.045 = 0.89. The process is off-centre and makes defects.</li>
+</ul>
+<p>Cp tells you whether the process could meet the specification. Cpk tells you whether it does. Automotive customers commonly require a Cpk of at least 1.33.</p>
+<h3>Yield through a chain</h3>
+<p>Five process steps each with a 98% first-pass yield give 0.98⁵ = 90.4% overall. This is rolled throughput yield, and it is the reliability arithmetic of Month 2 applied to quality.</p>
+<h3>Quality at the source</h3>
+<p>Inspection finds defects after the cost is incurred. Prevention means the design, the process and the operator's method make the defect hard to produce. Product and process design decide most of a product's eventual quality cost, which is why design for manufacturing and early process validation have high returns.</p>
+<div class="callout"><h4>In your job</h4><p>Process simulation and tolerance analysis are prevention spending. Position them against the customer's failure costs: ask for last year's scrap, rework and warranty figures. Those are the pool the benefit comes from.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>Spec limits are 49.7 and 50.3. The process standard deviation is 0.05 and the mean is 50.0. Cp is:</p><ol><li data-o="a">1.0</li><li data-o="b">2.0</li><li data-o="c">0.5</li></ol><p class="why">0.6 ÷ 0.3.</p></div>
+<div class="q" data-a="c"><p>Warranty claims are an example of:</p><ol><li data-o="a">Prevention cost</li><li data-o="b">Appraisal cost</li><li data-o="c">External failure cost</li></ol><p class="why">The defect reached the customer.</p></div>
+<div class="q" data-a="a"><p>A point on a control chart falls inside the limits but is higher than last week's. The right response is to:</p><ol><li data-o="a">Leave the process alone</li><li data-o="b">Adjust the machine</li><li data-o="c">Hold the operator responsible</li></ol><p class="why">Common-cause variation. Adjusting would add variability.</p></div>
+</div>
+</article>
+
+<article data-id="m5w19d3" data-type="gmat" data-title="GMAT Data Insights: data sufficiency mixed set" data-mins="60" data-watch="GMAT data sufficiency practice set with explanations" data-read="GMAT Official Guide: Data Insights, data sufficiency practice sets">
+<p class="lede">Five questions, 10 minutes. Decide sufficiency and stop.</p>
+<div class="quiz">
+<div class="q" data-a="e"><p>Did line A produce more than line B yesterday? (1) Line A ran 2 hours longer than line B. (2) Line A's hourly rate was 10% lower than line B's.</p><ol><li data-o="a">A: statement 1 alone</li><li data-o="b">B: statement 2 alone</li><li data-o="c">C: both together</li><li data-o="d">D: each alone</li><li data-o="e">E: not sufficient</li></ol><p class="why">Without the actual hours the answer can go either way. If B ran 8 hours, A made more. If B ran 30, A made less.</p></div>
+<div class="q" data-a="c"><p>What percentage of a batch is defective? (1) 30 parts are defective. (2) 970 parts are good.</p><ol><li data-o="a">A: statement 1 alone</li><li data-o="b">B: statement 2 alone</li><li data-o="c">C: both together</li><li data-o="d">D: each alone</li><li data-o="e">E: not sufficient</li></ol><p class="why">Together the batch is 1,000 and the rate is 3%.</p></div>
+<div class="q" data-a="b"><p>Is x an integer? (1) 2x is an integer. (2) x/2 is an integer.</p><ol><li data-o="a">A: statement 1 alone</li><li data-o="b">B: statement 2 alone</li><li data-o="c">C: both together</li><li data-o="d">D: each alone</li><li data-o="e">E: not sufficient</li></ol><p class="why">x = 0.5 satisfies statement 1. If x/2 is an integer then x is twice an integer.</p></div>
+<div class="q" data-a="a"><p>What do 5 pens and 3 notebooks cost? (1) 10 pens and 6 notebooks cost ₹480. (2) A pen costs ₹12.</p><ol><li data-o="a">A: statement 1 alone</li><li data-o="b">B: statement 2 alone</li><li data-o="c">C: both together</li><li data-o="d">D: each alone</li><li data-o="e">E: not sufficient</li></ol><p class="why">Halve statement 1: ₹240. You do not need the individual prices.</p></div>
+<div class="q" data-a="c"><p>Is the average of five numbers greater than 20? (1) Four of them sum to 90. (2) The fifth is greater than 12.</p><ol><li data-o="a">A: statement 1 alone</li><li data-o="b">B: statement 2 alone</li><li data-o="c">C: both together</li><li data-o="d">D: each alone</li><li data-o="e">E: not sufficient</li></ol><p class="why">Together the sum exceeds 102, so the average exceeds 20.4.</p></div>
+</div>
+</article>
+
+<article data-id="m5w19d4" data-type="lesson" data-title="Six Sigma and structured problem solving" data-mins="60" data-watch="Six Sigma DMAIC explained root cause analysis 5 whys fishbone A3 problem solving" data-read="Pande, Neuman and Cavanagh, The Six Sigma Way: the chapters on the DMAIC road map; Sobek and Smalley, Understanding A3 Thinking: chapters 1 to 3">
+<p class="lede">Lean attacks delay. Six Sigma attacks variation. Both rest on a disciplined way of solving problems that is useful far beyond the factory.</p>
+<h3>What Six Sigma means</h3>
+<p>The name refers to a process so capable that the nearest specification limit is six standard deviations from the mean. Allowing for drift over time, that corresponds to about 3.4 defects per million opportunities. In practice Six Sigma is a project method run by trained specialists, called belts, and chosen for financial impact.</p>
+<h3>DMAIC</h3>
+<ol>
+<li><strong>Define</strong> the problem, the customer and the financial stake.</li>
+<li><strong>Measure</strong> current performance and check that the measurement system can be trusted.</li>
+<li><strong>Analyse</strong> to find root causes, using data.</li>
+<li><strong>Improve</strong> by testing and implementing solutions.</li>
+<li><strong>Control</strong> so the gain is held: standard work, control charts, ownership.</li>
+</ol>
+<p>The order protects against the most common failure in organisations, which is jumping to a solution before the problem is understood. The control step protects against the second, which is improvement that fades.</p>
+<h3>Root cause tools</h3>
+<ul>
+<li><strong>Five whys.</strong> Ask why repeatedly until you reach a cause you can act on. The machine stopped. Why? A fuse blew. Why? A bearing was overloaded. Why? It was not lubricated. Why? The lubrication pump failed. Why? Its shaft was worn because swarf got in. Fit a strainer.</li>
+<li><strong>Fishbone diagram.</strong> Organise possible causes under headings such as method, machine, material, people, measurement and environment.</li>
+<li><strong>Pareto analysis.</strong> Rank causes by frequency or cost. A few usually account for most of the problem.</li>
+<li><strong>Designed experiments.</strong> Change several factors in a planned pattern to find which matter and how they interact.</li>
+</ul>
+<h3>The A3</h3>
+<p>Toyota's version is a single sheet covering background, current condition, goal, root-cause analysis, countermeasures, plan and follow-up. Fitting the thinking onto one page forces clarity, and the sheet doubles as a tool for coaching and for getting agreement.</p>
+<h3>Where these methods mislead</h3>
+<ul>
+<li>They suit stable, repeated processes. For new products or markets there is little data to analyse.</li>
+<li>They can become certification programmes that count projects and belts instead of results.</li>
+<li>They improve the existing process and seldom ask whether the process should exist.</li>
+</ul>
+<div class="callout"><h4>In your job</h4><p>DMAIC is a ready-made structure for a consulting engagement or a discovery workshop. Define and Measure are what a good requirements phase does. If a customer cannot state current performance, the first deliverable is a baseline.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>In DMAIC, which step ensures the improvement lasts?</p><ol><li data-o="a">Define</li><li data-o="b">Control</li><li data-o="c">Analyse</li></ol><p class="why">Without it, performance drifts back.</p></div>
+<div class="q" data-a="a"><p>A Pareto chart is used to:</p><ol><li data-o="a">Identify the few causes that account for most of a problem</li><li data-o="b">Monitor a process over time</li><li data-o="c">Calculate process capability</li></ol><p class="why">It ranks causes by impact.</p></div>
+<div class="q" data-a="c"><p>The main value of the DMAIC sequence is that it:</p><ol><li data-o="a">Guarantees savings</li><li data-o="b">Requires software</li><li data-o="c">Stops teams implementing solutions before understanding the problem</li></ol><p class="why">Measurement and analysis come before improvement.</p></div>
+</div>
+</article>
+
+<article data-id="m5w19d5" data-type="case" data-title="Case: what does poor quality cost Deccan?" data-mins="75" data-watch="cost of poor quality analysis example manufacturing prevention investment" data-read="Juran, Juran on Quality by Design: the chapter on the cost of poor quality">
+<p class="lede">A quality head needs money for prevention and a CFO needs convincing.</p>
+<h3>The situation</h3>
+<p>Deccan Driveline has revenue of ₹2,000 crore and EBIT of ₹200 crore. Its quality head, Rohini Patwardhan, has assembled the yearly cost of quality in ₹ crore.</p>
+<table class="stmt">
+<thead><tr><th>Category</th><th class="n">₹ crore</th></tr></thead>
+<tbody>
+<tr><td>Prevention</td><td class="n">4</td></tr>
+<tr><td>Appraisal</td><td class="n">16</td></tr>
+<tr><td>Internal failure (scrap, rework, downtime)</td><td class="n">50</td></tr>
+<tr><td>External failure (warranty, returns, penalties)</td><td class="n">30</td></tr>
+<tr class="total"><td>Total</td><td class="n">100</td></tr>
+</tbody>
+</table>
+<p>She proposes an extra ₹6 crore a year on prevention: process capability studies on the 20 worst characteristics, mistake-proofing at key stations and digital work instructions. From two pilot lines she expects failure costs to fall by 25% and appraisal by ₹4 crore, since less inspection will be needed.</p>
+<h3>Your questions</h3>
+<ol>
+<li>What share of revenue and of EBIT is the cost of quality? How is it distributed?</li>
+<li>Calculate the new cost of quality and the net saving if her estimates hold.</li>
+<li>What does that do to EBIT?</li>
+<li>Which costs of poor quality are missing from her table?</li>
+<li>The CFO says, "Pilot lines always look good." How should Rohini answer?</li>
+</ol>
+<details class="model"><summary>Model answer</summary>
+<p><strong>1.</strong> ₹100 crore is 5% of revenue and half of EBIT. Failure costs are 80% of the total and prevention is 4%. Deccan is paying for defects after they happen.</p>
+<p><strong>2.</strong> Prevention rises to 10. Appraisal falls to 12. Failure costs fall by 25% of 80, to 60. The new total is 82. The net saving is ₹18 crore a year.</p>
+<p><strong>3.</strong> EBIT rises from 200 to 218, a 9% increase, from a ₹6 crore annual outlay.</p>
+<p><strong>4.</strong> Lost sales and damaged reputation with customers. The extra inventory and capacity held as protection against defects. Expediting and premium freight. Management and engineering time spent on containment. Capacity lost at bottlenecks when they process parts that are later scrapped. These hidden costs are often as large as the recorded ones.</p>
+<p><strong>5.</strong> She should accept the point, since it is the selection problem from Month 2, and answer with design. State how the pilot lines were chosen and how they compared with others beforehand. Offer to roll out in phases with lines chosen in advance and the others as a control. Show the break-even: the programme pays for itself if failure costs fall by only 2.5%, since ₹2 crore of failure saving plus ₹4 crore less appraisal covers the ₹6 crore, or by 7.5% if appraisal does not fall at all. And tie the first phase to the costliest items in a Pareto of failure costs, where the evidence is strongest.</p>
+<p><strong>What the case teaches.</strong> Quality is argued most effectively as a financial case. Once the cost of failure is laid out against the cost of prevention, the argument is usually over quickly. Getting the data is the hard part, because accounting systems scatter it.</p>
+</details>
+</article>
+
+<article data-id="m5w19d6" data-type="gmat" data-title="GMAT Verbal: explain and flaw questions" data-mins="60" data-watch="GMAT critical reasoning resolve the paradox flaw questions" data-read="GMAT Official Guide: Verbal Reasoning, critical reasoning practice sets">
+<p class="lede">Two more critical reasoning types. "Explain" questions present two facts that seem to conflict and ask what reconciles them. "Flaw" questions ask you to name the error in an argument.</p>
+<h3>Method</h3>
+<ul>
+<li><strong>Explain</strong>: state the surprise in your own words, then look for a fact that makes both sides true. Do not pick an answer that disputes one of the facts.</li>
+<li><strong>Flaw</strong>: find the gap, then choose the option that describes it in general terms. Common flaws are confusing correlation with cause, generalising from a small or biased sample, and treating a necessary condition as a sufficient one.</li>
+</ul>
+<div class="quiz">
+<div class="q" data-a="b"><p>A plant doubled its number of quality inspectors, and the number of defects reported by customers rose. Which best explains this?</p><ol><li data-o="a">Inspectors are well paid</li><li data-o="b">In the same period the plant began shipping a new, more complex product in large volumes</li><li data-o="c">Customers prefer plants with more inspectors</li><li data-o="d">The inspectors were trained</li></ol><p class="why">A separate cause of more defects that outweighs the extra inspection.</p></div>
+<div class="q" data-a="d"><p>A retailer cut prices by 10% and its total profit rose. Which best explains this?</p><ol><li data-o="a">Its costs per unit rose</li><li data-o="b">Its competitors also cut prices</li><li data-o="c">It closed several stores</li><li data-o="d">Sales volume rose enough that total contribution increased</li></ol><p class="why">Demand was elastic enough to more than offset the lower margin.</p></div>
+<div class="q" data-a="a"><p>"All of our most successful sales people are confident. So hiring confident people will give us successful sales people." The flaw is that the argument:</p><ol><li data-o="a">Treats a trait shared by successful people as enough to produce success</li><li data-o="b">Uses a sample that is too large</li><li data-o="c">Defines confidence precisely</li><li data-o="d">Relies on expert opinion</li></ol><p class="why">Unsuccessful sales people may be confident too. This is also survivorship bias.</p></div>
+<div class="q" data-a="c"><p>"We surveyed customers who renewed their contracts and 95% said our support is excellent. So our support is excellent." The flaw is that the argument:</p><ol><li data-o="a">Confuses cause and effect</li><li data-o="b">Attacks its critics</li><li data-o="c">Draws a conclusion from a sample that excludes the customers most likely to be dissatisfied</li><li data-o="d">Uses circular reasoning</li></ol><p class="why">Those who did not renew were not asked.</p></div>
+</div>
+</article>
+
+<article data-id="m5w19d7" data-type="review" data-title="Week 19 review and work assignment" data-mins="75" data-watch="lean six sigma quality management summary" data-read="Liker, The Toyota Way: the chapters on levelling and on building a culture of stopping to fix problems">
+<p class="lede">Five questions, then write an A3.</p>
+<div class="quiz graded">
+<div class="q" data-a="b"><p>Jidoka means:</p><ol><li data-o="a">Producing in large batches</li><li data-o="b">Building quality in by stopping when a problem occurs</li><li data-o="c">Continuous improvement</li><li data-o="d">Levelling production</li></ol><p class="why">It is the second pillar of the Toyota system.</p></div>
+<div class="q" data-a="c"><p>Spec is 20.0 ± 0.3, the process mean is 20.1 and the standard deviation is 0.05. Cpk is:</p><ol><li data-o="a">2.0</li><li data-o="b">2.67</li><li data-o="c">1.33</li><li data-o="d">1.0</li></ol><p class="why">Nearer limit is 20.3, 0.2 away. 0.2 ÷ 0.15.</p></div>
+<div class="q" data-a="a"><p>Four process steps each have a 95% first-pass yield. Rolled throughput yield is about:</p><ol><li data-o="a">81%</li><li data-o="b">95%</li><li data-o="c">80%</li><li data-o="d">90%</li></ol><p class="why">0.95⁴ = 0.8145.</p></div>
+<div class="q" data-a="d"><p>Adjusting a stable process after every small deviation will:</p><ol><li data-o="a">Reduce variation</li><li data-o="b">Have no effect</li><li data-o="c">Improve capability</li><li data-o="d">Increase variation</li></ol><p class="why">Tampering adds the adjustment's own variability.</p></div>
+<div class="q" data-a="b"><p>A firm spends 1 on prevention, 4 on appraisal and 20 on failures. The most promising move is to:</p><ol><li data-o="a">Add inspectors</li><li data-o="b">Shift spending towards prevention</li><li data-o="c">Cut all quality spending</li><li data-o="d">Raise prices</li></ol><p class="why">Failure dominates, and prevention has the highest return.</p></div>
+</div>
+<div class="assign"><h3>Work assignment: a one-page A3</h3>
+<ol>
+<li>Choose a recurring problem in your own work: late inputs for demos, rework on proposals, environment downtime.</li>
+<li>On one page write: background, current condition with at least one number, goal, root-cause analysis using five whys, countermeasures, plan with owners and dates, and how you will check the result.</li>
+<li>Show it to one colleague and revise it once.</li>
+</ol></div>
+</article>
+</section>
+
+<section data-week="20" data-title="Supply chain strategy" data-goal="Design a supply chain to fit the product and manage its risks.">
+
+<article data-id="m5w20d1" data-type="lesson" data-title="Matching the supply chain to the product" data-mins="60" data-watch="Fisher what is the right supply chain for your product efficient responsive; bullwhip effect explained" data-read="Marshall Fisher, What Is the Right Supply Chain for Your Product? (Harvard Business Review, 1997); Chopra and Meindl, Supply Chain Management: the chapters on strategic fit and on coordination">
+<p class="lede">A supply chain is every organisation and step between raw material and the final customer. Its design is a strategic choice, and the commonest error is to run one kind of chain for the wrong kind of product.</p>
+<h3>Two kinds of product</h3>
+<p>Marshall Fisher's framework sorts products by how predictable their demand is.</p>
+<table class="stmt">
+<thead><tr><th></th><th>Functional products</th><th>Innovative products</th></tr></thead>
+<tbody>
+<tr><td>Demand</td><td>Stable, predictable</td><td>Uncertain, short life</td></tr>
+<tr><td>Margin</td><td>Low</td><td>High</td></tr>
+<tr><td>Variety</td><td>Low</td><td>High</td></tr>
+<tr><td>Main cost of a mismatch</td><td>Excess cost</td><td>Stock-outs and markdowns</td></tr>
+<tr><td>Right supply chain</td><td>Efficient: low cost, high utilisation, minimal inventory</td><td>Responsive: spare capacity, buffers, speed</td></tr>
+</tbody>
+</table>
+<p>Standard fasteners need an efficient chain. A new electric scooter model with uncertain demand needs a responsive one. A firm that applies cost-minimising rules to an innovative product will run short during the launch and be left with obsolete stock afterwards.</p>
+<h3>Push, pull and the decoupling point</h3>
+<p>Upstream of some point, activity is driven by forecast (push). Downstream of it, by actual orders (pull). That point is where inventory is held. Engineer-to-order machine builders pull almost everything. Consumer goods are pushed to the shelf. Moving the point upstream reduces forecast risk and lengthens the customer's wait. Modular design lets a company hold generic modules and configure to order.</p>
+<h3>The bullwhip effect</h3>
+<p>Small changes in end-customer demand grow into large swings further up the chain. A 5% rise at the retailer can become a 40% rise in orders at the component maker. The causes identified by Lee, Padmanabhan and Whang:</p>
+<ul>
+<li><strong>Forecast updating.</strong> Each tier adds its own safety margin to the tier below's orders.</li>
+<li><strong>Order batching.</strong> Monthly ordering turns smooth demand into spikes.</li>
+<li><strong>Price fluctuations.</strong> Promotions make buyers stock up and then stop.</li>
+<li><strong>Shortage gaming.</strong> When supply is rationed, customers over-order and later cancel.</li>
+</ul>
+<p>The remedies attack each cause: share real end-demand data, order more often in smaller lots, keep prices stable, and allocate scarce supply by past sales and not by order size. Shorter lead times help everything.</p>
+<h3>Why this matters upstream</h3>
+<p>Capital-goods makers sit at the far end of the whip. A modest slowdown in car sales becomes a collapse in orders for machine tools and fixtures. This is the operating reason behind the high betas you met in Month 3.</p>
+<div class="callout"><h4>In your job</h4><p>Your customers' investment budgets are a bullwhip signal. Watching end-market data, such as vehicle registrations or consumer-goods volumes, gives earlier warning of a freeze or a thaw in capital spending than waiting for the customer to say so.</p></div>
+<div class="quiz">
+<div class="q" data-a="c"><p>A fashion product with unpredictable demand and high margin needs a supply chain designed for:</p><ol><li data-o="a">Lowest unit cost</li><li data-o="b">Highest utilisation</li><li data-o="c">Responsiveness</li></ol><p class="why">The cost of missing demand outweighs the cost of spare capacity.</p></div>
+<div class="q" data-a="b"><p>The bullwhip effect is:</p><ol><li data-o="a">Falling demand over time</li><li data-o="b">Growing swings in orders further up the supply chain</li><li data-o="c">Rising prices upstream</li></ol><p class="why">Variability is amplified at each tier.</p></div>
+<div class="q" data-a="a"><p>Which measure most directly reduces the bullwhip effect?</p><ol><li data-o="a">Sharing end-customer sales data along the chain</li><li data-o="b">Running more promotions</li><li data-o="c">Ordering in larger batches</li></ol><p class="why">Each tier then plans from real demand and not from distorted orders.</p></div>
+</div>
+</article>
+
+<article data-id="m5w20d2" data-type="lesson" data-title="Sourcing: make or buy, and from whom" data-mins="60" data-watch="make or buy decision total cost of ownership Kraljic matrix strategic sourcing" data-read="Peter Kraljic, Purchasing Must Become Supply Management (Harvard Business Review, 1983); Chopra and Meindl, Supply Chain Management: the chapter on sourcing decisions">
+<p class="lede">Bought-in materials and services are 50 to 70% of cost for most manufacturers. Decisions about what to buy, and how to deal with those who supply it, move profit more than most shop-floor improvements.</p>
+<h3>Make or buy</h3>
+<p>Keep in-house the activities that are both a source of advantage and something you do better than outsiders. Buy the rest. The questions to ask:</p>
+<ul>
+<li>Is this capability central to why customers choose us?</li>
+<li>Can suppliers do it cheaper or better because of scale or specialisation?</li>
+<li>How dependent would we become, and how hard would it be to switch?</li>
+<li>Would we lose knowledge we need for the next product generation?</li>
+<li>What costs would we really avoid? Use the avoidable-cost logic of Month 1, not allocated full cost.</li>
+</ul>
+<h3>Total cost of ownership</h3>
+<p>Purchase price is only part of the cost of a source.</p>
+<table class="stmt">
+<thead><tr><th>Per unit, ₹</th><th class="n">Local supplier</th><th class="n">Overseas supplier</th></tr></thead>
+<tbody>
+<tr><td>Purchase price</td><td class="n">100</td><td class="n">82</td></tr>
+<tr><td>Freight and insurance</td><td class="n">0</td><td class="n">6</td></tr>
+<tr><td>Duty</td><td class="n">0</td><td class="n">5</td></tr>
+<tr><td>Carrying extra pipeline and safety stock</td><td class="n">0</td><td class="n">3</td></tr>
+<tr><td>Quality problems, expediting, travel</td><td class="n">0</td><td class="n">3</td></tr>
+<tr class="total"><td>Total cost of ownership</td><td class="n">100</td><td class="n">99</td></tr>
+</tbody>
+</table>
+<p>An 18% price advantage shrinks to 1%, before counting the risk of disruption or the slower response to engineering changes. Purchasing departments measured on price alone will choose the overseas source. The measure decides the behaviour.</p>
+<h3>Segmenting what you buy</h3>
+<p>Peter Kraljic's matrix sorts purchases by profit impact and by supply risk.</p>
+<table class="stmt">
+<thead><tr><th></th><th>Low supply risk</th><th>High supply risk</th></tr></thead>
+<tbody>
+<tr><td>High profit impact</td><td><strong>Leverage</strong> items: use buying power, tender, consolidate volume</td><td><strong>Strategic</strong> items: long-term partnership, joint development</td></tr>
+<tr><td>Low profit impact</td><td><strong>Routine</strong> items: simplify and automate ordering</td><td><strong>Bottleneck</strong> items: secure supply, hold stock, find alternatives</td></tr>
+</tbody>
+</table>
+<p>The mistake is to use one style for everything: hard bargaining with a strategic supplier whose engineers you need, or a cosy partnership for standard steel.</p>
+<h3>How many suppliers</h3>
+<p>A single source gives volume leverage, simpler coordination and closer cooperation, with dependence as the price. Several sources give competition and resilience, with higher cost and thinner relationships. A common compromise is dual sourcing with unequal shares, or a single source per part with a qualified alternative ready.</p>
+<h3>Supplier relationships</h3>
+<p>Toyota's approach is the standard reference for the cooperative model: few suppliers, long horizons, shared cost data, joint improvement, and firm demands. It works because both sides expect the relationship to continue. That is the repeated game of Month 2.</p>
+<div class="callout"><h4>In your job</h4><p>Software and engineering services are purchases too, and a customer's procurement team will place you in one of the four boxes. If they treat you as a leverage item they will tender on price. Your aim is to earn the strategic box by being tied to something with high profit impact and hard to replace.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>In the Kraljic matrix, an item with low profit impact and high supply risk is a:</p><ol><li data-o="a">Leverage item</li><li data-o="b">Bottleneck item</li><li data-o="c">Strategic item</li></ol><p class="why">Cheap, but able to stop production. Secure the supply.</p></div>
+<div class="q" data-a="c"><p>An overseas part costs ₹70 against ₹90 locally. Freight, duty, stock and quality costs add ₹17. The true saving per unit is:</p><ol><li data-o="a">₹20</li><li data-o="b">₹17</li><li data-o="c">₹3</li></ol><p class="why">Total overseas cost is ₹87.</p></div>
+<div class="q" data-a="a"><p>An activity should usually stay in-house when it is:</p><ol><li data-o="a">A source of competitive advantage that the firm does better than suppliers</li><li data-o="b">Expensive</li><li data-o="c">Done by many suppliers at lower cost</li></ol><p class="why">Outsourcing a differentiating capability hands it to competitors.</p></div>
+</div>
+</article>
+
+<article data-id="m5w20d3" data-type="gmat" data-title="GMAT: second practice test" data-mins="150" data-watch="GMAT official practice exam review how to analyze mistakes" data-read="Your own error log from the first practice test">
+<p class="lede">Take the second free official practice exam from mba.com under test conditions. Then compare it with the first.</p>
+<h3>Before you start</h3>
+<ul>
+<li>Reread your error log. Write down the two mistakes you most want to avoid.</li>
+<li>Use the same section order as last time unless you had a reason to change.</li>
+<li>Practise the pacing rule: about two minutes a question, guess and move on at two and a half.</li>
+</ul>
+<h3>Afterwards</h3>
+<ol>
+<li>Record the total and section scores next to the first test.</li>
+<li>Log every miss and every slow correct answer, with the reason.</li>
+<li>Compare error types. Have concept errors turned into careless errors? That is progress, and it means the remaining work is on process: reading the question again before answering, and checking units.</li>
+<li>Find the section furthest from your target. The next three months give it the most time.</li>
+</ol>
+<h3>If the score has not moved</h3>
+<p>That is common between a first and second test. Scores usually rise in steps after a period of fixing specific weaknesses. Check whether you ran out of time in any section, since timing problems hide knowledge you have.</p>
+<h3>One timing drill</h3>
+<div class="quiz">
+<div class="q" data-a="c"><p>You have 9 minutes left and 6 questions remaining in a section. The best approach is to:</p><ol><li data-o="a">Spend all 9 minutes on the next two questions</li><li data-o="b">Leave the last four blank</li><li data-o="c">Allow about 90 seconds each and guess quickly on any that look long</li><li data-o="d">Go back and review earlier answers first</li></ol><p class="why">Unanswered questions carry a heavy penalty, and each question is worth the same.</p></div>
+<div class="q" data-a="a"><p>The most valuable use of the three answer changes allowed per section is for questions where you:</p><ol><li data-o="a">Bookmarked a specific doubt and now see the error</li><li data-o="b">Simply feel uneasy</li><li data-o="c">Guessed at random</li><li data-o="d">Spent the longest</li></ol><p class="why">Change an answer only when you can say why the new one is right.</p></div>
+</div>
+</article>
+
+<article data-id="m5w20d4" data-type="lesson" data-title="Risk, planning and sustainability" data-mins="60" data-watch="supply chain risk management resilience; sales and operations planning S&OP explained" data-read="Yossi Sheffi, The Resilient Enterprise: the chapters on vulnerability and on building flexibility; Chopra and Meindl, Supply Chain Management: the chapter on sales and operations planning">
+<p class="lede">Three topics that take up a growing share of senior operations leaders' time.</p>
+<h3>Supply chain risk</h3>
+<p>Risks fall into two kinds. Recurrent risks are the everyday mismatches of supply and demand, handled with forecasting and buffers. Disruption risks are rare and severe: a fire, a flood, a port closure, a supplier's bankruptcy, a trade restriction.</p>
+<p>For disruptions, think in expected value and in survival, as in Month 2. A risk with a 3% yearly chance and a ₹100 crore impact has an expected cost of ₹3 crore a year. If ₹100 crore would threaten the company, the expected value understates how much protection is worth.</p>
+<h3>Ways to build resilience</h3>
+<ul>
+<li><strong>Redundancy</strong>: extra stock, spare capacity, second sources. Certain cost, uncertain payoff.</li>
+<li><strong>Flexibility</strong>: standard parts, interchangeable plants, cross-trained people, designs that accept alternative components. Usually cheaper, and useful every day.</li>
+<li><strong>Visibility</strong>: knowing who your suppliers' suppliers are and where they are located.</li>
+<li><strong>Speed of response</strong>: clear authority and rehearsed plans.</li>
+</ul>
+<p>The practical test for each critical part: how long could we survive without it, and how long would it take to recover supply? Where recovery takes longer than survival, there is a gap to close.</p>
+<h3>Sales and operations planning</h3>
+<p>S&amp;OP is a monthly process in which sales, operations, finance and product management agree one plan for the next 12 to 24 months. Without it, sales forecasts one number, the plant builds to another and finance budgets a third. The steps are a demand review, a supply review, reconciliation of gaps, and an executive decision meeting. Its value lies in forcing trade-offs to be made deliberately and early. It is also where a rising manager first sees how the functions of a company collide.</p>
+<h3>Sustainability in operations</h3>
+<ul>
+<li><strong>Emissions accounting</strong> uses three scopes: a company's direct emissions, those from purchased energy, and those across its supply chain and product use. For manufacturers the third is usually the largest and the hardest to measure.</li>
+<li><strong>Customer pressure.</strong> Vehicle makers increasingly ask suppliers for product carbon data and reduction plans, so it is becoming a condition of doing business.</li>
+<li><strong>Regulation.</strong> Rules such as the European Union's carbon border mechanism affect exporters of steel, aluminium and similar goods. The details change, so check current requirements.</li>
+<li><strong>Economics.</strong> Energy and material efficiency usually pay for themselves. Deeper decarbonisation often does not without a carbon price or a customer premium, and the honest business case says so.</li>
+</ul>
+<div class="callout"><h4>In your job</h4><p>Product carbon footprints depend on bills of material, routings and supplier data, which already live in PLM and manufacturing systems. This is a growing reason for customers to invest, and the value argument rests on market access and compliance more than on cost saving.</p></div>
+<div class="quiz">
+<div class="q" data-a="c"><p>A disruption has a 2% yearly chance and would cost ₹150 crore. Its expected annual cost is:</p><ol><li data-o="a">₹1.5 crore</li><li data-o="b">₹30 crore</li><li data-o="c">₹3 crore</li></ol><p class="why">0.02 × 150.</p></div>
+<div class="q" data-a="a"><p>The main purpose of sales and operations planning is to:</p><ol><li data-o="a">Get the functions to agree on one plan and make trade-offs early</li><li data-o="b">Produce a more detailed sales forecast</li><li data-o="c">Reduce headcount</li></ol><p class="why">One set of numbers, agreed across the business.</p></div>
+<div class="q" data-a="b"><p>Emissions from a company's suppliers fall under:</p><ol><li data-o="a">Scope 1</li><li data-o="b">Scope 3</li><li data-o="c">Scope 2</li></ol><p class="why">Scope 3 covers the value chain outside the company's own operations and energy purchases.</p></div>
+</div>
+</article>
+
+<article data-id="m5w20d5" data-type="case" data-title="Case: one supplier or two?" data-mins="75" data-watch="single sourcing vs dual sourcing risk analysis expected value" data-read="Yossi Sheffi, The Resilient Enterprise: the chapters on supplier relationships and redundancy">
+<p class="lede">A resilience decision, with numbers and a judgement beyond them.</p>
+<h3>The situation</h3>
+<p>Deccan Driveline buys a critical forging alloy from one overseas mill. Purchasing wants to keep the single source because volume discounts save ₹2 crore a year compared with splitting the business. The operations head wants a second, domestic source after a near miss last year.</p>
+<p>The risk team estimates a 5% chance each year of a disruption at the mill lasting several weeks. With a single source the loss would be about ₹60 crore in missed sales and penalties. With a qualified second source already supplying 30%, the loss would be about ₹15 crore.</p>
+<p>A third idea is to stay single-sourced and hold two weeks of extra stock, costing ₹1.5 crore a year to carry, which would reduce the loss to about ₹35 crore.</p>
+<p>Deccan's EBIT is ₹200 crore.</p>
+<h3>Your questions</h3>
+<ol>
+<li>Calculate the expected annual cost of each option, including what each costs to maintain.</li>
+<li>At what disruption probability are single and dual sourcing equal?</li>
+<li>How large is the worst case under each option relative to EBIT?</li>
+<li>What is left out of these figures?</li>
+<li>What do you recommend?</li>
+</ol>
+<details class="model"><summary>Model answer</summary>
+<p><strong>1.</strong> Single source: 0.05 × 60 = ₹3.0 crore expected loss, no extra cost. Dual source: ₹2 crore of lost discount plus 0.05 × 15 = 0.75, total ₹2.75 crore. Single with stock: 1.5 + 0.05 × 35 = ₹3.25 crore. On expected cost the options are close, with dual sourcing slightly ahead.</p>
+<p><strong>2.</strong> Dual sourcing costs ₹2 crore for certain and saves 45 when a disruption occurs. They are equal when p × 45 = 2, so p = 4.4%. The estimate of 5% is barely above that, and such estimates are rough.</p>
+<p><strong>3.</strong> Single: ₹60 crore, which is 30% of a year's EBIT. Dual: ₹15 crore, 7.5%. Stock: ₹35 crore, 17.5%.</p>
+<p><strong>4.</strong> Customer consequences beyond penalties: a tier-1 that stops a vehicle maker's line may lose the next programme. Benefits of a second source in normal times: a price benchmark, faster response to design changes from a domestic mill, and currency diversification. Costs of dual sourcing beyond the discount: qualification effort, and possible quality differences between mills. And the probability may not be constant. Geopolitical or climate risk could be rising.</p>
+<p><strong>5.</strong> Choose dual sourcing. The expected costs are about equal, so the decision turns on the tail: avoiding a loss of 30% of annual profit, and the customer damage on top, is worth far more than the small difference in averages. Give the second source 20 to 30% of volume so that it stays qualified and interested. Negotiate with the primary mill to keep most of the discount in exchange for a longer contract.</p>
+<p><strong>What the case teaches.</strong> When the expected values are close, look at the worst case and at what the calculation left out. Resilience spending looks like waste in every year when nothing happens, which is why it needs a decision at senior level and cannot be left to a purchasing measure.</p>
+</details>
+</article>
+
+<article data-id="m5w20d6" data-type="gmat" data-title="GMAT: targeted set after the practice test" data-mins="60" data-watch="GMAT weak areas targeted practice strategy" data-read="GMAT Official Guide: practice questions in your weakest section">
+<p class="lede">Five mixed questions, then an hour on your weakest area from the test using official practice questions.</p>
+<div class="quiz">
+<div class="q" data-a="b"><p>A machine's output rises 20% in one year and falls 25% the next. Over the two years output has:</p><ol><li data-o="a">Fallen 5%</li><li data-o="b">Fallen 10%</li><li data-o="c">Risen 5%</li><li data-o="d">Not changed</li></ol><p class="why">1.2 × 0.75 = 0.90.</p></div>
+<div class="q" data-a="d"><p>If a ÷ b = 2/3 and b ÷ c = 3/5, then a ÷ c =</p><ol><li data-o="a">2/3</li><li data-o="b">3/5</li><li data-o="c">10/9</li><li data-o="d">2/5</li></ol><p class="why">Multiply the two ratios.</p></div>
+<div class="q" data-a="a"><p>Data sufficiency. What is the value of the integer n? (1) n² = 49. (2) n is a prime number.</p><ol><li data-o="a">C: both together</li><li data-o="b">A: statement 1 alone</li><li data-o="c">B: statement 2 alone</li><li data-o="d">E: not sufficient</li></ol><p class="why">Statement 1 gives 7 or −7. Primes are positive, so together n = 7.</p></div>
+<div class="q" data-a="c"><p>A firm's managers argue that because customer complaints fell after a new call-centre script was introduced, the script improved service. Which most weakens this?</p><ol><li data-o="a">The script is longer than the old one</li><li data-o="b">Call-centre staff were given a pay rise</li><li data-o="c">At the same time the complaints phone number was removed from the firm's website</li><li data-o="d">Competitors use similar scripts</li></ol><p class="why">Fewer complaints may mean complaining became harder.</p></div>
+<div class="q" data-a="b"><p>In a group of 80 customers, 50 use product X, 40 use product Y and 10 use neither. How many use both?</p><ol><li data-o="a">10</li><li data-o="b">20</li><li data-o="c">30</li><li data-o="d">40</li></ol><p class="why">80 = 50 + 40 − both + 10.</p></div>
+</div>
+</article>
+
+<article data-id="m5w20d7" data-type="review" data-title="Month 5 test and work assignment" data-mins="120" data-watch="operations and supply chain management MBA summary" data-read="Cachon and Terwiesch, Matching Supply with Demand: the introduction, as a review of the whole framework">
+<p class="lede">Eight questions across the month. Score six or more before moving on.</p>
+<div class="quiz graded">
+<div class="q" data-a="c"><p>Throughput is 200 units a day and flow time is 3 days. Work-in-progress is:</p><ol><li data-o="a">67</li><li data-o="b">200</li><li data-o="c">600</li><li data-o="d">203</li></ol><p class="why">Little's law.</p></div>
+<div class="q" data-a="a"><p>A plant's constraint is its paint shop. A proposal raises assembly speed by 15%. Plant output will:</p><ol><li data-o="a">Not change</li><li data-o="b">Rise 15%</li><li data-o="c">Rise 7.5%</li><li data-o="d">Fall</li></ol><p class="why">Assembly is not the constraint.</p></div>
+<div class="q" data-a="b"><p>Processing time is 20 minutes, utilisation 80%, and both coefficients of variation are 0.5. Average wait is about:</p><ol><li data-o="a">80 minutes</li><li data-o="b">20 minutes</li><li data-o="c">40 minutes</li><li data-o="d">5 minutes</li></ol><p class="why">4 × 0.25 × 20.</p></div>
+<div class="q" data-a="d"><p>Annual demand 20,000, set-up cost ₹4,000, holding cost ₹40 a unit a year. The economic batch is:</p><ol><li data-o="a">1,000</li><li data-o="b">1,414</li><li data-o="c">4,000</li><li data-o="d">2,000</li></ol><p class="why">√(2 × 20,000 × 4,000 ÷ 40) = √40,00,000.</p></div>
+<div class="q" data-a="b"><p>Availability 85%, performance 90%, quality 96%. OEE is closest to:</p><ol><li data-o="a">90%</li><li data-o="b">73%</li><li data-o="c">85%</li><li data-o="d">65%</li></ol><p class="why">0.85 × 0.90 × 0.96 = 0.734.</p></div>
+<div class="q" data-a="c"><p>A process has Cp of 1.5 and Cpk of 0.8. This means it is:</p><ol><li data-o="a">Incapable and cannot be fixed without new equipment</li><li data-o="b">Fully capable</li><li data-o="c">Narrow enough but off-centre</li><li data-o="d">Out of statistical control</li></ol><p class="why">Recentring the mean would bring Cpk towards Cp.</p></div>
+<div class="q" data-a="a"><p>A product with stable demand and thin margins is supplied through a chain with large buffers and spare capacity. This is a mismatch because:</p><ol><li data-o="a">A functional product needs an efficient chain</li><li data-o="b">Buffers cause the bullwhip effect</li><li data-o="c">Stable demand needs more capacity</li><li data-o="d">Margins are irrelevant</li></ol><p class="why">Responsiveness is being paid for and not needed.</p></div>
+<div class="q" data-a="d"><p>Two sourcing options have nearly equal expected cost, but one has a worst case equal to a third of annual profit. A sound decision gives extra weight to:</p><ol><li data-o="a">The purchase price</li><li data-o="b">The option with more suppliers on principle</li><li data-o="c">The average alone</li><li data-o="d">The size of the worst case</li></ol><p class="why">Expected value is a poor guide for rare, severe losses.</p></div>
+</div>
+<div class="assign"><h3>Work assignment: an operations diagnosis in general-manager terms</h3>
+<ol>
+<li>Take one plant or line you know from a project. Use no confidential figures; estimates are fine.</li>
+<li>State its constraint, its approximate OEE there, and what an hour of the constraint is worth.</li>
+<li>Estimate work-in-progress and lead time, and what halving lead time would release in cash.</li>
+<li>Name its main source of variability and which buffer currently absorbs it.</li>
+<li>Write a half-page memo to the plant head with three priorities, each with its financial effect.</li>
+</ol>
+<p>Month 6 steps back from the plant to the whole company: where to compete and how to win.</p></div>
+</article>
+</section>

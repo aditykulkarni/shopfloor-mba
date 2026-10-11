@@ -1,0 +1,371 @@
+<section data-week="7" data-title="Describing data and probability" data-goal="Summarise data honestly and reason about uncertain outcomes.">
+
+<article data-id="m2w7d1" data-type="lesson" data-title="Describing data: centre, spread and shape" data-mins="60" data-watch="mean median standard deviation variance explained Khan Academy statistics" data-read="Wheelan, Naked Statistics: the chapters on descriptive statistics and on deceptive description">
+<p class="lede">Statistics begins with summarising many numbers in a few. The choice of summary can inform or mislead, and managers are shown misleading summaries every week.</p>
+<h3>Centre</h3>
+<ul>
+<li><strong>Mean</strong>: the sum divided by the count. Sensitive to extreme values.</li>
+<li><strong>Median</strong>: the middle value when sorted. Not affected by extremes.</li>
+<li><strong>Mode</strong>: the most frequent value.</li>
+</ul>
+<p>Seven cycle times in seconds: 48, 49, 50, 50, 51, 52, 90. The mean is 55.7. The median is 50. One stoppage dragged the mean up by almost six seconds. If you report only the mean, the station looks slow. If you report only the median, you hide the stoppage. Report both, and look at the raw data.</p>
+<h3>Spread</h3>
+<ul>
+<li><strong>Range</strong>: highest minus lowest.</li>
+<li><strong>Variance</strong>: the average squared distance from the mean.</li>
+<li><strong>Standard deviation (SD)</strong>: the square root of the variance, in the same units as the data.</li>
+</ul>
+<p>For 48, 49, 50, 51, 52 the mean is 50. The squared distances are 4, 1, 0, 1, 4, which average 2. The variance is 2 and the SD is about 1.4 seconds. When working from a sample, statisticians divide by n − 1 instead of n, which here gives a variance of 2.5 and an SD of about 1.6.</p>
+<p>The <strong>coefficient of variation</strong> is SD ÷ mean. It lets you compare variability between processes of different size, and it will matter a great deal in Month 5.</p>
+<h3>Shape</h3>
+<p>A symmetric distribution has mean and median close together. A <strong>right-skewed</strong> one has a long tail of high values and a mean above the median. Repair times, project overruns, incomes and deal sizes are all right-skewed. For skewed data, the median and percentiles describe the typical case better than the mean.</p>
+<p><strong>Percentiles</strong> say what share of values fall below a point. The 90th percentile lead time is the time within which 90% of orders are delivered. Customers experience the percentiles, not the average.</p>
+<h3>Three questions to ask of any average</h3>
+<ol>
+<li>Mean or median?</li>
+<li>How spread out are the values?</li>
+<li>What was left out, and over what period?</li>
+</ol>
+<div class="callout"><h4>In your job</h4><p>Simulation outputs are distributions. Presenting "average throughput 58 units per hour" hides the hours at 40. Show the range or the 10th percentile, because the plant has to commit to deliveries in the bad hours too.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>Deal sizes in ₹ lakh are 10, 12, 15, 18, 145. The best single measure of a typical deal is:</p><ol><li data-o="a">The mean, 40</li><li data-o="b">The median, 15</li><li data-o="c">The range, 135</li></ol><p class="why">One very large deal distorts the mean.</p></div>
+<div class="q" data-a="c"><p>Two machines have the same mean cycle time. Machine A has an SD of 1 second, machine B of 6 seconds. Which is true?</p><ol><li data-o="a">They perform identically</li><li data-o="b">B is faster</li><li data-o="c">B is less predictable</li></ol><p class="why">Same centre, very different spread.</p></div>
+<div class="q" data-a="a"><p>In a right-skewed distribution:</p><ol><li data-o="a">The mean is above the median</li><li data-o="b">The mean is below the median</li><li data-o="c">They are always equal</li></ol><p class="why">The long tail of high values pulls the mean up.</p></div>
+</div>
+</article>
+
+<article data-id="m2w7d2" data-type="lesson" data-title="Probability and conditional thinking" data-mins="75" data-watch="conditional probability Bayes theorem explained medical test example" data-read="Wheelan, Naked Statistics: the chapters on basic probability and on problems with probability">
+<p class="lede">Probability is the arithmetic of uncertainty. Most errors people make with it come from one source: confusing the chance of A given B with the chance of B given A.</p>
+<h3>Basic rules</h3>
+<ul>
+<li>Probabilities run from 0 to 1 and all possible outcomes sum to 1.</li>
+<li><strong>Complement</strong>: P(not A) = 1 − P(A). "At least one" problems are easiest this way.</li>
+<li><strong>And</strong>, for independent events: multiply. Two machines each up 90% of the time are both up 0.9 × 0.9 = 81% of the time.</li>
+<li><strong>Or</strong>, for events that cannot both happen: add.</li>
+</ul>
+<h3>Series reliability</h3>
+<p>A line has ten stations in series, each available 98% of the time, failing independently. The line runs only when all ten run: 0.98¹⁰ = 82%. Small losses multiply. This is why long automated lines need buffers or very reliable stations.</p>
+<h3>Conditional probability</h3>
+<p>P(A | B) means the probability of A given that B has happened. It is usually very different from P(B | A).</p>
+<h3>Worked example: an inspection station</h3>
+<p>2% of parts are defective. A vision system flags 95% of defective parts. It also wrongly flags 5% of good parts. A part is flagged. What is the chance it is really defective?</p>
+<p>Take 10,000 parts. 200 are defective and 190 of them are flagged. 9,800 are good and 490 of them are flagged. In total 680 parts are flagged, of which 190 are defective: 28%.</p>
+<p>The system is "95% accurate", yet nearly three out of four flags are false alarms. The reason is the <strong>base rate</strong>: good parts vastly outnumber bad ones, so even a small false-alarm rate produces many false flags. This reasoning is Bayes' theorem, and counting cases as above is the most reliable way to apply it.</p>
+<h3>Where this matters in management</h3>
+<ul>
+<li>A hiring test, a fraud alert, a predictive-maintenance alarm and a sales-lead score all behave like the inspection station.</li>
+<li>When the thing you are looking for is rare, most alerts will be false unless the false-alarm rate is extremely low.</li>
+<li>Always ask for the base rate.</li>
+</ul>
+<div class="callout"><h4>In your job</h4><p>Predictive maintenance and AI quality inspection are sold on detection accuracy. The customer's real experience depends on false alarms per shift. Ask for both numbers and work out the flagged-and-real percentage before a pilot.</p></div>
+<div class="quiz">
+<div class="q" data-a="c"><p>Three independent machines in series are each available 90% of the time. The line is available about:</p><ol><li data-o="a">90%</li><li data-o="b">81%</li><li data-o="c">73%</li></ol><p class="why">0.9³ = 0.729.</p></div>
+<div class="q" data-a="b"><p>The probability of at least one defect in 3 independent parts, each with a 10% defect chance, is:</p><ol><li data-o="a">30%</li><li data-o="b">27.1%</li><li data-o="c">10%</li></ol><p class="why">1 − 0.9³ = 0.271.</p></div>
+<div class="q" data-a="a"><p>In the inspection example, lowering the false-alarm rate from 5% to 1% would make the share of flags that are real:</p><ol><li data-o="a">Rise to about 66%</li><li data-o="b">Stay at 28%</li><li data-o="c">Rise to 95%</li></ol><p class="why">False flags fall to 98. 190 ÷ (190 + 98) = 66%.</p></div>
+</div>
+</article>
+
+<article data-id="m2w7d3" data-type="gmat" data-title="GMAT Quant: counting and probability" data-mins="60" data-watch="GMAT combinations permutations probability basics" data-read="GMAT Official Guide: Quantitative Reasoning review, counting methods and probability">
+<p class="lede">Counting questions come down to one decision: does order matter?</p>
+<h3>Rules</h3>
+<ul>
+<li><strong>Multiplication principle</strong>: if one choice can be made in m ways and the next in n ways, together there are m × n.</li>
+<li><strong>Arrangements</strong> of n distinct items: n! = n × (n − 1) × … × 1.</li>
+<li><strong>Combinations</strong> (order does not matter): choosing r from n is n! ÷ (r! × (n − r)!). Choosing 2 from 5 is (5 × 4) ÷ 2 = 10.</li>
+<li><strong>Probability</strong> = favourable outcomes ÷ total equally likely outcomes.</li>
+<li>For "at least one", calculate 1 minus the probability of none.</li>
+</ul>
+<h3>Practice</h3>
+<div class="quiz">
+<div class="q" data-a="c"><p>In how many orders can 4 different jobs be scheduled on one machine?</p><ol><li data-o="a">8</li><li data-o="b">16</li><li data-o="c">24</li><li data-o="d">256</li></ol><p class="why">4! = 24.</p></div>
+<div class="q" data-a="b"><p>A team of 3 is chosen from 6 engineers. How many different teams are possible?</p><ol><li data-o="a">18</li><li data-o="b">20</li><li data-o="c">60</li><li data-o="d">120</li></ol><p class="why">(6 × 5 × 4) ÷ (3 × 2 × 1) = 20.</p></div>
+<div class="q" data-a="a"><p>Two fair dice are rolled. The probability that they sum to 7 is:</p><ol><li data-o="a">1/6</li><li data-o="b">1/12</li><li data-o="c">7/36</li><li data-o="d">1/7</li></ol><p class="why">Six of the 36 outcomes sum to 7.</p></div>
+<div class="q" data-a="d"><p>A fair coin is tossed three times. The probability of at least one head is:</p><ol><li data-o="a">1/2</li><li data-o="b">3/8</li><li data-o="c">3/4</li><li data-o="d">7/8</li></ol><p class="why">1 − (1/2)³ = 7/8.</p></div>
+<div class="q" data-a="b"><p>A box holds 3 defective and 7 good parts. Two are drawn without replacement. The probability both are good is:</p><ol><li data-o="a">49/100</li><li data-o="b">7/15</li><li data-o="c">1/2</li><li data-o="d">7/10</li></ol><p class="why">(7/10) × (6/9) = 42/90 = 7/15.</p></div>
+</div>
+</article>
+
+<article data-id="m2w7d4" data-type="lesson" data-title="Expected value, decision trees and the normal curve" data-mins="75" data-watch="expected value decision tree analysis normal distribution 68 95 99.7 rule" data-read="Wheelan, Naked Statistics: the chapter on the central limit theorem">
+<p class="lede">Managers rarely know outcomes in advance. They can still decide well by weighing each outcome by its probability and by understanding how results spread.</p>
+<h3>Expected value</h3>
+<p class="formula">Expected value = sum of (probability × outcome)</p>
+<p>Preparing a bid costs ₹10 lakh. The chance of winning is 30% and a win earns ₹80 lakh profit. Expected value = 0.3 × 80 − 10 = ₹14 lakh. Bid. Over many such bids, the average gain per bid approaches ₹14 lakh, even though any single bid either loses 10 or gains 70.</p>
+<p>Expected value suits decisions that are repeated and small relative to the firm. For a single decision large enough to threaten the company, the downside matters more than the average.</p>
+<h3>Decision trees</h3>
+<p>A decision tree lays out choices and chance events in sequence. Squares are decisions and circles are chance events. Solve it from right to left: calculate the expected value at each chance node, then pick the best branch at each decision node.</p>
+<p>Trees are most valuable for showing the worth of options: the option to stop after a pilot, to expand after early success, or to wait for information. The case in the next session works one through.</p>
+<h3>The normal distribution</h3>
+<p>Many measurements cluster in a bell shape around their mean. For a normal distribution:</p>
+<ul>
+<li>about 68% of values lie within 1 SD of the mean</li>
+<li>about 95% lie within 2 SD</li>
+<li>about 99.7% lie within 3 SD</li>
+</ul>
+<p>A station has a mean cycle time of 50 seconds and an SD of 2. About 95% of cycles fall between 46 and 54 seconds. A cycle of 58 seconds is 4 SD out and signals that something unusual happened.</p>
+<p>A <strong>z-score</strong> states how many SDs a value is from the mean: z = (value − mean) ÷ SD.</p>
+<h3>A warning about tails</h3>
+<p>Not everything is normal. Financial losses, project delays and supply disruptions have fat tails: extreme events happen far more often than a bell curve predicts. Using normal assumptions where they do not hold has ruined many risk models.</p>
+<div class="callout"><h4>In your job</h4><p>Pipeline forecasting is expected value: deal size times win probability, summed. Its weakness is the same as any expected value on a small number of large items. One slipped deal can move the quarter, so leaders watch the largest deals individually.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>A project has a 60% chance of gaining ₹50 lakh and a 40% chance of losing ₹30 lakh. Its expected value is:</p><ol><li data-o="a">₹20 lakh</li><li data-o="b">₹18 lakh</li><li data-o="c">₹30 lakh</li></ol><p class="why">0.6 × 50 − 0.4 × 30 = 18.</p></div>
+<div class="q" data-a="c"><p>Bolt diameters are normal with mean 10.00 mm and SD 0.02 mm. About 95% lie between:</p><ol><li data-o="a">9.98 and 10.02</li><li data-o="b">9.94 and 10.06</li><li data-o="c">9.96 and 10.04</li></ol><p class="why">Two SDs either side of the mean.</p></div>
+<div class="q" data-a="a"><p>Expected value is least reliable as a guide when a decision is:</p><ol><li data-o="a">One-off and large enough to threaten the firm</li><li data-o="b">Repeated many times</li><li data-o="c">Small</li></ol><p class="why">You do not get the average of one roll. Survival comes first.</p></div>
+</div>
+</article>
+
+<article data-id="m2w7d5" data-type="case" data-title="Case: pilot first or full rollout?" data-mins="75" data-watch="decision tree value of information pilot versus full rollout" data-read="Hammond, Keeney and Raiffa, Smart Choices: the chapters on uncertainty and risk tolerance">
+<p class="lede">Farhan from Sahyadri is back. The CFO liked the virtual commissioning case and now asks how to buy it.</p>
+<h3>The situation</h3>
+<p>Two options are on the table. All amounts are in ₹ lakh over three years.</p>
+<p><strong>Option A, full rollout now.</strong> Invest 150. Farhan judges a 60% chance that the programme works as planned and returns benefits of 390, and a 40% chance that adoption is poor and benefits are only 90.</p>
+<p><strong>Option B, pilot first.</strong> Spend 30 on a pilot on one line. Assume for simplicity that the pilot reveals for certain which case Sahyadri is in. If it succeeds, invest the 150 and receive 390. If it fails, stop.</p>
+<h3>Your questions</h3>
+<ol>
+<li>Calculate the expected net value of each option.</li>
+<li>What is the worst outcome under each?</li>
+<li>What is the pilot's information worth, and is it worth its cost?</li>
+<li>Which option would you recommend to a cautious CFO, and what could change your answer?</li>
+</ol>
+<details class="model"><summary>Model answer</summary>
+<p><strong>1.</strong> Option A: 0.6 × 390 + 0.4 × 90 − 150 = 234 + 36 − 150 = 120. Option B: success branch 390 − 150 − 30 = 210; failure branch −30. Expected value = 0.6 × 210 + 0.4 × (−30) = 126 − 12 = 114.</p>
+<p><strong>2.</strong> Option A's worst case is 90 − 150 = −60. Option B's worst case is −30.</p>
+<p><strong>3.</strong> Without a pilot, the failure branch loses 60. With perfect information Sahyadri would avoid investing in that case and lose nothing, so the information is worth 0.4 × 60 = 24. The pilot costs 30. On expected value alone it is not quite worth buying, which is why Option A scores 120 against 114.</p>
+<p><strong>4.</strong> The gap is small, 6 out of about 120, and well inside the uncertainty of Farhan's own estimates. The pilot halves the worst-case loss and gives evidence that makes the second plant easier to approve, so a cautious CFO can reasonably prefer it. The answer tips firmly towards the pilot if the probability of failure is higher than 40%, if the failure case is worse than assumed, or if the pilot is cheaper. It tips towards full rollout if the pilot would delay benefits by a launch cycle, since each launch missed forfeits roughly 60 to 75 of benefit.</p>
+<p><strong>What the case teaches.</strong> A pilot is a purchase of information and has a price. It is worth buying when the decision would change depending on what it shows and when being wrong is expensive. Calculating that value turns "let us do a pilot to be safe" into a decision.</p>
+</details>
+</article>
+
+<article data-id="m2w7d6" data-type="gmat" data-title="GMAT Verbal: reading comprehension, second passage" data-mins="60" data-watch="GMAT reading comprehension inference questions strategy" data-read="GMAT Official Guide: Verbal Reasoning review, reading comprehension">
+<p class="lede">Same method as before: map each paragraph's job, find the main point, and prove every answer from the text. Aim for eight minutes in total.</p>
+<blockquote class="passage">
+<p>During the Second World War, analysts studying bombers that returned from missions recorded where each aircraft had been hit. The damage was concentrated on the wings and fuselage, and the initial recommendation was to add armour to those areas. The statistician Abraham Wald, working with a research group that advised the military, argued for the opposite. The sample, he pointed out, consisted only of aircraft that had come back. Holes in the wings showed where a bomber could be hit and still fly. The areas with little recorded damage, around the engines, were more plausibly the places where a hit brought the aircraft down, which was why so few examples of such damage appeared in the data.</p>
+<p>The error Wald identified is now called survivorship bias. It arises whenever a selection process removes some cases before they can be observed, and the remaining cases are then treated as if they represented the whole. Studies of successful companies are especially vulnerable. A list of traits shared by firms that have prospered for decades says little unless the same traits are shown to be rarer among firms that failed, and failed firms seldom leave records as complete as those of survivors.</p>
+<p>None of this means that data from survivors is worthless. It means that the analyst must first ask how the data came to exist.</p>
+</blockquote>
+<div class="quiz">
+<div class="q" data-a="c"><p>The primary purpose of the passage is to:</p><ol><li data-o="a">Describe the history of bomber design</li><li data-o="b">Argue that studies of companies are useless</li><li data-o="c">Explain a common error in reasoning from data and illustrate it</li><li data-o="d">Praise the military's use of statistics</li></ol><p class="why">An example, a general principle, then a qualification.</p></div>
+<div class="q" data-a="a"><p>According to the passage, Wald recommended adding armour around the engines because:</p><ol><li data-o="a">Returning aircraft showed little damage there, suggesting that aircraft hit there did not return</li><li data-o="b">Engines were the most expensive component</li><li data-o="c">Most recorded hits were on the engines</li><li data-o="d">Wings could not carry additional weight</li></ol><p class="why">The absence of engine damage in the sample was the evidence.</p></div>
+<div class="q" data-a="d"><p>Which situation is most similar to the error described?</p><ol><li data-o="a">Estimating average height by measuring every tenth person in a queue</li><li data-o="b">Testing a new drug on volunteers</li><li data-o="c">Using last year's sales to forecast this year's</li><li data-o="d">Concluding that a training programme works because everyone who completed it rates it highly, when many participants dropped out</li></ol><p class="why">Those who dropped out were removed before being observed.</p></div>
+<div class="q" data-a="b"><p>The final paragraph serves to:</p><ol><li data-o="a">Introduce a new example</li><li data-o="b">Limit the conclusion so that it is not taken too far</li><li data-o="c">Contradict the second paragraph</li><li data-o="d">Summarise Wald's biography</li></ol><p class="why">It prevents the reader from concluding that survivor data should be discarded.</p></div>
+</div>
+</article>
+
+<article data-id="m2w7d7" data-type="review" data-title="Week 7 review and work assignment" data-mins="75" data-watch="statistics basics review probability expected value" data-read="Wheelan, Naked Statistics: review chapters 1 to 6">
+<p class="lede">Five questions, then a small data exercise with numbers you already have.</p>
+<div class="quiz graded">
+<div class="q" data-a="b"><p>Lead times in days are 4, 5, 5, 6, 30. The median is:</p><ol><li data-o="a">10</li><li data-o="b">5</li><li data-o="c">6</li><li data-o="d">26</li></ol><p class="why">The middle value of five sorted numbers.</p></div>
+<div class="q" data-a="d"><p>A line has five independent stations in series, each 95% available. Line availability is about:</p><ol><li data-o="a">95%</li><li data-o="b">90%</li><li data-o="c">75%</li><li data-o="d">77%</li></ol><p class="why">0.95⁵ = 0.774.</p></div>
+<div class="q" data-a="a"><p>1% of transactions are fraudulent. A detector flags 90% of frauds and 2% of genuine transactions. Of flagged transactions, about what share are fraudulent?</p><ol><li data-o="a">31%</li><li data-o="b">90%</li><li data-o="c">45%</li><li data-o="d">2%</li></ol><p class="why">Per 10,000: 90 real flags and 198 false ones. 90 ÷ 288 = 31%.</p></div>
+<div class="q" data-a="c"><p>A bid costs ₹5 lakh, has a 20% chance of winning and earns ₹40 lakh if won. Expected value is:</p><ol><li data-o="a">₹8 lakh</li><li data-o="b">₹35 lakh</li><li data-o="c">₹3 lakh</li><li data-o="d">−₹5 lakh</li></ol><p class="why">0.2 × 40 − 5 = 3.</p></div>
+<div class="q" data-a="b"><p>A pilot is worth paying for when:</p><ol><li data-o="a">It is cheap</li><li data-o="b">Its result could change the decision and being wrong is costly</li><li data-o="c">Management is nervous</li><li data-o="d">The outcome is already certain</li></ol><p class="why">Information has value only if it can alter what you do.</p></div>
+</div>
+<div class="assign"><h3>Work assignment: describe a real distribution</h3>
+<ol>
+<li>Take any set of 20 or more numbers from your work that is safe to use: simulation run outputs, task durations, response times, your own hours per activity.</li>
+<li>Calculate the mean, median, standard deviation, minimum, maximum and 90th percentile in a spreadsheet.</li>
+<li>Describe the shape. Is it skewed? Are there outliers, and what caused them?</li>
+<li>Write two sentences reporting the data as you would to a manager, giving both a typical value and a bad-case value.</li>
+</ol></div>
+</article>
+</section>
+
+<section data-week="8" data-title="Sampling, testing and regression" data-goal="Judge whether a claimed effect is real and how large it is.">
+
+<article data-id="m2w8d1" data-type="lesson" data-title="Samples and confidence intervals" data-mins="60" data-watch="standard error confidence interval central limit theorem explained simply" data-read="Wheelan, Naked Statistics: the chapters on the central limit theorem and on polling">
+<p class="lede">You almost never see the whole population. You see a sample and must say how far the truth could be from what you measured.</p>
+<h3>Sampling</h3>
+<p>A sample is useful only if it is representative. Random selection is the standard protection against bias. A large biased sample is worse than a small random one, because size gives false confidence.</p>
+<h3>The standard error</h3>
+<p>If you took many samples, their means would vary. The standard error (SE) measures that variation:</p>
+<p class="formula">SE = SD ÷ √n</p>
+<p>The central limit theorem says that for reasonably large samples, sample means follow a normal distribution around the true mean, whatever the shape of the underlying data. This single result makes most of practical statistics possible.</p>
+<h3>Confidence intervals</h3>
+<p class="formula">95% confidence interval = sample mean ± 1.96 × SE</p>
+<p>You time 100 cycles and get a mean of 50.2 seconds with an SD of 2.0. SE = 2.0 ÷ √100 = 0.2. The 95% interval is 50.2 ± 0.39, or about 49.8 to 50.6 seconds. If you repeated the study many times, about 95% of intervals built this way would contain the true mean.</p>
+<h3>Sample size</h3>
+<p>Because of the square root, precision is expensive. To halve the margin of error you need four times the sample. Going from 100 to 400 cycles narrows the interval from ±0.39 to ±0.20. Going from 400 to 1,600 narrows it to ±0.10. At some point more data is not worth the cost.</p>
+<p>The margin depends on the sample size, not on the population size. A sample of 1,000 gives about the same precision for a city or a country.</p>
+<h3>Proportions</h3>
+<p>For a percentage, SE = √(p(1 − p) ÷ n). If 40 of 400 inspected parts are defective, p = 0.10 and SE = √(0.09 ÷ 400) = 0.015. The 95% interval is 10% ± 2.9%, or roughly 7% to 13%.</p>
+<div class="callout"><h4>In your job</h4><p>A simulation with ten replications gives a mean throughput and a confidence interval. If the intervals for two layout options overlap heavily, you have not shown that one is better. Run more replications or say so.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>SD is 12 and the sample size is 36. The standard error is:</p><ol><li data-o="a">0.33</li><li data-o="b">2</li><li data-o="c">3</li></ol><p class="why">12 ÷ 6 = 2.</p></div>
+<div class="q" data-a="c"><p>To cut the margin of error to one third, the sample must be:</p><ol><li data-o="a">3 times larger</li><li data-o="b">6 times larger</li><li data-o="c">9 times larger</li></ol><p class="why">The margin shrinks with the square root of n.</p></div>
+<div class="q" data-a="a"><p>A survey of 5,000 people who chose to respond online is likely to be:</p><ol><li data-o="a">Precise but possibly biased</li><li data-o="b">Unbiased because it is large</li><li data-o="c">Useless because it is too large</li></ol><p class="why">Size reduces random error. It does nothing for selection bias.</p></div>
+</div>
+</article>
+
+<article data-id="m2w8d2" data-type="lesson" data-title="Hypothesis testing and what significance means" data-mins="75" data-watch="hypothesis testing p-value explained type 1 type 2 error statistical significance" data-read="Wheelan, Naked Statistics: the chapter on inference">
+<p class="lede">Someone says the new process is faster. A hypothesis test asks whether the evidence is strong enough to rule out chance.</p>
+<h3>The logic</h3>
+<ol>
+<li>Start by assuming nothing has changed. This is the <strong>null hypothesis</strong>.</li>
+<li>Measure how far the sample result is from what the null predicts, in standard errors.</li>
+<li>Find the <strong>p-value</strong>: the probability of a result at least this extreme if the null were true.</li>
+<li>If the p-value is below a chosen threshold, usually 5%, reject the null.</li>
+</ol>
+<h3>Worked example</h3>
+<p>The old process averages 50.0 seconds. After a change, 64 timed cycles average 49.4 seconds with an SD of 2.4. SE = 2.4 ÷ 8 = 0.3. The result is (49.4 − 50.0) ÷ 0.3 = −2.0 standard errors from the old mean. A gap of 2 SE or more in either direction happens by chance about 4.6% of the time. The p-value is below 5%, so the improvement is statistically significant.</p>
+<h3>Two kinds of error</h3>
+<table class="stmt">
+<thead><tr><th></th><th>Really no effect</th><th>Really an effect</th></tr></thead>
+<tbody>
+<tr><td>Test says "effect"</td><td>Type I error (false alarm)</td><td>Correct</td></tr>
+<tr><td>Test says "no effect"</td><td>Correct</td><td>Type II error (missed effect)</td></tr>
+</tbody>
+</table>
+<p>Lowering the threshold reduces false alarms and increases missed effects. Small samples miss real effects often; that is low statistical <em>power</em>.</p>
+<h3>What significance does not mean</h3>
+<ul>
+<li><strong>It does not mean important.</strong> With a huge sample, a trivial 0.05-second improvement can be significant. Always ask for the size of the effect and its confidence interval.</li>
+<li><strong>It does not mean the effect is certainly real.</strong> One in twenty tests of a true null will pass at the 5% level.</li>
+<li><strong>"Not significant" does not mean "no effect".</strong> It may mean the sample was too small.</li>
+<li><strong>Many tests produce false positives.</strong> Test twenty ideas and one will look significant by chance. This is called p-hacking when done deliberately.</li>
+</ul>
+<h3>A/B tests</h3>
+<p>The cleanest evidence comes from randomly assigning units to an old and a new treatment and comparing. Randomisation makes the groups alike in everything except the treatment, which removes alternative explanations.</p>
+<div class="callout"><h4>In your job</h4><p>When a pilot line "improved by 6%", ask three things: compared with what, over how many shifts, and what else changed. A before-and-after comparison without a control line cannot separate the tool from the attention the pilot received.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>A p-value of 0.03 means:</p><ol><li data-o="a">There is a 3% chance the new process is better</li><li data-o="b">If nothing had changed, a result this extreme would occur about 3% of the time</li><li data-o="c">The effect is large</li></ol><p class="why">It is a statement about the data assuming the null, not about the hypothesis.</p></div>
+<div class="q" data-a="a"><p>Declaring an improvement when there is none is a:</p><ol><li data-o="a">Type I error</li><li data-o="b">Type II error</li><li data-o="c">Sampling bias</li></ol><p class="why">A false alarm.</p></div>
+<div class="q" data-a="c"><p>A study of 2 million transactions finds a statistically significant rise in average order value of ₹0.40. The right reaction is:</p><ol><li data-o="a">Roll out immediately</li><li data-o="b">The test must be wrong</li><li data-o="c">Real but probably too small to matter</li></ol><p class="why">Significance reflects sample size as much as effect size.</p></div>
+</div>
+</article>
+
+<article data-id="m2w8d3" data-type="gmat" data-title="GMAT Quant: inequalities and absolute value" data-mins="60" data-watch="GMAT inequalities absolute value problems" data-read="GMAT Official Guide: Quantitative Reasoning review, inequalities and absolute value">
+<p class="lede">Inequality questions punish one habit above all: forgetting that a variable might be negative.</p>
+<h3>Rules</h3>
+<ul>
+<li>Multiplying or dividing by a negative number reverses the inequality.</li>
+<li>Never multiply or divide an inequality by a variable unless you know its sign.</li>
+<li>|x| is the distance of x from zero. |x − a| is the distance of x from a.</li>
+<li>|x − a| &lt; b means a − b &lt; x &lt; a + b.</li>
+<li>|x − a| = b gives two solutions, x = a + b and x = a − b.</li>
+<li>x² &lt; k² means −k &lt; x &lt; k. x² &gt; k² means x &gt; k or x &lt; −k.</li>
+</ul>
+<h3>Practice</h3>
+<div class="quiz">
+<div class="q" data-a="c"><p>How many integers satisfy |x − 3| &lt; 5?</p><ol><li data-o="a">7</li><li data-o="b">8</li><li data-o="c">9</li><li data-o="d">10</li></ol><p class="why">−2 &lt; x &lt; 8, so the integers −1 through 7.</p></div>
+<div class="q" data-a="a"><p>If −2x &gt; 6, then:</p><ol><li data-o="a">x &lt; −3</li><li data-o="b">x &gt; −3</li><li data-o="c">x &lt; 3</li><li data-o="d">x &gt; 3</li></ol><p class="why">Dividing by −2 reverses the sign.</p></div>
+<div class="q" data-a="d"><p>If a &lt; b &lt; 0, which must be true?</p><ol><li data-o="a">a² &lt; b²</li><li data-o="b">ab &lt; 0</li><li data-o="c">a − b &gt; 0</li><li data-o="d">a² &gt; b²</li></ol><p class="why">a is further from zero. Try a = −3, b = −2.</p></div>
+<div class="q" data-a="b"><p>The sum of all solutions of |2x + 1| = 7 is:</p><ol><li data-o="a">0</li><li data-o="b">−1</li><li data-o="c">1</li><li data-o="d">7</li></ol><p class="why">2x + 1 = 7 gives 3. 2x + 1 = −7 gives −4. The sum is −1.</p></div>
+<div class="q" data-a="c"><p>Data sufficiency. Is xy &gt; 0? (1) x &gt; 0. (2) x + y &gt; 0.</p><ol><li data-o="a">A: statement 1 alone</li><li data-o="b">B: statement 2 alone</li><li data-o="c">E: not sufficient even together</li><li data-o="d">C: both together</li></ol><p class="why">x = 3, y = 1 gives yes. x = 3, y = −1 satisfies both statements and gives no.</p></div>
+</div>
+</article>
+
+<article data-id="m2w8d4" data-type="lesson" data-title="Correlation, regression and causation" data-mins="75" data-watch="simple linear regression R squared interpretation correlation vs causation" data-read="Wheelan, Naked Statistics: the chapters on correlation, regression analysis and common regression mistakes">
+<p class="lede">Regression is the most used analytical tool in business. You will rarely run one by hand, but you will often have to decide whether to believe one.</p>
+<h3>Correlation</h3>
+<p>The correlation coefficient r runs from −1 to +1. It measures how closely two variables move together in a straight-line pattern. Zero means no linear relationship. It says nothing about how steep the relationship is, and nothing about cause.</p>
+<h3>Simple regression</h3>
+<p>Regression fits the line that best predicts one variable from another:</p>
+<p class="formula">Predicted y = intercept + slope × x</p>
+<p>A plant regresses monthly maintenance cost on machine hours and gets:</p>
+<p class="formula">Maintenance cost (₹ lakh) = 4.0 + 0.015 × machine hours</p>
+<p>The intercept, ₹4 lakh, is the cost at zero hours: the fixed component. The slope says each extra machine hour adds ₹1,500. At 1,000 hours the prediction is 4 + 15 = ₹19 lakh. This is how accountants separate fixed from variable costs in practice.</p>
+<h3>Reading the output</h3>
+<ul>
+<li><strong>R²</strong> is the share of variation in y explained by the model. An R² of 0.81 means 81% is explained and r is 0.9.</li>
+<li>Each coefficient has a <strong>standard error and p-value</strong>. A slope with a p-value above 0.05 may be zero.</li>
+<li><strong>Multiple regression</strong> uses several predictors. Each coefficient shows the effect of that variable holding the others constant.</li>
+</ul>
+<h3>Why correlation is not causation</h3>
+<ol>
+<li><strong>Reverse causation.</strong> Plants with more maintenance staff have more breakdowns. The breakdowns caused the hiring.</li>
+<li><strong>A third variable.</strong> Newer lines have both more automation and fewer defects. Age may explain both.</li>
+<li><strong>Selection.</strong> The data only includes certain cases.</li>
+<li><strong>Chance.</strong> Search enough variables and something will correlate.</li>
+</ol>
+<p>The remedies are randomised experiments where possible, controlling for obvious third variables, and a plausible mechanism.</p>
+<h3>Other traps</h3>
+<ul>
+<li><strong>Extrapolation.</strong> A line fitted between 600 and 1,400 hours says nothing reliable about 3,000.</li>
+<li><strong>Outliers.</strong> One extreme month can swing the slope.</li>
+<li><strong>Non-linearity.</strong> Always look at the scatter plot before trusting the line.</li>
+</ul>
+<div class="callout"><h4>In your job</h4><p>Vendor benchmark claims such as "customers using our platform have 20% shorter time to market" are correlations across self-selected companies. Before repeating one, ask what kind of companies adopted it and what else they did. Customers' analysts will ask.</p></div>
+<div class="quiz">
+<div class="q" data-a="c"><p>Using the maintenance equation, predicted cost at 1,200 machine hours is:</p><ol><li data-o="a">₹18 lakh</li><li data-o="b">₹19 lakh</li><li data-o="c">₹22 lakh</li></ol><p class="why">4.0 + 0.015 × 1,200 = 22.</p></div>
+<div class="q" data-a="a"><p>Cities with more fire engines have more fire damage. The most sensible explanation is:</p><ol><li data-o="a">Larger cities have more of both</li><li data-o="b">Fire engines cause damage</li><li data-o="c">The data must be wrong</li></ol><p class="why">A third variable, city size, drives both.</p></div>
+<div class="q" data-a="b"><p>An R² of 0.25 means:</p><ol><li data-o="a">The model is wrong 75% of the time</li><li data-o="b">The model explains a quarter of the variation in the outcome</li><li data-o="c">The slope is 0.25</li></ol><p class="why">The rest of the variation comes from factors not in the model.</p></div>
+</div>
+</article>
+
+<article data-id="m2w8d5" data-type="case" data-title="Case: did the training programme cut defects?" data-mins="75" data-watch="confounding variables selection bias in business data examples" data-read="Wheelan, Naked Statistics: the chapter on programme evaluation">
+<p class="lede">A confident conclusion from a regression. Your job is to find what is wrong with it.</p>
+<h3>The situation</h3>
+<p>Deccan Driveline ran an operator training programme at 12 of its 30 production lines last year. The HR head presents this analysis to the managing director:</p>
+<ul>
+<li>Trained lines averaged a defect rate of 1.8%. Untrained lines averaged 2.9%.</li>
+<li>A regression of defect rate on training hours per operator across all 30 lines gives a slope of −0.05 percentage points per hour, with a p-value of 0.01 and R² of 0.35.</li>
+<li>He proposes extending the programme to all lines at ₹2 crore, forecasting a fall of 1.1 points in defect rate everywhere.</li>
+</ul>
+<p>The operations head adds two facts. The 12 lines were chosen by plant managers who volunteered. And 9 of the 12 are lines installed in the last four years.</p>
+<h3>Your questions</h3>
+<ol>
+<li>What does the regression show, strictly?</li>
+<li>Give three alternative explanations for the gap between trained and untrained lines.</li>
+<li>What analysis with existing data would be more convincing?</li>
+<li>How would you design the rollout so that the effect can be measured?</li>
+<li>What would you tell the managing director?</li>
+</ol>
+<details class="model"><summary>Model answer</summary>
+<p><strong>1.</strong> It shows a statistically significant association: lines with more training hours had lower defect rates, and training hours account for about a third of the variation between lines. It does not show that training caused the difference.</p>
+<p><strong>2.</strong> Line age: newer lines have better equipment and process control and would have fewer defects anyway. Self-selection: managers who volunteer for training programmes are probably the ones who already run their lines well. Other changes: the trained lines may have had new tooling, different products or more engineering attention in the same year. Any of these could produce the whole gap.</p>
+<p><strong>3.</strong> Compare each line with itself: the change in defect rate from the year before to the year after, for trained and untrained lines. This "difference in differences" removes fixed differences such as age. Also add line age and product mix to the regression and see whether the training coefficient survives. And compare trained and untrained lines of similar age only: the three older trained lines against older untrained ones.</p>
+<p><strong>4.</strong> Roll out in phases, choosing the next lines by lottery among those not yet trained. The lines waiting form a natural control group. Measure defect rates for both groups over the same months. This costs nothing extra, because the rollout would take several quarters in any case.</p>
+<p><strong>5.</strong> "The data are encouraging but cannot yet tell us how much of the gap is due to training. Most trained lines are new and their managers volunteered. I recommend we proceed in phases with lines chosen at random, which lets us measure the real effect within two quarters before committing the full ₹2 crore. The forecast of 1.1 points across all lines is very likely too high, because the older lines differ from those in the pilot."</p>
+<p><strong>What the case teaches.</strong> Ask how the treated group was chosen before looking at any result. Volunteers and new assets are the two most common sources of flattering pilot results in manufacturing.</p>
+</details>
+</article>
+
+<article data-id="m2w8d6" data-type="gmat" data-title="GMAT: your first practice test and an error log" data-mins="150" data-watch="how to review a GMAT practice test error log" data-read="GMAT Official Guide: the diagnostic and study-plan pages at the front">
+<p class="lede">This session is longer than usual. Take one full official practice exam under real conditions, then review it properly. The review is where the score improves.</p>
+<h3>Taking the test</h3>
+<ul>
+<li>Use a free official practice exam from mba.com. Official questions and scoring are closer to the real test than any third-party version.</li>
+<li>Sit it in one go: 2 hours 15 minutes, one 10-minute break, no phone, no pausing.</li>
+<li>Choose your section order as you would on test day. Many people start with their strongest section to settle in.</li>
+<li>Do not leave questions unanswered. Unfinished sections are penalised more than wrong guesses.</li>
+</ul>
+<h3>The error log</h3>
+<p>For every question you got wrong, and every one you got right by guessing or too slowly, record:</p>
+<ol>
+<li>Section and topic</li>
+<li>Why you missed it: did not know the concept, misread the question, calculation slip, ran out of time, or fell for a trap answer</li>
+<li>What you will do differently</li>
+</ol>
+<p>After one test the log will show two or three patterns. Those patterns set your study plan for Months 3 and 4.</p>
+<h3>Setting a target</h3>
+<p>Look up the latest class profile on each school's website for the GMAT range of admitted students, and set a target at or above the middle of that range. Schools publish these figures and they change from year to year, so check the current ones.</p>
+<h3>Evaluate questions</h3>
+<p>One more critical reasoning type before you sit the test. "Evaluate" questions ask which piece of information would best help you judge the argument. The right answer is a question whose two possible answers push the conclusion in opposite directions.</p>
+<div class="quiz">
+<div class="q" data-a="b"><p>A company plans to cut delivery times by opening a second warehouse. Which question would be most useful in evaluating the plan?</p><ol><li data-o="a">How large is the first warehouse?</li><li data-o="b">What share of current delivery time is spent in transit as opposed to order processing?</li><li data-o="c">Who designed the first warehouse?</li><li data-o="d">Do competitors have two warehouses?</li></ol><p class="why">If most time is transit, the plan helps. If most is processing, it does not.</p></div>
+<div class="q" data-a="d"><p>A manager argues that a four-day week will raise output per employee, citing a firm where output rose after the switch. Which would be most useful to know?</p><ol><li data-o="a">How many employees the firm has</li><li data-o="b">Whether employees liked the change</li><li data-o="c">What industry the firm is in</li><li data-o="d">Whether that firm made other changes, such as new equipment, at the same time</li></ol><p class="why">It tests the alternative-cause gap.</p></div>
+<div class="q" data-a="a"><p>A study finds that plants using a certain scheduling tool have higher on-time delivery. To evaluate whether the tool causes this, it would be most useful to know:</p><ol><li data-o="a">Whether those plants already had higher on-time delivery before adopting the tool</li><li data-o="b">The tool's price</li><li data-o="c">How long the tool has been on the market</li><li data-o="d">Whether the tool has a mobile app</li></ol><p class="why">This separates the tool's effect from pre-existing differences.</p></div>
+</div>
+</article>
+
+<article data-id="m2w8d7" data-type="review" data-title="Month 2 test and work assignment" data-mins="120" data-watch="microeconomics and statistics for managers summary" data-read="Wheelan, Naked Statistics: the conclusion; Mankiw: ten principles of economics (chapter 1)">
+<p class="lede">Eight questions across the month. Score six or more before moving on.</p>
+<div class="quiz graded">
+<div class="q" data-a="c"><p>Demand has elasticity −1.8. A 5% price cut changes quantity by about:</p><ol><li data-o="a">+5%</li><li data-o="b">−9%</li><li data-o="c">+9%</li><li data-o="d">+1.8%</li></ol><p class="why">−1.8 × −5% = +9%.</p></div>
+<div class="q" data-a="a"><p>Input costs fall across an industry with many competing sellers. In the long run, most of the benefit goes to:</p><ol><li data-o="a">Buyers, through lower prices</li><li data-o="b">Sellers, through higher margins</li><li data-o="c">Nobody</li><li data-o="d">The government</li></ol><p class="why">Competition passes cost reductions on to customers.</p></div>
+<div class="q" data-a="b"><p>A firm with a 30% contribution margin considers matching a 10% price cut. The volume loss at which not matching gives the same contribution is:</p><ol><li data-o="a">10%</li><li data-o="b">33%</li><li data-o="c">30%</li><li data-o="d">50%</li></ol><p class="why">Contribution per unit falls from 30 to 20, a drop of one third.</p></div>
+<div class="q" data-a="d"><p>In a game, a strategy that is best whatever the other player does is called:</p><ol><li data-o="a">A Nash equilibrium</li><li data-o="b">A mixed strategy</li><li data-o="c">A credible threat</li><li data-o="d">A dominant strategy</li></ol><p class="why">A Nash equilibrium is a combination of strategies, not a single one.</p></div>
+<div class="q" data-a="b"><p>A sample of 400 has a mean of 120 and an SD of 20. The 95% confidence interval for the mean is about:</p><ol><li data-o="a">100 to 140</li><li data-o="b">118 to 122</li><li data-o="c">119.9 to 120.1</li><li data-o="d">80 to 160</li></ol><p class="why">SE = 20 ÷ 20 = 1. 120 ± 1.96.</p></div>
+<div class="q" data-a="c"><p>0.5% of machines will fail this week. An alarm catches 80% of those and falsely triggers on 4% of healthy machines. Of machines with an alarm, the share that will really fail is about:</p><ol><li data-o="a">80%</li><li data-o="b">20%</li><li data-o="c">9%</li><li data-o="d">50%</li></ol><p class="why">Per 10,000: 40 true alarms and 398 false ones. 40 ÷ 438 = 9%.</p></div>
+<div class="q" data-a="a"><p>A regression gives Sales = 20 + 3 × Advertising, both in ₹ lakh. This means:</p><ol><li data-o="a">Each extra ₹1 lakh of advertising is associated with ₹3 lakh more sales</li><li data-o="b">Advertising causes all sales</li><li data-o="c">Sales are 3 times advertising</li><li data-o="d">20% of sales come from advertising</li></ol><p class="why">The slope is an association per unit. Causation needs more evidence.</p></div>
+<div class="q" data-a="d"><p>The strongest design for measuring the effect of a new work method is:</p><ol><li data-o="a">Before-and-after on the best line</li><li data-o="b">Asking supervisors</li><li data-o="c">Comparing volunteers with non-volunteers</li><li data-o="d">Randomly assigning lines to the new and old method and comparing</li></ol><p class="why">Randomisation removes other explanations.</p></div>
+</div>
+<div class="assign"><h3>Work assignment: audit one claim</h3>
+<ol>
+<li>Pick one quantified claim you have seen in a proposal, case study or benchmark, such as "reduces time to market by 20%".</li>
+<li>Write down what data would be needed to support it.</li>
+<li>List the alternative explanations: selection, a third variable, other changes at the same time.</li>
+<li>Rewrite the claim in a form you could defend to a sceptical analyst, including its uncertainty.</li>
+</ol>
+<p>Month 3 turns to finance: how to value money over time and decide which investments are worth making.</p></div>
+</article>
+</section>

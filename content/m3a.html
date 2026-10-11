@@ -1,0 +1,389 @@
+<section data-week="9" data-title="The time value of money" data-goal="Convert any stream of future cash into a value today.">
+
+<article data-id="m3w9d1" data-type="lesson" data-title="Compounding and discounting" data-mins="60" data-watch="time value of money present value future value explained" data-read="Brealey, Myers and Allen, Principles of Corporate Finance: chapter 2, how to calculate present values">
+<p class="lede">A rupee today is worth more than a rupee next year, because today's rupee can be invested. Everything in finance is built on that sentence.</p>
+<h3>Future value</h3>
+<p class="formula">FV = PV × (1 + r)ⁿ</p>
+<p>₹100 invested at 10% becomes ₹110 after one year, ₹121 after two and ₹133.1 after three. Interest earns interest. This is compounding.</p>
+<p>A shortcut: money doubles in roughly 72 ÷ r years. At 12% it doubles in about six years. At 6% it takes twelve.</p>
+<h3>Present value</h3>
+<p>Run the same formula backwards.</p>
+<p class="formula">PV = FV ÷ (1 + r)ⁿ</p>
+<p>What is ₹1 crore received in five years worth today, if you could earn 12% elsewhere? 1 ÷ 1.12⁵ = 1 ÷ 1.762 = ₹0.567 crore. You should be indifferent between ₹56.7 lakh now and ₹1 crore in five years. The rate used is called the discount rate, and 0.567 is the discount factor.</p>
+<h3>Discount factors at 12%</h3>
+<table class="stmt">
+<thead><tr><th>Year</th><th class="n">1</th><th class="n">2</th><th class="n">3</th><th class="n">4</th><th class="n">5</th></tr></thead>
+<tbody><tr><td>Factor</td><td class="n">0.893</td><td class="n">0.797</td><td class="n">0.712</td><td class="n">0.636</td><td class="n">0.567</td></tr></tbody>
+</table>
+<h3>Valuing a stream of cash</h3>
+<p>Discount each amount and add. Present values can be added because they are all measured at the same date.</p>
+<p>A project pays ₹50 lakh at the end of each of the next three years. At 12%: 50 × 0.893 + 50 × 0.797 + 50 × 0.712 = 44.6 + 39.9 + 35.6 = ₹120.1 lakh. The ₹150 lakh of nominal benefits is worth ₹120 lakh today.</p>
+<h3>What this changes</h3>
+<p>Month 1's payback and ROI treated all rupees alike. Discounting penalises benefits that arrive late and costs that arrive early. A project with slow, back-loaded benefits can look fine on three-year ROI and poor on present value.</p>
+<h3>Where the rate comes from</h3>
+<p>The discount rate is the return available on the best alternative use of the money at similar risk. It is an opportunity cost. For a company it is the return its investors require, which Week 11 calculates. Until then, treat 12% as a reasonable working figure for an Indian manufacturer.</p>
+<div class="callout"><h4>In your job</h4><p>When a deal offers the customer "pay over three years", the present value of what the vendor receives is lower than the headline price. Finance teams on both sides calculate it. You should be able to as well.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>₹200 invested for 2 years at 10% compounded annually becomes:</p><ol><li data-o="a">₹240</li><li data-o="b">₹242</li><li data-o="c">₹220</li></ol><p class="why">200 × 1.1 × 1.1 = 242.</p></div>
+<div class="q" data-a="c"><p>At 12%, the present value of ₹10 lakh received in 3 years is about:</p><ol><li data-o="a">₹8.9 lakh</li><li data-o="b">₹6.4 lakh</li><li data-o="c">₹7.1 lakh</li></ol><p class="why">10 × 0.712.</p></div>
+<div class="q" data-a="a"><p>If the discount rate rises, the present value of a future payment:</p><ol><li data-o="a">Falls</li><li data-o="b">Rises</li><li data-o="c">Does not change</li></ol><p class="why">A higher rate means future money is worth less today.</p></div>
+</div>
+</article>
+
+<article data-id="m3w9d2" data-type="lesson" data-title="Annuities, perpetuities and loans" data-mins="75" data-watch="annuity perpetuity present value formula loan amortization EMI explained" data-read="Brealey, Myers and Allen, Principles of Corporate Finance: chapter 2, sections on perpetuities and annuities">
+<p class="lede">Many cash flows are regular: rent, subscriptions, loan payments, maintenance fees. Regular streams have shortcuts that save you from discounting year by year.</p>
+<h3>Perpetuity</h3>
+<p>A payment of C every year for ever, starting in one year, is worth:</p>
+<p class="formula">PV = C ÷ r</p>
+<p>₹10 lakh a year for ever at 10% is worth ₹100 lakh. If the payment grows at rate g each year:</p>
+<p class="formula">PV = C ÷ (r − g)</p>
+<p>₹10 lakh next year growing 4% a year, at 10%, is worth 10 ÷ 0.06 = ₹167 lakh. This growing perpetuity formula values the long-term future of whole companies, as Week 12 shows. Note how sensitive it is: raise g to 6% and the value jumps to ₹250 lakh.</p>
+<h3>Annuity</h3>
+<p>A payment of C every year for n years is worth:</p>
+<p class="formula">PV = C × [1 − (1 + r)⁻ⁿ] ÷ r</p>
+<p>The term multiplying C is the annuity factor. At 12% the factors are:</p>
+<table class="stmt">
+<thead><tr><th>Years</th><th class="n">3</th><th class="n">5</th><th class="n">7</th><th class="n">8</th><th class="n">10</th></tr></thead>
+<tbody><tr><td>Annuity factor at 12%</td><td class="n">2.402</td><td class="n">3.605</td><td class="n">4.564</td><td class="n">4.968</td><td class="n">5.650</td></tr></tbody>
+</table>
+<p>₹50 lakh a year for three years is worth 50 × 2.402 = ₹120.1 lakh, matching the long calculation in the last session. In a spreadsheet, the PV and NPV functions do this.</p>
+<h3>Loans</h3>
+<p>A loan is an annuity seen from the lender's side. The equal instalment that repays a loan P over n periods at rate r per period is:</p>
+<p class="formula">Instalment = P × r ÷ [1 − (1 + r)⁻ⁿ]</p>
+<p>A ₹10 lakh loan at 12% a year, repaid monthly over one year, has a monthly rate of 1% and 12 periods. The instalment is about ₹88,850. Total paid is ₹10.66 lakh. In the first month ₹10,000 of the instalment is interest and the rest repays principal. The interest share shrinks every month.</p>
+<h3>Compounding more than once a year</h3>
+<p>12% a year compounded monthly is 1% a month, which is 1.01¹² − 1 = 12.68% effective a year. Always compare rates on the same effective basis.</p>
+<h3>The cost of supplier credit</h3>
+<p>A supplier offers 2% off if you pay in 10 days and not 45. Paying ₹98 now avoids paying ₹100 in 35 days. The return is 2 ÷ 98 = 2.04% for 35 days, which is about 21% a year. A firm that borrows at 10% should take the discount every time.</p>
+<div class="callout"><h4>In your job</h4><p>A subscription is an annuity and a perpetual licence is a lump sum plus a smaller annuity for maintenance. Comparing them properly means comparing present values over the period the customer expects to use the software. The case this week does exactly that.</p></div>
+<div class="quiz">
+<div class="q" data-a="c"><p>A perpetuity pays ₹6 lakh a year. At a discount rate of 8% it is worth:</p><ol><li data-o="a">₹48 lakh</li><li data-o="b">₹60 lakh</li><li data-o="c">₹75 lakh</li></ol><p class="why">6 ÷ 0.08 = 75.</p></div>
+<div class="q" data-a="a"><p>At 12%, ₹20 lakh a year for 5 years is worth about:</p><ol><li data-o="a">₹72 lakh</li><li data-o="b">₹100 lakh</li><li data-o="c">₹57 lakh</li></ol><p class="why">20 × 3.605 = 72.1.</p></div>
+<div class="q" data-a="b"><p>A cash flow of ₹12 lakh next year grows 5% a year for ever. At 11% its present value is:</p><ol><li data-o="a">₹109 lakh</li><li data-o="b">₹200 lakh</li><li data-o="c">₹240 lakh</li></ol><p class="why">12 ÷ (0.11 − 0.05) = 200.</p></div>
+</div>
+</article>
+
+<article data-id="m3w9d3" data-type="gmat" data-title="GMAT Data Insights: two-part analysis" data-mins="60" data-watch="GMAT data insights two-part analysis strategy examples" data-read="GMAT Official Guide: Data Insights review, two-part analysis">
+<p class="lede">Two-part analysis gives one scenario and asks for two linked answers chosen from the same list. Both must be right to score. Most are two equations in disguise.</p>
+<h3>Method</h3>
+<ul>
+<li>Write down the relationships before looking at the options.</li>
+<li>If the two parts are linked by an equation, solve it. If that is slow, test the options in pairs.</li>
+<li>Check that your pair satisfies every condition, including ones mentioned only once.</li>
+</ul>
+<p>Each scenario below is split into its two parts.</p>
+<h3>Scenario 1</h3>
+<p>A plant must make exactly 600 units using machine X, which makes 20 units an hour, and machine Y, which makes 30 units an hour. Together the machines run for exactly 24 machine-hours.</p>
+<div class="quiz">
+<div class="q" data-a="b"><p>How many hours does machine X run?</p><ol><li data-o="a">8</li><li data-o="b">12</li><li data-o="c">15</li><li data-o="d">18</li></ol><p class="why">x + y = 24 and 20x + 30y = 600. Substituting gives 480 + 10y = 600, so y = 12 and x = 12.</p></div>
+<div class="q" data-a="b"><p>How many units does machine Y produce?</p><ol><li data-o="a">240</li><li data-o="b">360</li><li data-o="c">300</li><li data-o="d">450</li></ol><p class="why">12 hours × 30 units.</p></div>
+</div>
+<h3>Scenario 2</h3>
+<p>An investor splits ₹10 lakh between fund A, which pays 6% a year, and fund B, which pays 10%. Total interest for the year is ₹76,000.</p>
+<div class="quiz">
+<div class="q" data-a="c"><p>How much is invested in fund A?</p><ol><li data-o="a">₹4 lakh</li><li data-o="b">₹5 lakh</li><li data-o="c">₹6 lakh</li><li data-o="d">₹7 lakh</li></ol><p class="why">0.06a + 0.10(10 − a) = 0.76 gives 0.04a = 0.24, so a = 6.</p></div>
+<div class="q" data-a="a"><p>How much interest does fund B pay?</p><ol><li data-o="a">₹40,000</li><li data-o="b">₹36,000</li><li data-o="c">₹24,000</li><li data-o="d">₹60,000</li></ol><p class="why">₹4 lakh at 10%.</p></div>
+</div>
+</article>
+
+<article data-id="m3w9d4" data-type="lesson" data-title="Choosing the discount rate: risk and inflation" data-mins="60" data-watch="real vs nominal interest rate discount rate opportunity cost of capital" data-read="Brealey, Myers and Allen, Principles of Corporate Finance: chapter 3 section on real and nominal rates; chapter 1 on the opportunity cost of capital">
+<p class="lede">The discount rate is the most argued-over number in any investment case. Understanding what goes into it lets you argue well.</p>
+<h3>Three ingredients</h3>
+<ul>
+<li><strong>Time preference.</strong> Even with no risk and no inflation, people want compensation for waiting.</li>
+<li><strong>Inflation.</strong> Money loses purchasing power.</li>
+<li><strong>Risk.</strong> Uncertain cash flows are worth less than certain ones.</li>
+</ul>
+<p>The yield on a 10-year Indian government bond bundles the first two. It has been roughly 6.5 to 7.5% in recent years; check the current figure when you need it. Anything riskier must offer more.</p>
+<h3>Nominal and real</h3>
+<p>A nominal rate includes inflation. A real rate removes it.</p>
+<p class="formula">(1 + nominal) = (1 + real) × (1 + inflation)</p>
+<p>With a nominal rate of 12% and inflation of 5%, the real rate is 1.12 ÷ 1.05 − 1 = 6.7%. A common approximation is nominal minus inflation, which gives 7%.</p>
+<p>The rule is consistency. Discount nominal cash flows, which include price rises, at a nominal rate. Discount real cash flows, in today's prices, at a real rate. Mixing them is one of the commonest errors in business cases: benefits held flat in today's rupees, discounted at a nominal 12%, are undervalued.</p>
+<h3>Risk belongs in the rate or in the cash flows, once</h3>
+<p>You can reflect risk by raising the discount rate or by lowering the expected cash flows. Doing both double-counts. Good practice: use honest expected cash flows, which are probability-weighted averages and not best cases, and a rate that matches the project's risk.</p>
+<h3>Different projects, different rates</h3>
+<p>A cost-saving project on an existing line is low risk, because the volume already exists. A new product for a new market is high risk. Many companies use one hurdle rate for everything. That makes safe projects look worse than they are and risky ones better.</p>
+<h3>Country and currency</h3>
+<p>Rupee cash flows are discounted at rupee rates. Euro cash flows at euro rates, which are lower because inflation is lower. A 12% rupee hurdle and an 8% euro hurdle can describe the same real return.</p>
+<div class="callout"><h4>In your job</h4><p>When a customer's finance team rejects a case, ask what hurdle rate they used and whether benefits were inflated over time. Wage savings grow with wage inflation. Showing them growing at 6 to 8% a year in India, with the reasoning, is legitimate and often changes the answer.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>Nominal rate 10%, inflation 4%. The real rate is closest to:</p><ol><li data-o="a">14%</li><li data-o="b">5.8%</li><li data-o="c">2.5%</li></ol><p class="why">1.10 ÷ 1.04 − 1 = 5.8%.</p></div>
+<div class="q" data-a="c"><p>A case shows cost savings in constant prices with no inflation and discounts them at a nominal 12%. The project's value is:</p><ol><li data-o="a">Overstated</li><li data-o="b">Correct</li><li data-o="c">Understated</li></ol><p class="why">Real cash flows need a real rate, which is lower.</p></div>
+<div class="q" data-a="a"><p>Compared with a cost-saving project on an existing line, a new product launch should normally use:</p><ol><li data-o="a">A higher discount rate</li><li data-o="b">A lower discount rate</li><li data-o="c">The risk-free rate</li></ol><p class="why">Its cash flows are more uncertain.</p></div>
+</div>
+</article>
+
+<article data-id="m3w9d5" data-type="case" data-title="Case: perpetual licence or subscription?" data-mins="75" data-watch="buy vs lease analysis present value comparison" data-read="Brealey, Myers and Allen, Principles of Corporate Finance: chapter 6 section on choosing between long- and short-lived equipment">
+<p class="lede">The capex and opex comparison from Month 1, now done with present values.</p>
+<h3>The situation</h3>
+<p>Sahyadri Auto Components is choosing how to buy a manufacturing engineering software suite. The vendor offers:</p>
+<ul>
+<li><strong>Perpetual:</strong> ₹3.0 crore now, plus maintenance of ₹0.45 crore at the end of each year.</li>
+<li><strong>Subscription:</strong> ₹1.1 crore at the end of each year, maintenance included.</li>
+</ul>
+<p>Sahyadri's discount rate is 12%. The CFO, Lakshmi Iyer, asks which is cheaper. The IT head expects to use the software for at least eight years. The manufacturing head points out that the industry is changing quickly and five years is all anyone can see.</p>
+<h3>Your questions</h3>
+<ol>
+<li>Calculate the present value of cost for each option over five years.</li>
+<li>Repeat for eight years.</li>
+<li>At about what horizon are the two equal?</li>
+<li>What factors outside the arithmetic should influence the choice?</li>
+<li>If you were the vendor and preferred subscriptions, what would you offer to tip the decision?</li>
+</ol>
+<details class="model"><summary>Model answer</summary>
+<p><strong>1.</strong> Five years, annuity factor 3.605. Perpetual: 3.0 + 0.45 × 3.605 = 3.0 + 1.62 = ₹4.62 crore. Subscription: 1.1 × 3.605 = ₹3.97 crore. Subscription is cheaper by ₹0.66 crore.</p>
+<p><strong>2.</strong> Eight years, annuity factor 4.968. Perpetual: 3.0 + 0.45 × 4.968 = ₹5.24 crore. Subscription: 1.1 × 4.968 = ₹5.46 crore. Perpetual is cheaper by ₹0.23 crore.</p>
+<p><strong>3.</strong> They are equal when 3.0 + 0.45 × A = 1.1 × A, so A = 4.62. The 12% annuity factor is 4.564 at seven years and 4.968 at eight, so break-even is a little over seven years.</p>
+<p><strong>4.</strong> Flexibility: a subscription can be scaled down or ended, and that option is valuable when the future is uncertain. Cash: Sahyadri's free cash flow and borrowing capacity may make ₹3 crore upfront unattractive regardless of present value. Accounting: the treatment affects EBITDA, as Month 1 showed. Price risk: subscription prices can rise at renewal, while a perpetual licence fixes the main cost. Product direction: vendors increasingly reserve new capabilities for subscription offerings.</p>
+<p><strong>5.</strong> Remove the customer's main risk. Offer a five-year price lock or a cap on annual increases, include capabilities the perpetual version lacks, and allow seats to flex with production volume. Each addresses a factor in question 4 without cutting the headline price.</p>
+<p><strong>What the case teaches.</strong> The cheaper option depends on the horizon and the discount rate, and reasonable people in the same company hold different views on both. State your assumptions, show the break-even, and then discuss what the arithmetic leaves out.</p>
+</details>
+</article>
+
+<article data-id="m3w9d6" data-type="gmat" data-title="GMAT Quant: interest, growth and sequences" data-mins="60" data-watch="GMAT compound interest sequences arithmetic geometric problems" data-read="GMAT Official Guide: Quantitative Reasoning review, percents and sequences">
+<p class="lede">Growth questions are percentage multipliers applied repeatedly. Sequence questions are about finding the rule.</p>
+<h3>Rules</h3>
+<ul>
+<li><strong>Simple interest</strong> = principal × rate × time.</li>
+<li><strong>Compound amount</strong> = principal × (1 + rate)ⁿ.</li>
+<li><strong>Repeated change</strong>: falling 20% a year for two years leaves 0.8 × 0.8 = 64%.</li>
+<li><strong>Arithmetic sequence</strong>: constant difference d. The nth term is a + (n − 1)d.</li>
+<li><strong>Geometric sequence</strong>: constant ratio. Doubling every period is a ratio of 2.</li>
+</ul>
+<h3>Practice</h3>
+<div class="quiz">
+<div class="q" data-a="c"><p>₹10,000 is invested at 10% a year compounded annually. After 2 years it is worth:</p><ol><li data-o="a">₹12,000</li><li data-o="b">₹11,000</li><li data-o="c">₹12,100</li><li data-o="d">₹12,210</li></ol><p class="why">10,000 × 1.21.</p></div>
+<div class="q" data-a="d"><p>A bacterial culture doubles every 3 hours. It has 800 cells now. After 9 hours it has:</p><ol><li data-o="a">2,400</li><li data-o="b">3,200</li><li data-o="c">4,800</li><li data-o="d">6,400</li></ol><p class="why">Three doublings: 800 × 8.</p></div>
+<div class="q" data-a="a"><p>On ₹5,000 at 20% a year for 2 years, compound interest exceeds simple interest by:</p><ol><li data-o="a">₹200</li><li data-o="b">₹100</li><li data-o="c">₹400</li><li data-o="d">₹0</li></ol><p class="why">Simple: 2,000. Compound: 5,000 × 1.44 − 5,000 = 2,200.</p></div>
+<div class="q" data-a="b"><p>In an arithmetic sequence the 5th term is 17 and the 9th term is 33. The first term is:</p><ol><li data-o="a">0</li><li data-o="b">1</li><li data-o="c">4</li><li data-o="d">5</li></ol><p class="why">Four steps add 16, so d = 4. 17 − 4 × 4 = 1.</p></div>
+<div class="q" data-a="c"><p>A machine loses 20% of its value each year. After 2 years its value has fallen by:</p><ol><li data-o="a">40%</li><li data-o="b">44%</li><li data-o="c">36%</li><li data-o="d">32%</li></ol><p class="why">It retains 64%.</p></div>
+</div>
+</article>
+
+<article data-id="m3w9d7" data-type="review" data-title="Week 9 review and work assignment" data-mins="75" data-watch="time value of money practice problems" data-read="Brealey, Myers and Allen, Principles of Corporate Finance: chapter 2 end-of-chapter problems">
+<p class="lede">Five questions, then build a discounting tool you will reuse all month.</p>
+<div class="quiz graded">
+<div class="q" data-a="b"><p>At 12%, about how long does money take to double?</p><ol><li data-o="a">4 years</li><li data-o="b">6 years</li><li data-o="c">8 years</li><li data-o="d">12 years</li></ol><p class="why">72 ÷ 12 = 6.</p></div>
+<div class="q" data-a="d"><p>Using 12% discount factors, the present value of ₹100 lakh in year 1 and ₹100 lakh in year 2 is about:</p><ol><li data-o="a">₹200 lakh</li><li data-o="b">₹179 lakh</li><li data-o="c">₹160 lakh</li><li data-o="d">₹169 lakh</li></ol><p class="why">89.3 + 79.7 = 169.</p></div>
+<div class="q" data-a="a"><p>A supplier offers 1% off for paying 30 days early. The annualised return on taking it is roughly:</p><ol><li data-o="a">12%</li><li data-o="b">1%</li><li data-o="c">30%</li><li data-o="d">3%</li></ol><p class="why">About 1% a month, or roughly 12% a year.</p></div>
+<div class="q" data-a="c"><p>Which pairing is consistent?</p><ol><li data-o="a">Real cash flows with a nominal rate</li><li data-o="b">Rupee cash flows with a euro rate</li><li data-o="c">Nominal cash flows with a nominal rate</li><li data-o="d">Best-case cash flows with a low rate</li></ol><p class="why">Cash flows and rate must be on the same basis.</p></div>
+<div class="q" data-a="b"><p>In the licence case, a longer expected period of use favours:</p><ol><li data-o="a">The subscription</li><li data-o="b">The perpetual licence</li><li data-o="c">Neither</li><li data-o="d">Whichever has the higher list price</li></ol><p class="why">The upfront cost is spread over more years of lower annual payments.</p></div>
+</div>
+<div class="assign"><h3>Work assignment: build a present value sheet</h3>
+<ol>
+<li>In a spreadsheet, set up a row for years 0 to 10, an input cell for the discount rate, and a row of discount factors calculated from it.</li>
+<li>Add rows for two cash flow streams and calculate each present value. Check one against the built-in NPV function. Note that the function treats the first value as arriving at the end of year 1.</li>
+<li>Reproduce the licence case and confirm the five- and eight-year results.</li>
+<li>Change the rate to 9% and 15% and note how the break-even horizon moves.</li>
+</ol></div>
+</article>
+</section>
+
+<section data-week="10" data-title="NPV, IRR and capital budgeting" data-goal="Evaluate an investment the way a finance team does.">
+
+<article data-id="m3w10d1" data-type="lesson" data-title="Net present value" data-mins="60" data-watch="net present value NPV explained with example capital budgeting" data-read="Brealey, Myers and Allen, Principles of Corporate Finance: chapter 5, net present value and other investment criteria">
+<p class="lede">Net present value is the single most important decision rule in finance. It tells you how much richer a project makes the company, in today's money.</p>
+<h3>The rule</h3>
+<p class="formula">NPV = present value of future cash flows − initial investment</p>
+<p>Accept projects with a positive NPV. Among alternatives that exclude each other, choose the highest NPV.</p>
+<h3>Worked example</h3>
+<p>Take the virtual commissioning project from Month 1: invest ₹150 lakh, receive a net ₹130 lakh at the end of each of three years. At 12%:</p>
+<p class="formula">NPV = −150 + 130 × 2.402 = −150 + 312.2 = ₹162.2 lakh</p>
+<p>The project creates ₹162 lakh of value. Compare that with the undiscounted surplus of 390 − 150 = ₹240 lakh. A third of the apparent gain was the time value of money.</p>
+<h3>Why NPV is the right rule</h3>
+<ul>
+<li>It uses all the cash flows, not only those before payback.</li>
+<li>It accounts for timing and for risk, through the discount rate.</li>
+<li>It measures value in rupees, so NPVs of independent projects can be added.</li>
+<li>A positive NPV means the project earns more than investors could get elsewhere at the same risk. That is what creating value means.</li>
+</ul>
+<h3>Sensitivity analysis</h3>
+<p>An NPV is only as good as its inputs, so test them one at a time.</p>
+<table class="stmt">
+<thead><tr><th>Scenario</th><th class="n">Net benefit per year</th><th class="n">NPV at 12%, ₹ lakh</th></tr></thead>
+<tbody>
+<tr><td>Base case</td><td class="n">130</td><td class="n">162</td></tr>
+<tr><td>Benefits halved (gross 75, net 55)</td><td class="n">55</td><td class="n">−18</td></tr>
+<tr><td>Benefits start a year late (years 2 to 4)</td><td class="n">130</td><td class="n">129</td></tr>
+<tr><td>Discount rate 15% (factor 2.283)</td><td class="n">130</td><td class="n">147</td></tr>
+</tbody>
+</table>
+<p>The project is robust to delay and to the discount rate, and fragile to benefit shortfall. In Month 1 the half-benefit case showed a 10% positive ROI. NPV shows it actually destroys value, because ₹165 lakh spread over three years is worth less than ₹150 lakh today.</p>
+<p>Break-even: NPV is zero when the annual net benefit is 150 ÷ 2.402 = ₹62.4 lakh.</p>
+<div class="callout"><h4>In your job</h4><p>Lead a business case with NPV and the break-even assumption, and keep payback as a secondary figure because plant managers think in it. A finance reviewer will trust the case more when it shows where it breaks.</p></div>
+<div class="quiz">
+<div class="q" data-a="c"><p>A project costs ₹200 lakh and returns ₹100 lakh a year for 3 years. At 12% its NPV is about:</p><ol><li data-o="a">₹100 lakh</li><li data-o="b">₹60 lakh</li><li data-o="c">₹40 lakh</li></ol><p class="why">−200 + 100 × 2.402 = 40.2.</p></div>
+<div class="q" data-a="a"><p>A project has an NPV of zero. This means it:</p><ol><li data-o="a">Earns exactly the required return</li><li data-o="b">Makes no accounting profit</li><li data-o="c">Never pays back</li></ol><p class="why">Investors get precisely the return they could get elsewhere.</p></div>
+<div class="q" data-a="b"><p>Two independent projects have NPVs of ₹30 lakh and −₹10 lakh. The firm should:</p><ol><li data-o="a">Do both, since the total is positive</li><li data-o="b">Do only the first</li><li data-o="c">Do neither</li></ol><p class="why">Each stands alone. The second destroys value.</p></div>
+</div>
+</article>
+
+<article data-id="m3w10d2" data-type="lesson" data-title="IRR, payback and where they mislead" data-mins="75" data-watch="IRR vs NPV internal rate of return problems mutually exclusive projects" data-read="Brealey, Myers and Allen, Principles of Corporate Finance: chapter 5, sections on payback, internal rate of return and its pitfalls">
+<p class="lede">Managers like percentages and time periods more than present values, so IRR and payback stay popular. Both are useful and both can lead you to the wrong choice.</p>
+<h3>Internal rate of return</h3>
+<p>The IRR is the discount rate at which a project's NPV is zero. It is the return the project itself earns. The rule: accept if the IRR exceeds the required rate.</p>
+<p>Invest ₹100 lakh and receive ₹60 lakh at the end of each of two years. The IRR solves 60 ÷ (1 + r) + 60 ÷ (1 + r)² = 100, which gives about 13.1%. Against a 12% hurdle the project just passes. In a spreadsheet, use the IRR function.</p>
+<h3>Where IRR misleads</h3>
+<p><strong>Scale.</strong> Compare two projects that exclude each other, at a 10% required rate.</p>
+<table class="stmt">
+<thead><tr><th>Project</th><th class="n">Invest now</th><th class="n">Receive in 1 year</th><th class="n">IRR</th><th class="n">NPV at 10%</th></tr></thead>
+<tbody>
+<tr><td>A</td><td class="n">100</td><td class="n">130</td><td class="n">30%</td><td class="n">18.2</td></tr>
+<tr><td>B</td><td class="n">1,000</td><td class="n">1,200</td><td class="n">20%</td><td class="n">90.9</td></tr>
+</tbody>
+</table>
+<p>A has the higher IRR. B makes the company five times richer. If you can only do one, choose B. A high percentage on a small amount is worth less than a good percentage on a large one.</p>
+<p><strong>Timing.</strong> IRR favours projects with early cash flows even when a slower project has a higher NPV.</p>
+<p><strong>Odd cash flow patterns.</strong> If cash flows change sign more than once, for example a large decommissioning cost at the end, there can be several IRRs or none.</p>
+<p><strong>Reinvestment.</strong> IRR implicitly assumes that cash received can be reinvested at the IRR itself, which is rarely true for very high figures.</p>
+<p>When NPV and IRR disagree, follow NPV.</p>
+<h3>Payback</h3>
+<p>Payback ignores everything after the cut-off and ignores timing within it. It favours short-lived projects. It survives because it is easy and because it is a rough measure of risk: the sooner the money is back, the less can go wrong. Discounted payback, using present values, repairs the timing flaw.</p>
+<h3>Profitability index</h3>
+<p>When capital is rationed, rank projects by NPV per rupee invested. A plant with a ₹5 crore budget and ₹12 crore of positive-NPV proposals should fund those with the highest index first.</p>
+<h3>How companies really decide</h3>
+<p>Surveys of finance chiefs consistently find most firms calculate NPV and IRR together and still look at payback. Strategic fit, the sponsor's credibility and the capital budget matter as well. The arithmetic is the entry ticket.</p>
+<div class="callout"><h4>In your job</h4><p>Software and services proposals are small next to a new press line, so their IRR is often spectacular and their NPV modest. Present both, and position the project as cheap insurance for the big capital spend it protects.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>The IRR of a project is:</p><ol><li data-o="a">Its accounting return</li><li data-o="b">The discount rate that makes its NPV zero</li><li data-o="c">The firm's cost of capital</li></ol><p class="why">That is the definition.</p></div>
+<div class="q" data-a="c"><p>Two mutually exclusive projects: X has IRR 40% and NPV ₹5 lakh, Y has IRR 18% and NPV ₹60 lakh. With a 12% hurdle, choose:</p><ol><li data-o="a">X</li><li data-o="b">Neither</li><li data-o="c">Y</li></ol><p class="why">Y adds more value.</p></div>
+<div class="q" data-a="a"><p>The main weakness of simple payback is that it:</p><ol><li data-o="a">Ignores cash flows after the payback date</li><li data-o="b">Is hard to calculate</li><li data-o="c">Requires a discount rate</li></ol><p class="why">A project could pay back in two years and then earn for ten more, or stop. Payback cannot tell.</p></div>
+</div>
+</article>
+
+<article data-id="m3w10d3" data-type="gmat" data-title="GMAT Verbal: strengthen and weaken at higher difficulty" data-mins="60" data-watch="GMAT critical reasoning strengthen weaken hard questions" data-read="GMAT Official Guide: Verbal Reasoning, critical reasoning practice sets">
+<p class="lede">Harder questions use the same gaps. They hide them behind longer arguments and offer trap answers that are true and relevant to the topic but do not touch the link between evidence and conclusion.</p>
+<h3>Traps to recognise</h3>
+<ul>
+<li><strong>Out of scope.</strong> About the topic, not about the argument.</li>
+<li><strong>Opposite.</strong> Strengthens when asked to weaken.</li>
+<li><strong>Too weak.</strong> "Some" customers, when the argument needs "most".</li>
+<li><strong>Restates a premise.</strong> Adds nothing new.</li>
+</ul>
+<h3>Practice</h3>
+<div class="quiz">
+<div class="q" data-a="c"><p>A manufacturer found that plants which adopted a new maintenance system had 30% fewer breakdowns the following year than plants which did not. Management concludes the system reduces breakdowns. Which most seriously weakens the conclusion?</p><ol><li data-o="a">The system is expensive to install</li><li data-o="b">Some plants found the system hard to learn</li><li data-o="c">The plants that adopted the system were also the ones that had just replaced their oldest machines</li><li data-o="d">Breakdowns are costly</li></ol><p class="why">New machines are a rival cause.</p></div>
+<div class="q" data-a="a"><p>Same argument. Which most strengthens it?</p><ol><li data-o="a">Plants were assigned the system by lottery, and the two groups had similar breakdown rates beforehand</li><li data-o="b">The system's vendor is well known</li><li data-o="c">Maintenance staff like the system</li><li data-o="d">Breakdowns fell across the whole industry</li></ol><p class="why">Random assignment and equal starting points remove alternative explanations. Option (d) weakens.</p></div>
+<div class="q" data-a="d"><p>An airline argues that since its on-time arrival rate rose after it lengthened scheduled flight times, its operations have become more efficient. Which most weakens the argument?</p><ol><li data-o="a">Passengers prefer punctual airlines</li><li data-o="b">Fuel costs rose</li><li data-o="c">Other airlines have higher on-time rates</li><li data-o="d">Actual flight durations did not change</li></ol><p class="why">The measure improved because the target moved, not because operations did.</p></div>
+<div class="q" data-a="b"><p>A town plans to raise parking fees to reduce traffic in its centre. Which most strengthens the prediction that traffic will fall?</p><ol><li data-o="a">Parking revenue funds road repairs</li><li data-o="b">Most drivers entering the centre park in paid spaces and have access to public transport</li><li data-o="c">The centre has many shops</li><li data-o="d">Fees have not risen for ten years</li></ol><p class="why">The plan works only if the fee reaches most drivers and they have an alternative.</p></div>
+</div>
+</article>
+
+<article data-id="m3w10d4" data-type="lesson" data-title="Building the cash flows" data-mins="75" data-watch="capital budgeting incremental cash flows depreciation tax shield working capital example" data-read="Brealey, Myers and Allen, Principles of Corporate Finance: chapter 6, making investment decisions with the net present value rule">
+<p class="lede">Discounting is mechanical. The skill in capital budgeting is deciding which cash flows belong in the analysis.</p>
+<h3>Rules</h3>
+<ol>
+<li><strong>Cash, not profit.</strong> Start from operating profit, then add back depreciation and subtract capex and working capital changes.</li>
+<li><strong>Incremental only.</strong> Count what changes because of the project: with it minus without it.</li>
+<li><strong>Ignore sunk costs.</strong> Money already spent on a feasibility study is gone.</li>
+<li><strong>Include opportunity costs.</strong> A project using an empty building the firm could rent out bears the lost rent.</li>
+<li><strong>Include side effects.</strong> A new product that takes sales from an old one should carry that loss.</li>
+<li><strong>After tax.</strong> Depreciation is not a cash flow, but it reduces tax, which is. This is the depreciation tax shield.</li>
+<li><strong>Leave out financing.</strong> Interest is not deducted. The discount rate already covers the cost of money.</li>
+<li><strong>Remember working capital.</strong> It is invested at the start and usually recovered at the end.</li>
+</ol>
+<h3>Worked example</h3>
+<p>Kaveri considers a new machining centre. Capex is ₹500 lakh, depreciated straight-line over five years. It adds ₹180 lakh a year of EBITDA. It needs ₹40 lakh of extra working capital, recovered in year 5. Tax is 25%. The discount rate is 12%.</p>
+<table class="stmt">
+<thead><tr><th>₹ lakh</th><th class="n">Year 0</th><th class="n">Years 1 to 5, each</th><th class="n">Year 5 extra</th></tr></thead>
+<tbody>
+<tr><td>EBITDA uplift</td><td class="n"></td><td class="n">180</td><td class="n"></td></tr>
+<tr><td>Depreciation</td><td class="n"></td><td class="n">(100)</td><td class="n"></td></tr>
+<tr><td>EBIT</td><td class="n"></td><td class="n">80</td><td class="n"></td></tr>
+<tr><td>Tax at 25%</td><td class="n"></td><td class="n">(20)</td><td class="n"></td></tr>
+<tr class="sub"><td>Operating cash flow (EBITDA − tax)</td><td class="n"></td><td class="n">160</td><td class="n"></td></tr>
+<tr><td>Capex</td><td class="n">(500)</td><td class="n"></td><td class="n"></td></tr>
+<tr><td>Working capital</td><td class="n">(40)</td><td class="n"></td><td class="n">40</td></tr>
+<tr class="total"><td>Net cash flow</td><td class="n">(540)</td><td class="n">160</td><td class="n">40</td></tr>
+</tbody>
+</table>
+<p class="formula">NPV = −540 + 160 × 3.605 + 40 × 0.567 = −540 + 576.8 + 22.7 = ₹59.5 lakh</p>
+<p>Positive, so accept. Without depreciation, tax would be 25% of 180 = 45 and not 20. The tax shield is worth ₹25 lakh a year.</p>
+<h3>Terminal value</h3>
+<p>If the asset has resale value or the project continues beyond the forecast, add a terminal value in the last year. Be conservative. Terminal values are where optimistic cases hide.</p>
+<div class="callout"><h4>In your job</h4><p>Customer business cases often omit two items that work in your favour and two that work against. In favour: avoided capex, and working capital released. Against: the customer's internal effort, and the productivity dip during adoption. Include all four and the case becomes hard to attack.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>Which should be left out of a project's cash flows?</p><ol><li data-o="a">Extra working capital</li><li data-o="b">The cost of last year's feasibility study</li><li data-o="c">Lost sales of an existing product</li></ol><p class="why">The study is sunk.</p></div>
+<div class="q" data-a="c"><p>A project adds EBITDA of ₹200 lakh and depreciation of ₹80 lakh a year. Tax is 25%. Annual operating cash flow is:</p><ol><li data-o="a">₹150 lakh</li><li data-o="b">₹90 lakh</li><li data-o="c">₹170 lakh</li></ol><p class="why">Tax is 25% of 120 = 30. 200 − 30 = 170.</p></div>
+<div class="q" data-a="a"><p>Interest on the loan used to fund a project is:</p><ol><li data-o="a">Excluded, because the discount rate already reflects financing cost</li><li data-o="b">Deducted each year</li><li data-o="c">Added back with depreciation</li></ol><p class="why">Deducting it would count the cost of money twice.</p></div>
+</div>
+</article>
+
+<article data-id="m3w10d5" data-type="case" data-title="Case: manual upgrade or robotic cell?" data-mins="90" data-watch="mutually exclusive projects NPV IRR conflict incremental analysis sensitivity" data-read="Brealey, Myers and Allen, Principles of Corporate Finance: chapter 10, project analysis (sensitivity and scenario analysis)">
+<p class="lede">Two ways to add capacity. One has the better percentage return and the other the better value. Decide which to build.</p>
+<h3>The situation</h3>
+<p>Kaveri needs more welding capacity. Its plant head and its finance head each favour a different option. Both last five years, and Kaveri can only do one. The discount rate is 12%. Amounts are in ₹ lakh and cash flows are after tax.</p>
+<table class="stmt">
+<thead><tr><th>Option</th><th class="n">Investment</th><th class="n">Cash flow per year</th></tr></thead>
+<tbody>
+<tr><td>M: upgrade the manual line</td><td class="n">200</td><td class="n">70</td></tr>
+<tr><td>R: install a robotic cell</td><td class="n">600</td><td class="n">190</td></tr>
+</tbody>
+</table>
+<p>The finance head notes that M has an IRR of about 22% against about 17.5% for R. The plant head says the robotic cell is "the future". Sales warns that volumes could turn out 20% below forecast, which would cut both cash flows by 20%.</p>
+<h3>Your questions</h3>
+<ol>
+<li>Calculate the NPV of each option.</li>
+<li>Analyse the extra ₹400 lakh that R needs over M as a project in itself. Is it worth spending?</li>
+<li>Recalculate both NPVs if cash flows are 20% lower.</li>
+<li>Which option carries more risk, and why?</li>
+<li>What would you recommend, and what would you want to find out first?</li>
+</ol>
+<details class="model"><summary>Model answer</summary>
+<p><strong>1.</strong> M: −200 + 70 × 3.605 = ₹52.3 lakh. R: −600 + 190 × 3.605 = ₹84.9 lakh. R creates more value despite the lower IRR.</p>
+<p><strong>2.</strong> The increment is 400 more invested for 120 more a year. NPV = −400 + 120 × 3.605 = ₹32.6 lakh. Its IRR is about 15%, above the 12% hurdle. The extra money earns more than it costs, so on the base case R is right. This incremental test is the clean way to resolve a conflict between NPV and IRR.</p>
+<p><strong>3.</strong> M: −200 + 56 × 3.605 = ₹1.9 lakh, roughly break-even. R: −600 + 152 × 3.605 = −₹52.0 lakh. Under weak demand M survives and R destroys value.</p>
+<p><strong>4.</strong> R is riskier. It commits three times the capital, and its payoff depends on volume being there. This is operating leverage from Month 1 seen again in capital budgeting. The swing between base and downside is about 137 for R and 50 for M.</p>
+<p><strong>5.</strong> The answer depends on confidence in demand. If the probability of the low-volume case is p, R is better when 84.9 − 137p exceeds 52.3 − 50p, which is when p is below about 37%. So: recommend R if the main customer will give a volume commitment or the order book covers the forecast, and M otherwise. Find out first whether R can be staged, with one robot now and provision for a second, because that would keep most of the upside with less capital at risk. Also check what each option does to quality and delivery, since those affect future orders and are not in the cash flows.</p>
+<p><strong>What the case teaches.</strong> For mutually exclusive projects use NPV and test the increment. Then ask how the ranking changes under a realistic downside. The best answer is often a third option that buys flexibility.</p>
+</details>
+</article>
+
+<article data-id="m3w10d6" data-type="gmat" data-title="GMAT Data Insights: reading charts" data-mins="60" data-watch="GMAT data insights graphics interpretation strategy" data-read="GMAT Official Guide: Data Insights review, graphics interpretation">
+<p class="lede">Graphics interpretation gives a chart and asks you to complete statements about it. The arithmetic is light. The errors come from misreading axes, units and what is being compared.</p>
+<h3>Method</h3>
+<ul>
+<li>Read the title, both axes, the units and the legend first.</li>
+<li>Decide whether the question wants a level, a change, or a rate of change.</li>
+<li>Estimate. Options are usually far apart.</li>
+</ul>
+<h3>Data</h3>
+<p>Imagine a chart with bars for revenue and a line for operating margin. Its values are given here as a table.</p>
+<table class="stmt">
+<thead><tr><th>Quarter</th><th class="n">Revenue, ₹ crore</th><th class="n">Operating margin</th></tr></thead>
+<tbody>
+<tr><td>Q1</td><td class="n">200</td><td class="n">10%</td></tr>
+<tr><td>Q2</td><td class="n">240</td><td class="n">12%</td></tr>
+<tr><td>Q3</td><td class="n">220</td><td class="n">15%</td></tr>
+<tr><td>Q4</td><td class="n">300</td><td class="n">11%</td></tr>
+</tbody>
+</table>
+<div class="quiz">
+<div class="q" data-a="b"><p>In which quarter was operating profit in rupees highest?</p><ol><li data-o="a">Q2</li><li data-o="b">Q3 and Q4 were equal</li><li data-o="c">Q3</li><li data-o="d">Q4</li></ol><p class="why">Q1 20.0, Q2 28.8, Q3 33.0, Q4 33.0.</p></div>
+<div class="q" data-a="c"><p>The percentage increase in revenue from Q3 to Q4 was closest to:</p><ol><li data-o="a">27%</li><li data-o="b">80%</li><li data-o="c">36%</li><li data-o="d">50%</li></ol><p class="why">80 ÷ 220 = 36%.</p></div>
+<div class="q" data-a="d"><p>Operating margin for the full year was closest to:</p><ol><li data-o="a">11%</li><li data-o="b">12.5%</li><li data-o="c">13%</li><li data-o="d">12%</li></ol><p class="why">Profit of 114.8 on revenue of 960 is 11.96%. Averaging the four margins gives the wrong answer.</p></div>
+<div class="q" data-a="a"><p>From Q2 to Q3, operating margin rose by:</p><ol><li data-o="a">3 percentage points, or 25%</li><li data-o="b">3%</li><li data-o="c">25 percentage points</li><li data-o="d">15%</li></ol><p class="why">15 − 12 = 3 points, and 3 ÷ 12 = 25%.</p></div>
+</div>
+</article>
+
+<article data-id="m3w10d7" data-type="review" data-title="Week 10 review and work assignment" data-mins="90" data-watch="capital budgeting NPV IRR payback review" data-read="Brealey, Myers and Allen, Principles of Corporate Finance: chapters 5 and 6 summaries">
+<p class="lede">Five questions, then turn your Month 1 business case into an NPV model.</p>
+<div class="quiz graded">
+<div class="q" data-a="b"><p>A project costs ₹300 lakh and returns ₹100 lakh a year for 5 years. At 12% its NPV is about:</p><ol><li data-o="a">₹200 lakh</li><li data-o="b">₹60 lakh</li><li data-o="c">₹120 lakh</li><li data-o="d">−₹20 lakh</li></ol><p class="why">−300 + 100 × 3.605 = 60.5.</p></div>
+<div class="q" data-a="c"><p>NPV and IRR rank two mutually exclusive projects differently. You should:</p><ol><li data-o="a">Follow IRR</li><li data-o="b">Use payback</li><li data-o="c">Follow NPV</li><li data-o="d">Reject both</li></ol><p class="why">NPV measures value added directly.</p></div>
+<div class="q" data-a="a"><p>A new product is expected to take ₹50 lakh a year of contribution from an existing product. In the new product's appraisal this is:</p><ol><li data-o="a">Included as a negative cash flow</li><li data-o="b">Ignored as sunk</li><li data-o="c">Added as a benefit</li><li data-o="d">Treated as financing</li></ol><p class="why">It is an incremental side effect of the decision.</p></div>
+<div class="q" data-a="d"><p>Depreciation affects project cash flows because it:</p><ol><li data-o="a">Is paid in cash each year</li><li data-o="b">Reduces revenue</li><li data-o="c">Increases working capital</li><li data-o="d">Reduces taxable profit and so tax paid</li></ol><p class="why">The tax shield is the only cash effect.</p></div>
+<div class="q" data-a="b"><p>With a capital budget too small for all positive-NPV projects, rank them by:</p><ol><li data-o="a">Payback</li><li data-o="b">NPV per rupee invested</li><li data-o="c">Size</li><li data-o="d">IRR alone</li></ol><p class="why">The profitability index gets the most value from limited capital.</p></div>
+</div>
+<div class="assign"><h3>Work assignment: an NPV version of your business case</h3>
+<ol>
+<li>Take the one-page business case you wrote at the end of Month 1.</li>
+<li>Lay out its cash flows by year for five years: investment, recurring cost, each benefit, and any working capital effect.</li>
+<li>Calculate NPV at 12% and the IRR.</li>
+<li>Build a small sensitivity table: benefits at 50%, 75% and 100%; start delayed by six and twelve months.</li>
+<li>Find the benefit level at which NPV is zero.</li>
+<li>Rewrite your two-sentence recommendation using NPV and the break-even.</li>
+</ol></div>
+</article>
+</section>

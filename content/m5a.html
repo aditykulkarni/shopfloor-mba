@@ -1,0 +1,359 @@
+<section data-week="17" data-title="Process analysis and bottlenecks" data-goal="Find what limits a process and say what an hour of that limit is worth.">
+
+<article data-id="m5w17d1" data-type="lesson" data-title="Flow, capacity and Little's law" data-mins="60" data-watch="process analysis flow rate flow time inventory Little's law Terwiesch operations management" data-read="Cachon and Terwiesch, Matching Supply with Demand: the chapters on the process view of the organisation and on process capacity">
+<p class="lede">You know operations from the engineering side. This month teaches it the way a general manager sees it: as a system that turns capital and time into money, with a small number of measures that explain most of its behaviour.</p>
+<h3>Three measures of any process</h3>
+<ul>
+<li><strong>Flow rate</strong> (throughput): units completed per unit of time.</li>
+<li><strong>Flow time</strong>: how long one unit takes from entry to exit, including waiting.</li>
+<li><strong>Inventory</strong>: units inside the process at any moment.</li>
+</ul>
+<h3>Little's law</h3>
+<p class="formula">Inventory = Flow rate × Flow time</p>
+<p>A plant completes 100 units a day and holds 600 units of work-in-progress. Average flow time is 6 days. The law holds for any stable process: a factory, a hospital, an engineering change queue, a sales pipeline. It needs no assumption about how the process is organised.</p>
+<p>Its practical message: for a given output, cutting inventory and cutting lead time are the same act. And since inventory is working capital, lead-time reduction releases cash, which connects the shop floor to Month 1's balance sheet.</p>
+<h3>Capacity and the bottleneck</h3>
+<p>Each resource has a capacity: the most it can process per unit of time. The resource with the lowest capacity is the <strong>bottleneck</strong>, and it sets the capacity of the whole process.</p>
+<table class="stmt">
+<thead><tr><th>Station</th><th class="n">Capacity, units per hour</th><th class="n">Utilisation at demand of 40</th></tr></thead>
+<tbody>
+<tr><td>A: stamping</td><td class="n">60</td><td class="n">67%</td></tr>
+<tr><td>B: welding</td><td class="n">45</td><td class="n">89%</td></tr>
+<tr><td>C: finishing</td><td class="n">50</td><td class="n">80%</td></tr>
+</tbody>
+</table>
+<p>Process capacity is 45 an hour. If demand is 40, actual flow rate is 40, because a process produces the lower of demand and capacity. Welding is the bottleneck at 89% utilisation.</p>
+<h3>Cycle time and takt time</h3>
+<p><strong>Cycle time</strong> is the time between completed units. At 45 an hour it is 80 seconds. <strong>Takt time</strong> is available time divided by customer demand: at 40 an hour it is 90 seconds. A line must run at a cycle time at or below takt to meet demand.</p>
+<h3>Utilisation</h3>
+<p class="formula">Utilisation = Flow rate ÷ Capacity</p>
+<p>Only the bottleneck should be near full utilisation. Running non-bottleneck stations flat out builds inventory in front of the bottleneck and adds nothing to output. Measuring every machine on utilisation is one of the most common and costly errors in plant management.</p>
+<div class="callout"><h4>In your job</h4><p>A flow simulation finds the bottleneck. The managerial step is to say what it means: which investment raises plant output, which does not, and how much working capital sits in queues. Lead with those three conclusions.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>A process completes 50 units a day and holds 400 units of inventory. Average flow time is:</p><ol><li data-o="a">0.125 days</li><li data-o="b">8 days</li><li data-o="c">20,000 days</li></ol><p class="why">400 ÷ 50.</p></div>
+<div class="q" data-a="c"><p>Stations have capacities of 30, 24 and 36 units an hour. Demand is 28. The flow rate is:</p><ol><li data-o="a">28</li><li data-o="b">30</li><li data-o="c">24</li></ol><p class="why">Capacity is 24, which is below demand.</p></div>
+<div class="q" data-a="a"><p>Raising output at a non-bottleneck station:</p><ol><li data-o="a">Does not raise process output and may build inventory</li><li data-o="b">Raises process output proportionally</li><li data-o="c">Shortens flow time</li></ol><p class="why">The bottleneck still limits throughput.</p></div>
+</div>
+</article>
+
+<article data-id="m5w17d2" data-type="lesson" data-title="The theory of constraints" data-mins="60" data-watch="The Goal Goldratt theory of constraints five focusing steps explained" data-read="Goldratt, The Goal: read it all, especially the scout hike chapters and the chapters where Alex and Jonah find the bottlenecks">
+<p class="lede">Eliyahu Goldratt turned bottleneck logic into a management method. His novel The Goal is on almost every MBA operations reading list, and it is a quick read.</p>
+<h3>The core claim</h3>
+<p>Every system has at least one constraint that limits its performance against its goal. For a company the goal is to make money, now and in the future. Improving anything other than the constraint is, at best, wasted effort.</p>
+<h3>Five focusing steps</h3>
+<ol>
+<li><strong>Identify</strong> the constraint.</li>
+<li><strong>Exploit</strong> it: get the most from it as it is. Never let it wait for material, run it through breaks, inspect parts before it and not after, cut its changeovers.</li>
+<li><strong>Subordinate</strong> everything else to it. Other resources work to the bottleneck's pace.</li>
+<li><strong>Elevate</strong> it: add capacity by investing, only after steps 2 and 3.</li>
+<li><strong>Repeat.</strong> When the constraint moves, go back to step 1.</li>
+</ol>
+<p>The order matters. Most companies jump to step 4 and buy equipment, when steps 2 and 3 cost nearly nothing.</p>
+<h3>What a bottleneck hour is worth</h3>
+<p>An hour lost at the bottleneck is an hour lost for the whole plant, and it cannot be recovered. If the welding station makes 45 units an hour and each unit carries a contribution of ₹2,000, an hour of bottleneck downtime costs ₹90,000 when demand exceeds capacity. An hour saved at a non-bottleneck is worth nothing in output terms.</p>
+<p>This overturns cost accounting intuitions. Paying overtime, an extra operator or a premium for fast maintenance at the bottleneck looks expensive per hour and is cheap compared with ₹90,000.</p>
+<h3>Throughput accounting</h3>
+<p>Goldratt uses three measures: <strong>throughput</strong> (sales minus truly variable costs, essentially contribution), <strong>inventory</strong> (money tied up in the system) and <strong>operating expense</strong> (money spent to turn inventory into throughput). Decisions are judged by their effect on these three, in that order of priority.</p>
+<h3>Drum, buffer, rope</h3>
+<p>The scheduling method that follows: the bottleneck sets the pace (drum). A time buffer of work in front of it protects it from upstream disruption. Material is released into the plant only at the rate the bottleneck consumes it (rope), which caps work-in-progress.</p>
+<h3>Constraints outside the factory</h3>
+<p>The constraint is often not a machine. It may be market demand, a policy, an approval step or a scarce specialist. In engineering organisations the constraint is frequently one expert or one review board, which Week 18's case examines.</p>
+<div class="callout"><h4>In your job</h4><p>When a customer asks for a business case, find out whether the area you improve is the plant's constraint. If it is, the benefit is extra contribution on every unit gained, which is large. If it is not, the benefit is limited to cost and inventory. The same technical result can be worth ten times more in one plant than in another.</p></div>
+<div class="quiz">
+<div class="q" data-a="c"><p>After identifying the constraint, the next step is to:</p><ol><li data-o="a">Buy more capacity</li><li data-o="b">Raise utilisation everywhere</li><li data-o="c">Get the most out of the constraint as it is</li></ol><p class="why">Exploit comes before elevate.</p></div>
+<div class="q" data-a="a"><p>A bottleneck produces 30 units an hour at ₹1,500 contribution each, and demand exceeds capacity. A two-hour breakdown costs:</p><ol><li data-o="a">₹90,000</li><li data-o="b">₹45,000</li><li data-o="c">Only the repair bill</li></ol><p class="why">60 units × ₹1,500 of lost contribution.</p></div>
+<div class="q" data-a="b"><p>Under drum-buffer-rope, material is released to the floor:</p><ol><li data-o="a">As fast as the first station can take it</li><li data-o="b">At the pace of the bottleneck</li><li data-o="c">Whenever suppliers deliver</li></ol><p class="why">The rope ties release to bottleneck consumption.</p></div>
+</div>
+</article>
+
+<article data-id="m5w17d3" data-type="gmat" data-title="GMAT Quant: review set 1" data-mins="60" data-watch="GMAT quant review percentages ratios algebra practice set" data-read="GMAT Official Guide: Quantitative Reasoning practice questions; error log review">
+<p class="lede">From this month the GMAT strand shifts from learning topics to building speed. Six questions, 12 minutes.</p>
+<div class="quiz">
+<div class="q" data-a="b"><p>After a 25% increase a price is ₹750. The original price was:</p><ol><li data-o="a">₹562.50</li><li data-o="b">₹600</li><li data-o="c">₹625</li><li data-o="d">₹937.50</li></ol><p class="why">750 ÷ 1.25.</p></div>
+<div class="q" data-a="c"><p>The ratio of trainees to engineers is 4:5. There are 36 people in total. How many are engineers?</p><ol><li data-o="a">16</li><li data-o="b">18</li><li data-o="c">20</li><li data-o="d">24</li></ol><p class="why">Nine parts, 4 each. 5 × 4 = 20.</p></div>
+<div class="q" data-a="a"><p>If 5x + 3 = 3x + 15, then x =</p><ol><li data-o="a">6</li><li data-o="b">9</li><li data-o="c">4</li><li data-o="d">12</li></ol><p class="why">2x = 12.</p></div>
+<div class="q" data-a="d"><p>Three machines make 270 parts in 6 hours. At the same rate, five machines in 4 hours make:</p><ol><li data-o="a">225</li><li data-o="b">250</li><li data-o="c">270</li><li data-o="d">300</li></ol><p class="why">15 parts per machine-hour × 20 machine-hours.</p></div>
+<div class="q" data-a="b"><p>0.2% of 5,000 is:</p><ol><li data-o="a">1</li><li data-o="b">10</li><li data-o="c">100</li><li data-o="d">1,000</li></ol><p class="why">0.002 × 5,000.</p></div>
+<div class="q" data-a="a"><p>Data sufficiency. What is the ratio of x to y? (1) 3x = 5y. (2) x + y = 16.</p><ol><li data-o="a">A: statement 1 alone</li><li data-o="b">B: statement 2 alone</li><li data-o="c">C: both together</li><li data-o="d">E: not sufficient</li></ol><p class="why">Statement 1 gives x ÷ y = 5 ÷ 3 directly. The values themselves are not asked for.</p></div>
+</div>
+</article>
+
+<article data-id="m5w17d4" data-type="lesson" data-title="OEE and the economics of capacity" data-mins="60" data-watch="OEE overall equipment effectiveness availability performance quality calculation" data-read="Cachon and Terwiesch, Matching Supply with Demand: the chapter on batching and other flow interruptions; Nakajima, Introduction to TPM: the chapter on the six big losses">
+<p class="lede">A machine rarely produces what its nameplate promises. OEE measures the gap and sorts it into causes, and the economics of capacity explain why the gap matters so much.</p>
+<h3>Overall equipment effectiveness</h3>
+<p class="formula">OEE = Availability × Performance × Quality</p>
+<ul>
+<li><strong>Availability</strong>: running time ÷ planned production time. Lost to breakdowns and changeovers.</li>
+<li><strong>Performance</strong>: actual output ÷ output at ideal speed during running time. Lost to slow running and short stops.</li>
+<li><strong>Quality</strong>: good units ÷ total units. Lost to scrap and rework.</li>
+</ul>
+<p>A machine with 90% availability, 85% performance and 98% quality has an OEE of 0.90 × 0.85 × 0.98 = 75%. Three respectable numbers multiply into a quarter of capacity lost. An OEE around 85% is widely quoted as world class for discrete manufacturing, and many plants run between 50 and 65%.</p>
+<h3>Hidden capacity</h3>
+<p>Raising OEE at a bottleneck from 60% to 72% increases its output by 20% with no capital. This is the "exploit" step in practice, and it is why OEE at the constraint is the most valuable operating number in a plant. OEE at non-constraints matters much less.</p>
+<h3>The economics of utilisation</h3>
+<p>Fixed costs are spread over output. A plant with fixed costs of ₹60 crore making 1,00,000 units carries ₹6,000 of fixed cost per unit. At 80,000 units it carries ₹7,500. This is the operating leverage of Month 1 from the operations side, and it explains the pressure to fill capacity.</p>
+<p>That pressure has to be balanced against two things. Producing more than demand turns into inventory. And as Week 18 shows, running close to full capacity with variable demand creates long queues.</p>
+<h3>Adding capacity</h3>
+<p>Capacity usually comes in large steps: a new line, a new shift. Three timing strategies exist.</p>
+<ul>
+<li><strong>Lead</strong>: build ahead of demand. Never short, often underused.</li>
+<li><strong>Lag</strong>: build after demand is proven. Efficient, loses sales.</li>
+<li><strong>Match</strong>: add in small increments. Needs flexible equipment or outsourcing.</li>
+</ul>
+<p>The choice is an NPV decision under uncertainty, like the robotic cell case in Month 3. Flexible and modular capacity is worth a premium because it lets a firm follow demand in smaller steps.</p>
+<h3>Line balancing</h3>
+<p>Dividing work so each station's time is close to takt time minimises idle time. Perfect balance leaves no slack for variability, so real lines need small buffers or a little spare capacity at each station.</p>
+<div class="callout"><h4>In your job</h4><p>When a simulation shows that a line needs fewer stations or one shift less, state the result as capital avoided and fixed cost per unit. Those are the terms a capacity decision is approved in.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>Availability 80%, performance 90%, quality 95%. OEE is about:</p><ol><li data-o="a">88%</li><li data-o="b">68%</li><li data-o="c">80%</li></ol><p class="why">0.8 × 0.9 × 0.95 = 0.684.</p></div>
+<div class="q" data-a="c"><p>A bottleneck's OEE rises from 50% to 60%. Its output rises by:</p><ol><li data-o="a">10%</li><li data-o="b">16.7%</li><li data-o="c">20%</li></ol><p class="why">60 ÷ 50 = 1.2.</p></div>
+<div class="q" data-a="a"><p>A "lag" capacity strategy means:</p><ol><li data-o="a">Adding capacity only after demand has appeared</li><li data-o="b">Building ahead of demand</li><li data-o="c">Never adding capacity</li></ol><p class="why">It avoids idle capacity and accepts some lost sales.</p></div>
+</div>
+</article>
+
+<article data-id="m5w17d5" data-type="case" data-title="Case: Trimurti cannot keep up" data-mins="75" data-watch="bottleneck analysis example operations management case capacity" data-read="Goldratt, The Goal: the chapters on the heat-treat furnaces and the NCX-10 machine">
+<p class="lede">The founder wants to buy a machine. Check whether it would help.</p>
+<h3>The situation</h3>
+<p>Trimurti Precision, the tier-2 supplier from Month 1, now supplies 400 gear blanks a day and is delivering only about 350. Each unit sold earns a contribution of ₹1,200. Sandeep Jagtap plans to buy another machining centre for ₹1.2 crore.</p>
+<p>The process runs 16 hours a day in two shifts.</p>
+<table class="stmt">
+<thead><tr><th>Step</th><th class="n">Capacity, units per hour</th></tr></thead>
+<tbody>
+<tr><td>Machining</td><td class="n">30</td></tr>
+<tr><td>Heat treatment</td><td class="n">22</td></tr>
+<tr><td>Grinding</td><td class="n">26</td></tr>
+<tr><td>Inspection</td><td class="n">40</td></tr>
+</tbody>
+</table>
+<p>The plant manager offers three other options. A third shift on heat treatment alone would cost ₹40,000 a day. A local firm will heat-treat parts for ₹150 a unit more than Trimurti's own cost. And heat treatment loses about two hours a day to furnace loading changeovers, which a maintenance engineer thinks could be halved.</p>
+<h3>Your questions</h3>
+<ol>
+<li>What is the daily capacity of each step, and where is the bottleneck?</li>
+<li>What does the shortfall cost each day?</li>
+<li>Would the new machining centre help?</li>
+<li>Evaluate the third shift, outsourcing and the changeover reduction.</li>
+<li>What would you do, in what order?</li>
+</ol>
+<details class="model"><summary>Model answer</summary>
+<p><strong>1.</strong> Over 16 hours: machining 480, heat treatment 352, grinding 416, inspection 640. Heat treatment is the bottleneck at 352 a day.</p>
+<p><strong>2.</strong> Demand is 400 and capacity 352, so 48 units a day are lost. 48 × ₹1,200 = ₹57,600 a day, about ₹1.4 crore a year over 250 working days.</p>
+<p><strong>3.</strong> No. Machining already has spare capacity. A second machining centre would raise machining to 60 an hour and plant output would stay at 352. The ₹1.2 crore would buy more work-in-progress in front of the furnace.</p>
+<p><strong>4.</strong> Changeover reduction: one extra furnace hour gives 22 units a day, worth ₹26,400, for almost no cost. Outsourcing: sending the remaining shortfall out costs ₹150 a unit. For 48 units that is ₹7,200 a day to recover ₹57,600. Third shift: adds 176 units of heat-treatment capacity for ₹40,000 a day. The bottleneck then moves to grinding at 416, which covers demand of 400. Net gain is 57,600 − 40,000 = ₹17,600 a day.</p>
+<p><strong>5.</strong> First exploit: cut the changeover, schedule the furnace so it never waits, and inspect parts before heat treatment so the furnace does not process rejects. That recovers about 22 of the 48 units. Second, outsource the remaining 26 units a day for about ₹3,900, after qualifying the supplier's quality. Third, hold the third shift in reserve for when demand grows. If demand rises beyond 416, grinding becomes the constraint and the analysis starts again. Do not buy the machining centre.</p>
+<p><strong>What the case teaches.</strong> Capital requests tend to come from where the noise is, not from where the constraint is. A table of capacities, taking ten minutes to build, would have prevented a ₹1.2 crore mistake.</p>
+</details>
+</article>
+
+<article data-id="m5w17d6" data-type="gmat" data-title="GMAT Data Insights: timed set" data-mins="60" data-watch="GMAT data insights timed practice table analysis" data-read="GMAT Official Guide: Data Insights practice questions">
+<p class="lede">Four questions on one table. Ten minutes, calculator allowed.</p>
+<table class="stmt">
+<thead><tr><th>Machine</th><th class="n">Planned hours</th><th class="n">Downtime hours</th><th class="n">Ideal rate per hour</th><th class="n">Units made</th><th class="n">Good units</th></tr></thead>
+<tbody>
+<tr><td>M1</td><td class="n">100</td><td class="n">10</td><td class="n">50</td><td class="n">4,050</td><td class="n">3,969</td></tr>
+<tr><td>M2</td><td class="n">100</td><td class="n">20</td><td class="n">60</td><td class="n">4,320</td><td class="n">4,104</td></tr>
+<tr><td>M3</td><td class="n">100</td><td class="n">5</td><td class="n">40</td><td class="n">3,420</td><td class="n">3,249</td></tr>
+</tbody>
+</table>
+<div class="quiz">
+<div class="q" data-a="c"><p>Which machine has the highest OEE?</p><ol><li data-o="a">M1</li><li data-o="b">M2</li><li data-o="c">M3</li><li data-o="d">M1 and M3 are equal</li></ol><p class="why">All three run at 90% performance. M1: 0.90 × 0.90 × 0.98 = 79.4%. M2: 0.80 × 0.90 × 0.95 = 68.4%. M3: 0.95 × 0.90 × 0.95 = 81.2%.</p></div>
+<div class="q" data-a="b"><p>Which machine produces the most good units per planned hour?</p><ol><li data-o="a">M1</li><li data-o="b">M2</li><li data-o="c">M3</li><li data-o="d">All equal</li></ol><p class="why">M2 makes 41.0 an hour despite the lowest OEE, because its ideal rate is highest.</p></div>
+<div class="q" data-a="a"><p>M2's quality rate is:</p><ol><li data-o="a">95%</li><li data-o="b">90%</li><li data-o="c">98%</li><li data-o="d">80%</li></ol><p class="why">4,104 ÷ 4,320.</p></div>
+<div class="q" data-a="d"><p>If M2's downtime were halved, with performance and quality unchanged, its good units would rise by about:</p><ol><li data-o="a">205</li><li data-o="b">410</li><li data-o="c">600</li><li data-o="d">513</li></ol><p class="why">90 hours × 60 × 0.90 × 0.95 = 4,617. 4,617 − 4,104 = 513.</p></div>
+</div>
+</article>
+
+<article data-id="m5w17d7" data-type="review" data-title="Week 17 review and work assignment" data-mins="75" data-watch="operations management process analysis review" data-read="Goldratt, The Goal: finish the book this week">
+<p class="lede">Five questions, then apply the five focusing steps to a process you know.</p>
+<div class="quiz graded">
+<div class="q" data-a="c"><p>A plant has 1,200 units of work-in-progress and a flow time of 4 days. Its throughput is:</p><ol><li data-o="a">4,800 a day</li><li data-o="b">1,200 a day</li><li data-o="c">300 a day</li><li data-o="d">30 a day</li></ol><p class="why">1,200 ÷ 4.</p></div>
+<div class="q" data-a="a"><p>Throughput stays the same and work-in-progress is halved. Flow time:</p><ol><li data-o="a">Halves</li><li data-o="b">Doubles</li><li data-o="c">Is unchanged</li><li data-o="d">Falls by a quarter</li></ol><p class="why">Little's law.</p></div>
+<div class="q" data-a="b"><p>A bottleneck's cycle time is 72 seconds. Hourly process capacity is:</p><ol><li data-o="a">72</li><li data-o="b">50</li><li data-o="c">60</li><li data-o="d">83</li></ol><p class="why">3,600 ÷ 72.</p></div>
+<div class="q" data-a="d"><p>The best place for a quality inspection, according to bottleneck logic, is:</p><ol><li data-o="a">At the end of the line only</li><li data-o="b">After the bottleneck</li><li data-o="c">At the customer</li><li data-o="d">Just before the bottleneck</li></ol><p class="why">The bottleneck's time should not be spent on parts that are already defective.</p></div>
+<div class="q" data-a="b"><p>Availability 92%, performance 88%, quality 99%. OEE is closest to:</p><ol><li data-o="a">88%</li><li data-o="b">80%</li><li data-o="c">93%</li><li data-o="d">72%</li></ol><p class="why">0.92 × 0.88 × 0.99 = 0.80.</p></div>
+</div>
+<div class="assign"><h3>Work assignment: find a constraint</h3>
+<ol>
+<li>Pick a process you have simulated or worked in. A non-manufacturing process such as proposal preparation is acceptable.</li>
+<li>List the steps and estimate each one's capacity per day or week.</li>
+<li>Identify the constraint and estimate what one hour or one unit of it is worth.</li>
+<li>List three "exploit" actions that need no capital.</li>
+<li>Estimate the work-in-progress and use Little's law to check the lead time people actually experience.</li>
+</ol></div>
+</article>
+</section>
+
+<section data-week="18" data-title="Variability, queues and inventory" data-goal="Explain why busy systems queue and how buffers protect them.">
+
+<article data-id="m5w18d1" data-type="lesson" data-title="Why queues form below full capacity" data-mins="75" data-watch="queueing theory utilization waiting time variability Kingman formula operations" data-read="Hopp and Spearman, Factory Physics: the chapters on variability basics and the corrupting influence of variability; Cachon and Terwiesch: the chapter on variability and waiting time">
+<p class="lede">A station with capacity for 10 jobs an hour, receiving 9 an hour on average, should have no queue. In practice it has a long one. Understanding why is the most important idea in operations after the bottleneck.</p>
+<h3>The cause</h3>
+<p>Arrivals and processing times vary. When three jobs arrive together, two wait. When no job arrives, the station sits idle, and that idle time cannot be saved up for later. Lost capacity is gone, while a queue persists. So variability creates waiting even when average capacity exceeds average demand.</p>
+<h3>The waiting-time formula</h3>
+<p>For a single station, a good approximation (Kingman's formula) is:</p>
+<p class="formula">Average wait ≈ [u ÷ (1 − u)] × [(CVa² + CVp²) ÷ 2] × average processing time</p>
+<p>Here u is utilisation, CVa is the coefficient of variation of the time between arrivals and CVp is that of processing times. Recall from Month 2 that the coefficient of variation is standard deviation divided by mean.</p>
+<h3>What it shows</h3>
+<p>Take a processing time of 10 minutes with both coefficients equal to 1, which is typical of random arrivals.</p>
+<table class="stmt">
+<thead><tr><th class="n">Utilisation</th><th class="n">u ÷ (1 − u)</th><th class="n">Average wait, minutes</th></tr></thead>
+<tbody>
+<tr><td class="n">50%</td><td class="n">1</td><td class="n">10</td></tr>
+<tr><td class="n">80%</td><td class="n">4</td><td class="n">40</td></tr>
+<tr><td class="n">90%</td><td class="n">9</td><td class="n">90</td></tr>
+<tr><td class="n">95%</td><td class="n">19</td><td class="n">190</td></tr>
+<tr><td class="n">98%</td><td class="n">49</td><td class="n">490</td></tr>
+</tbody>
+</table>
+<p>Waiting time explodes as utilisation approaches 100%. Going from 80% to 95% utilisation raises output by under a fifth and multiplies waiting by almost five.</p>
+<h3>Three levers</h3>
+<ol>
+<li><strong>Utilisation.</strong> Keep some spare capacity. It looks wasteful on a utilisation report and it buys short lead times.</li>
+<li><strong>Variability.</strong> Halving both coefficients of variation cuts waiting to a quarter. Standard work, reliable machines, levelled schedules and fewer product variants all do this.</li>
+<li><strong>Processing time.</strong> Faster processing lowers both the last term and utilisation.</li>
+</ol>
+<h3>The managerial conclusion</h3>
+<p>A company must choose between high utilisation and fast response unless it reduces variability. Firms that want both, and do nothing about variability, get long lead times and expediting. This single trade-off explains hospital waiting lists, engineering backlogs, call-centre queues and late projects as well as factory lead times.</p>
+<div class="callout"><h4>In your job</h4><p>Engineers and consultants are resources too. A team loaded to 95% has very long turnaround on any new request, for exactly this reason. When a customer's engineering change process is slow, check the utilisation of the approvers before proposing a workflow tool.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>With processing time of 10 minutes and both coefficients of variation equal to 1, average wait at 75% utilisation is about:</p><ol><li data-o="a">7.5 minutes</li><li data-o="b">30 minutes</li><li data-o="c">75 minutes</li></ol><p class="why">0.75 ÷ 0.25 = 3. 3 × 1 × 10.</p></div>
+<div class="q" data-a="c"><p>Both coefficients of variation are cut from 1.0 to 0.5. Waiting time becomes:</p><ol><li data-o="a">Half</li><li data-o="b">Unchanged</li><li data-o="c">A quarter</li></ol><p class="why">The variability term is squared: (0.25 + 0.25) ÷ 2 = 0.25.</p></div>
+<div class="q" data-a="a"><p>Idle time at a station cannot offset later queues because:</p><ol><li data-o="a">Unused capacity cannot be stored</li><li data-o="b">Operators work slowly after a break</li><li data-o="c">Queues are caused only by breakdowns</li></ol><p class="why">Capacity is perishable. Work waiting is not.</p></div>
+</div>
+</article>
+
+<article data-id="m5w18d2" data-type="lesson" data-title="Buffers and pooling" data-mins="60" data-watch="variability buffering inventory capacity time risk pooling square root law operations" data-read="Hopp and Spearman, Factory Physics: the section on the law of variability buffering; Hopp, Supply Chain Science: the chapters on variability and pooling">
+<p class="lede">Variability that is not removed has to be absorbed. There are exactly three ways to absorb it, and choosing between them is a strategic decision.</p>
+<h3>The three buffers</h3>
+<p>Hopp and Spearman's law of variability buffering: variability in a production system will be buffered by some combination of <strong>inventory</strong>, <strong>capacity</strong> and <strong>time</strong>.</p>
+<table class="stmt">
+<thead><tr><th>Buffer</th><th>What it looks like</th><th>Who uses it</th></tr></thead>
+<tbody>
+<tr><td>Inventory</td><td>Finished goods and safety stock so customers do not wait</td><td>Consumer goods, spare parts</td></tr>
+<tr><td>Capacity</td><td>Spare machines, overtime, flexible labour</td><td>Emergency services, fast-response suppliers</td></tr>
+<tr><td>Time</td><td>The customer waits: quoted lead times, backlogs</td><td>Machine builders, engineering to order, most public services</td></tr>
+</tbody>
+</table>
+<p>A company does not get to choose whether to buffer. If it refuses to hold inventory or spare capacity, the buffer appears as lead time, and customers pay it. Lean production is best understood as reducing variability first, so that all three buffers can shrink together.</p>
+<h3>Pooling</h3>
+<p>Combining separate sources of variability reduces the total, because highs in one place offset lows in another.</p>
+<ul>
+<li><strong>Pooled queues.</strong> One queue feeding several servers waits far less than separate queues.</li>
+<li><strong>Pooled inventory.</strong> One central warehouse needs less safety stock than several regional ones. For independent demands of similar size, safety stock grows with the square root of the number of locations pooled: four warehouses merged into one need about half the safety stock.</li>
+<li><strong>Flexible resources.</strong> Cross-trained operators and machines that can run several products pool capacity.</li>
+<li><strong>Common parts and late differentiation.</strong> A shared platform pools demand across variants. Finishing a product to order from a common base postpones the point at which forecasts must be right.</li>
+</ul>
+<h3>The price of pooling</h3>
+<p>Central stock is further from customers. Flexible machines cost more than dedicated ones. Cross-training takes time. Pooling is worth its cost when variability is high.</p>
+<h3>Variability from inside</h3>
+<p>Much variability is self-inflicted: large batches, long changeovers, unreliable equipment, rework, end-of-month sales pushes and engineering changes released in bulk. These are cheaper to remove than to buffer.</p>
+<div class="callout"><h4>In your job</h4><p>Product platforms and modular bills of material are pooling strategies carried out in PLM. Their operational value, which is less safety stock, shorter lead time and better availability, can be estimated with the square-root logic and belongs in the business case next to the engineering benefits.</p></div>
+<div class="quiz">
+<div class="q" data-a="c"><p>A machine builder with no finished stock and no spare capacity buffers variability with:</p><ol><li data-o="a">Nothing</li><li data-o="b">Quality</li><li data-o="c">Time: customers wait</li></ol><p class="why">If inventory and capacity are refused, lead time absorbs the variability.</p></div>
+<div class="q" data-a="b"><p>Nine regional stores with similar independent demand are merged into one. Safety stock needed falls to roughly:</p><ol><li data-o="a">One ninth</li><li data-o="b">One third</li><li data-o="c">One half</li></ol><p class="why">It scales with √9 = 3, against 9 for separate stores.</p></div>
+<div class="q" data-a="a"><p>Which is an example of late differentiation?</p><ol><li data-o="a">Painting a product only after the customer orders a colour</li><li data-o="b">Building every variant to forecast</li><li data-o="c">Holding more raw material</li></ol><p class="why">The variant decision is postponed until demand is known.</p></div>
+</div>
+</article>
+
+<article data-id="m5w18d3" data-type="gmat" data-title="GMAT Verbal: reading comprehension, fifth passage" data-mins="60" data-watch="GMAT reading comprehension practice passage with explanation" data-read="GMAT Official Guide: Verbal Reasoning, reading comprehension practice sets">
+<p class="lede">Eight minutes. Map the structure first.</p>
+<blockquote class="passage">
+<p>For three decades manufacturers were urged to hold as little inventory as possible. Stock was described as waste: it tied up capital, hid quality problems and delayed the discovery of defects. Firms that adopted just-in-time delivery reported large gains, and the practice spread from car makers to industries with quite different conditions.</p>
+<p>A series of disruptions to global supply chains prompted a reappraisal. Critics argued that lean systems had been made fragile, and that firms should return to holding substantial buffers. This criticism misreads the original method. Its pioneers reduced inventory only after years of work to stabilise their processes and to develop suppliers located close to their plants. Low stock was the result of low variability. Many imitators copied the result without the cause, cutting inventory while sourcing from distant suppliers with long and uncertain lead times.</p>
+<p>The appropriate response to disruption is therefore unlikely to be a general return to large stocks. It is to match the buffer to the variability actually faced, which will mean more protection for some items and no change for most.</p>
+</blockquote>
+<div class="quiz">
+<div class="q" data-a="b"><p>The author's main argument is that:</p><ol><li data-o="a">Just-in-time has failed and should be abandoned</li><li data-o="b">Fragility came from cutting inventory without reducing variability, so buffers should be set selectively</li><li data-o="c">All firms should hold much more stock</li><li data-o="d">Supply disruptions are rare</li></ol><p class="why">Paragraph 2 corrects the critics and paragraph 3 gives the conclusion.</p></div>
+<div class="q" data-a="d"><p>According to the passage, the pioneers of the method differed from many imitators in that they:</p><ol><li data-o="a">Held more inventory</li><li data-o="b">Used overseas suppliers</li><li data-o="c">Ignored quality</li><li data-o="d">Stabilised processes and used nearby suppliers before cutting stock</li></ol><p class="why">Stated in the second paragraph.</p></div>
+<div class="q" data-a="a"><p>The author would most likely agree that a firm buying a critical component from a single distant supplier should:</p><ol><li data-o="a">Hold more protection for that component than for locally sourced items</li><li data-o="b">Hold no stock of it</li><li data-o="c">Treat it like every other item</li><li data-o="d">Stop using lean methods altogether</li></ol><p class="why">Match the buffer to the variability faced.</p></div>
+<div class="q" data-a="c"><p>The phrase "copied the result without the cause" refers to:</p><ol><li data-o="a">Copying product designs</li><li data-o="b">Hiring the pioneers' managers</li><li data-o="c">Reducing inventory without first reducing variability</li><li data-o="d">Building plants near suppliers</li></ol><p class="why">Low stock was the result. Low variability was the cause.</p></div>
+</div>
+</article>
+
+<article data-id="m5w18d4" data-type="lesson" data-title="Inventory: how much to order and how much to hold" data-mins="75" data-watch="EOQ economic order quantity safety stock reorder point newsvendor model explained" data-read="Cachon and Terwiesch, Matching Supply with Demand: the chapters on the newsvendor model and on the order-up-to model">
+<p class="lede">Inventory decisions balance the cost of holding stock against the cost of ordering or running out. Three simple models cover most situations.</p>
+<h3>Why hold inventory at all</h3>
+<ul>
+<li><strong>Cycle stock</strong>: because ordering or producing in batches is cheaper than one at a time.</li>
+<li><strong>Safety stock</strong>: because demand and supply are uncertain.</li>
+<li><strong>Pipeline stock</strong>: goods in transit or in process.</li>
+<li><strong>Seasonal and speculative stock.</strong></li>
+</ul>
+<h3>Holding cost</h3>
+<p>The yearly cost of holding a unit includes the cost of capital, storage, insurance, obsolescence and damage. For manufactured goods it typically runs at 20 to 30% of the item's value a year, more than most managers assume.</p>
+<h3>Economic order quantity</h3>
+<p class="formula">EOQ = √(2 × annual demand × cost per order ÷ holding cost per unit per year)</p>
+<p>Annual demand is 12,000 units. Each order costs ₹2,000 to place and receive. Holding a unit for a year costs ₹30.</p>
+<p class="formula">EOQ = √(2 × 12,000 × 2,000 ÷ 30) = √16,00,000 ≈ 1,265 units</p>
+<p>That is about 9.5 orders a year. The same formula sets production batch sizes, with set-up cost in place of order cost. Its key lesson for manufacturing: halving the set-up cost cuts the best batch size by about 30%. This is the reasoning behind quick changeover.</p>
+<h3>Safety stock and reorder point</h3>
+<p class="formula">Safety stock = z × standard deviation of daily demand × √lead time in days</p>
+<p>z depends on the service level wanted: 1.65 for 95% and 2.33 for 99%. With daily demand averaging 48 and a standard deviation of 20, a 9-day lead time and a 95% service level:</p>
+<p class="formula">Safety stock = 1.65 × 20 × 3 = 99 units</p>
+<p class="formula">Reorder point = 48 × 9 + 99 = 531 units</p>
+<p>Two lessons. Safety stock rises with the square root of lead time, so shorter and more reliable lead times reduce it directly. And moving from 95% to 99% service raises safety stock by 41%. The last few points of availability are expensive.</p>
+<h3>The newsvendor model</h3>
+<p>For a single period with uncertain demand, such as a seasonal product or a last-time buy, order up to the point where:</p>
+<p class="formula">Probability of having enough = cost of understocking ÷ (cost of understocking + cost of overstocking)</p>
+<p>If a unit short loses ₹300 of margin and a unit left over loses ₹100, stock enough to cover demand 75% of the time. When running out costs far more than leftover stock, as with a cheap part that can stop a line, the right service level is very high.</p>
+<div class="callout"><h4>In your job</h4><p>Engineering changes create obsolete stock, and late changes create the most. A PLM argument about change impact analysis can be priced: obsolescence write-offs appear in the customer's accounts, and effective-date planning reduces them.</p></div>
+<div class="quiz">
+<div class="q" data-a="b"><p>Annual demand 5,000, order cost ₹1,000, holding cost ₹25 a unit a year. EOQ is about:</p><ol><li data-o="a">400</li><li data-o="b">632</li><li data-o="c">1,000</li></ol><p class="why">√(2 × 5,000 × 1,000 ÷ 25) = √4,00,000.</p></div>
+<div class="q" data-a="c"><p>Lead time falls from 16 days to 4 days. Safety stock falls to:</p><ol><li data-o="a">One quarter</li><li data-o="b">Three quarters</li><li data-o="c">One half</li></ol><p class="why">√4 ÷ √16 = 2 ÷ 4.</p></div>
+<div class="q" data-a="a"><p>Running short costs ₹900 a unit and overstocking costs ₹100 a unit. The best service level is:</p><ol><li data-o="a">90%</li><li data-o="b">50%</li><li data-o="c">10%</li></ol><p class="why">900 ÷ (900 + 100).</p></div>
+</div>
+</article>
+
+<article data-id="m5w18d5" data-type="case" data-title="Case: the engineering change queue" data-mins="75" data-watch="queueing in knowledge work utilization lead time engineering change process" data-read="Reinertsen, The Principles of Product Development Flow: the chapters on queues and on batch size">
+<p class="lede">Queueing theory applied to an office process you know well.</p>
+<h3>The situation</h3>
+<p>At Sahyadri Auto Components, every engineering change order must be reviewed by one manufacturing change coordinator before release. Programme managers complain that changes sit for more than a week. The IT head proposes a new workflow system at ₹60 lakh.</p>
+<p>You gather the facts. About 18 change orders arrive a week. Reviewing one takes 2 hours on average, and the coordinator has 40 hours a week. Review times vary: their coefficient of variation is about 1. Arrivals are very uneven, because design teams release changes in bursts before programme gates: the coefficient of variation of arrivals is about 2.</p>
+<h3>Your questions</h3>
+<ol>
+<li>What is the coordinator's utilisation?</li>
+<li>Estimate the average wait before review begins, in working hours and days.</li>
+<li>What would the wait be if arrivals were as regular as review times, with a coefficient of variation of 1?</li>
+<li>Templates and a pre-check by the originator could cut review time to 1.5 hours. What is the wait then, with bursty arrivals?</li>
+<li>Would the workflow system alone solve the problem? What do you recommend?</li>
+</ol>
+<details class="model"><summary>Model answer</summary>
+<p><strong>1.</strong> Capacity is 40 ÷ 2 = 20 a week. Utilisation is 18 ÷ 20 = 90%.</p>
+<p><strong>2.</strong> Wait ≈ (0.9 ÷ 0.1) × ((2² + 1²) ÷ 2) × 2 hours = 9 × 2.5 × 2 = 45 working hours. That is more than a full working week, which matches the complaints.</p>
+<p><strong>3.</strong> 9 × ((1 + 1) ÷ 2) × 2 = 18 hours, a little over two days. Burstiness alone accounts for 27 of the 45 hours.</p>
+<p><strong>4.</strong> Capacity becomes 26.7 a week and utilisation 67.5%. Wait ≈ (0.675 ÷ 0.325) × 2.5 × 1.5 = 2.08 × 3.75 = 7.8 hours, about one day.</p>
+<p><strong>5.</strong> A workflow system that only routes and tracks the same work does not change utilisation, variability or review time, so the queue stays. It may help indirectly if it enforces complete submissions, which shortens reviews. The direct fixes are cheap. Cut review time with templates and originator pre-checks. Smooth arrivals by asking design teams to release changes as they are ready and not in gate-driven batches. Add a second trained reviewer for peak periods: pooling two reviewers on one queue cuts waiting sharply. Then consider the system, specified to support those changes.</p>
+<p><strong>What the case teaches.</strong> One person at 90% utilisation with bursty arrivals guarantees a long queue. Tools speed up work that is being done. They do not shorten the time work spends waiting, and waiting is usually most of the lead time.</p>
+</details>
+</article>
+
+<article data-id="m5w18d6" data-type="gmat" data-title="GMAT Quant: review set 2" data-mins="60" data-watch="GMAT quant practice set number properties probability algebra" data-read="GMAT Official Guide: Quantitative Reasoning practice questions">
+<p class="lede">Six questions, 12 minutes.</p>
+<div class="quiz">
+<div class="q" data-a="c"><p>How many positive factors does 36 have?</p><ol><li data-o="a">6</li><li data-o="b">8</li><li data-o="c">9</li><li data-o="d">12</li></ol><p class="why">36 = 2² × 3². (2 + 1)(2 + 1) = 9.</p></div>
+<div class="q" data-a="b"><p>If x/3 + x/4 = 14, then x =</p><ol><li data-o="a">12</li><li data-o="b">24</li><li data-o="c">28</li><li data-o="d">48</li></ol><p class="why">7x ÷ 12 = 14.</p></div>
+<div class="q" data-a="a"><p>A bin holds 4 red and 6 blue tags. One is drawn at random. The probability it is red is:</p><ol><li data-o="a">2/5</li><li data-o="b">2/3</li><li data-o="c">1/4</li><li data-o="d">3/5</li></ol><p class="why">4 ÷ 10.</p></div>
+<div class="q" data-a="d"><p>If 2ˣ⁺¹ = 64, then x =</p><ol><li data-o="a">3</li><li data-o="b">4</li><li data-o="c">6</li><li data-o="d">5</li></ol><p class="why">64 = 2⁶.</p></div>
+<div class="q" data-a="b"><p>A van drives 60 km at 30 km/h and then 60 km at 60 km/h. Its average speed is:</p><ol><li data-o="a">45 km/h</li><li data-o="b">40 km/h</li><li data-o="c">50 km/h</li><li data-o="d">42 km/h</li></ol><p class="why">120 km in 3 hours.</p></div>
+<div class="q" data-a="c"><p>How many positive integers n satisfy 3n + 2 &lt; 20?</p><ol><li data-o="a">4</li><li data-o="b">6</li><li data-o="c">5</li><li data-o="d">7</li></ol><p class="why">n &lt; 6, so n = 1 to 5.</p></div>
+</div>
+</article>
+
+<article data-id="m5w18d7" data-type="review" data-title="Week 18 review and work assignment" data-mins="75" data-watch="variability queues inventory operations management review" data-read="Hopp and Spearman, Factory Physics: the summary of the laws of factory physics">
+<p class="lede">Five questions, then measure a queue.</p>
+<div class="quiz graded">
+<div class="q" data-a="d"><p>As utilisation rises from 90% to 95%, with nothing else changed, average waiting time roughly:</p><ol><li data-o="a">Rises 5%</li><li data-o="b">Stays the same</li><li data-o="c">Rises 50%</li><li data-o="d">Doubles</li></ol><p class="why">The factor u ÷ (1 − u) goes from 9 to 19.</p></div>
+<div class="q" data-a="b"><p>The three buffers against variability are:</p><ol><li data-o="a">Price, quality and speed</li><li data-o="b">Inventory, capacity and time</li><li data-o="c">People, machines and material</li><li data-o="d">Plan, do and check</li></ol><p class="why">Hopp and Spearman's buffering law.</p></div>
+<div class="q" data-a="a"><p>Set-up cost is cut to a quarter of its former level. The economic batch size:</p><ol><li data-o="a">Halves</li><li data-o="b">Falls to a quarter</li><li data-o="c">Is unchanged</li><li data-o="d">Doubles</li></ol><p class="why">It varies with the square root of set-up cost.</p></div>
+<div class="q" data-a="c"><p>Daily demand averages 100 with a standard deviation of 30. Lead time is 4 days and z is 1.65. The reorder point is about:</p><ol><li data-o="a">400</li><li data-o="b">450</li><li data-o="c">499</li><li data-o="d">598</li></ol><p class="why">Safety stock = 1.65 × 30 × 2 = 99. 400 + 99.</p></div>
+<div class="q" data-a="b"><p>A tool that tracks work more efficiently will shorten lead time substantially only if:</p><ol><li data-o="a">It has a good interface</li><li data-o="b">It reduces utilisation, variability or processing time at the constraint</li><li data-o="c">Everyone is trained</li><li data-o="d">It runs in the cloud</li></ol><p class="why">Those are the only terms in the waiting-time formula.</p></div>
+</div>
+<div class="assign"><h3>Work assignment: measure a queue you are part of</h3>
+<ol>
+<li>Choose a queue at work: support tickets, review requests, demo-environment bookings, approvals.</li>
+<li>Estimate arrivals per week, average processing time and the available capacity. Calculate utilisation.</li>
+<li>Judge whether arrivals are steady or bursty and why.</li>
+<li>Estimate the wait with the formula and compare with experience.</li>
+<li>Propose one change to each lever: utilisation, variability and processing time.</li>
+</ol></div>
+</article>
+</section>
