@@ -52,6 +52,8 @@ h1,h2,h3,h4{font-family:var(--display);text-wrap:balance;line-height:1.15;margin
 .ghs.s-on{color:var(--ok)} .ghs.s-error{color:var(--bad)}
 .ghf{display:flex;flex-direction:column;gap:6px;max-width:520px}
 .ghf label{font-weight:600;font-size:14px;margin-top:8px}
+.ghf input.plain{font-family:var(--ui)}
+.steps-p{max-width:66ch;margin:0 0 6px;color:var(--muted)}
 .ghf input{font:15px/1.4 var(--mono);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 12px;min-width:0}
 .ghf .nav{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
 .steps{font-family:var(--read);font-size:17px;max-width:66ch;padding-left:22px}
@@ -206,7 +208,7 @@ details.model>*:not(summary){margin-inline:16px}
 <div class="bar">
   <button class="menu" id="menuBtn" aria-controls="side" aria-expanded="false">Sessions</button>
   <a class="brand" href="#home">Shopfloor <span>MBA</span></a>
-  <a class="menu sync" id="syncBtn" href="#sync" hidden>Set up sync</a>
+  <a class="menu sync" id="syncBtn" href="#signin" hidden>Sign in</a>
   <div class="meter"><span id="meterText">Loading</span><div class="track" aria-hidden="true"><i id="meterBar"></i></div></div>
 </div>
 <div class="shell">
@@ -219,7 +221,7 @@ details.model>*:not(summary){margin-inline:16px}
 var KIND={lesson:'Lesson',gmat:'GMAT',case:'Case study',review:'Review'};
 var months=[],items=[],byId={},gmatRes=null,openM={},autoOpen=null;
 var state={done:{},quiz:{},notes:{},qt:{},nt:{}};
-var saveDelay=900;
+var saveDelay=900,ready=false;
 var LS='shopfloor-mba-v1';
 var remote=null, syncNote='Progress is saved in this browser.';
 var $=function(s,r){return (r||document).querySelector(s)};
@@ -255,9 +257,14 @@ function merge(p,n){
   return {p:push,n:pushN};
 }
 
-/* ---------- GitHub sync (used when the page is hosted outside Claude) ---------- */
-var GH_LS='shopfloor-mba-gh',gh=null,ghSha=null,ghBusy=null,ghDirty=false,ghState='off',ghMsg='';
+/* ---------- Sign-in and GitHub storage (used when the page is hosted outside Claude) ---------- */
+var HOSTED=!window.claude||!window.claude.use;
+var GH_LS='shopfloor-mba-gh',SKIP_LS='shopfloor-mba-skip',LS0=LS,gh=null,ghSha=null,ghBusy=null,ghDirty=false,ghState='off',ghMsg='';
 function ghCfg(){try{return JSON.parse(localStorage.getItem(GH_LS)||'null')}catch(e){return null}}
+function skipped(){try{return localStorage.getItem(SKIP_LS)==='1'}catch(e){return false}}
+function slugOf(n){return String(n||'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')}
+function emptyState(){return {done:{},quiz:{},notes:{},qt:{},nt:{}}}
+function hasData(s){return Object.keys(s.done).length||Object.keys(s.quiz).length||Object.keys(s.notes).length}
 function b64e(s){var b=new TextEncoder().encode(s),o='';for(var i=0;i<b.length;i++)o+=String.fromCharCode(b[i]);return btoa(o)}
 function b64d(s){var r=atob(s.replace(/\s/g,'')),b=new Uint8Array(r.length);for(var i=0;i<r.length;i++)b[i]=r.charCodeAt(i);return new TextDecoder().decode(b)}
 function ghFetch(path,method,body){
@@ -265,20 +272,32 @@ function ghFetch(path,method,body){
     headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+gh.token,'X-GitHub-Api-Version':'2022-11-28'},
     body:body?JSON.stringify(body):undefined});
 }
-function ghPull(){
-  return ghFetch('/contents/progress.json?ref=main&t='+Date.now()).then(function(r){
-    if(r.status===404){ghSha=null;return {}}
+function ghFile(){return '/contents/users/'+gh.slug+'.json'}
+function ghRead(path,keepSha){
+  return ghFetch(path+'?t='+Date.now()).then(function(r){
+    if(r.status===404)return null;
     if(!r.ok)throw new Error('GitHub answered '+r.status);
-    return r.json().then(function(j){ghSha=j.sha;try{return JSON.parse(b64d(j.content))}catch(e){return {}}});
+    return r.json().then(function(j){if(Array.isArray(j))return j;if(keepSha)ghSha=j.sha;try{return JSON.parse(b64d(j.content))}catch(e){return {}}});
+  });
+}
+function ghPull(){
+  ghSha=null;
+  return ghRead(ghFile(),true).then(function(d){
+    if(d)return d;
+    /* first person to sign in: bring over progress saved before sign-in existed */
+    return ghRead('/contents/users').then(function(list){
+      if(list&&list.length)return {};
+      return ghRead('/contents/progress.json').then(function(old){return old||{}});
+    });
   });
 }
 function ghPush(retry){
-  var data={done:state.done,quiz:state.quiz,qt:state.qt,notes:state.notes,nt:state.nt,updated:new Date().toISOString()};
-  var body={message:'Update course progress',content:b64e(JSON.stringify(data,null,1))};
+  var data={name:gh.name,done:state.done,quiz:state.quiz,qt:state.qt,notes:state.notes,nt:state.nt,updated:new Date().toISOString()};
+  var body={message:'Update progress for '+gh.slug,content:b64e(JSON.stringify(data,null,1))};
   if(ghSha)body.sha=ghSha;
-  return ghFetch('/contents/progress.json','PUT',body).then(function(r){
-    if(r.ok)return r.json().then(function(j){ghSha=j.content.sha;ghState='on';ghMsg='Last saved to GitHub at '+new Date().toLocaleTimeString();});
-    if((r.status===409||r.status===422)&&!retry){return ghPull().then(function(d){merge(d,d);saveLocal();return ghPush(true)})}
+  return ghFetch(ghFile(),'PUT',body).then(function(r){
+    if(r.ok)return r.json().then(function(j){ghSha=j.content.sha;ghState='on';ghMsg='Signed in as '+gh.name+'. Last saved at '+new Date().toLocaleTimeString()+'.';});
+    if((r.status===409||r.status===422)&&!retry){return ghRead(ghFile(),true).then(function(d){d=d||{};merge(d,d);saveLocal();return ghPush(true)})}
     throw new Error('GitHub answered '+r.status);
   });
 }
@@ -289,47 +308,75 @@ function ghSave(){
     .then(function(){ghBusy=null;paintSync();if(ghDirty){ghDirty=false;return ghSave()}});
   return ghBusy;
 }
+function useProfile(slug){
+  var anon=null;
+  try{anon=JSON.parse(localStorage.getItem(LS0)||'null')}catch(e){}
+  LS=slug?'shopfloor-mba-u-'+slug:LS0;
+  state=emptyState();loadLocal();
+  if(slug&&!hasData(state)&&anon&&hasData(Object.assign(emptyState(),anon))){
+    state=Object.assign(emptyState(),anon);saveLocal();
+    try{localStorage.removeItem(LS0)}catch(e){}
+  }
+}
 function ghConnect(cfg){
-  gh=cfg;ghState='checking';ghMsg='Checking the repository.';paintSync();
+  cfg.slug=slugOf(cfg.name);
+  gh=cfg;ghState='checking';ghMsg='Signing in.';paintSync();
   return ghFetch('').then(function(r){
     if(r.status===401)throw new Error('The token was rejected. Check that it was copied in full and has not expired.');
     if(r.status===404||r.status===403)throw new Error('The token cannot see the repository "'+cfg.repo+'". Check the name and that the token was given access to it.');
     if(!r.ok)throw new Error('GitHub answered '+r.status+'.');
+    useProfile(cfg.slug);
     return ghPull();
   }).then(function(d){
     var need=merge(d,d);
     remote={p:{set:ghSave},n:{set:ghSave}};saveDelay=4000;
-    ghState='on';ghMsg='Connected to '+cfg.repo+'.';
-    syncNote='Progress is saved to your private GitHub repository a few seconds after each change.';
+    ghState='on';ghMsg='Signed in as '+cfg.name+'.';
+    syncNote='Signed in as '+cfg.name+'. Progress is saved to the private GitHub repository a few seconds after each change.';
     try{localStorage.setItem(GH_LS,JSON.stringify(cfg))}catch(e){}
     saveLocal();
     if(need.p||need.n||!ghSha)ghSave();
-    route(true);
+    if(/^(sync|signin)$/.test((location.hash||'').slice(1)))location.hash='home';else route(true);
   }).catch(function(e){
-    gh=null;remote=null;ghState='error';ghMsg=e.message||'Could not reach GitHub.';paintSync();
+    gh=null;remote=null;ghState='error';ghMsg=e.message||'Could not reach GitHub.';
+    if($('#gh-status'))paintSync();else route(true);
   });
 }
-function ghDisconnect(){gh=null;remote=null;ghSha=null;saveDelay=900;ghState='off';ghMsg='';syncNote='Progress is saved in this browser.';try{localStorage.removeItem(GH_LS)}catch(e){}route(true)}
-function paintSync(){
-  var b=$('#syncBtn');if(b){b.textContent=ghState==='on'?'Sync on':ghState==='error'?'Sync problem':'Set up sync';b.className='menu sync s-'+ghState}
-  var s=$('#gh-status');if(s){s.textContent=ghMsg||(ghState==='off'?'Not connected. Progress is saved in this browser only.':'');s.className='ghs s-'+ghState}
+function signOut(){
+  gh=null;remote=null;ghSha=null;saveDelay=900;ghState='off';ghMsg='';syncNote='Progress is saved in this browser.';
+  try{localStorage.removeItem(GH_LS);localStorage.removeItem(SKIP_LS)}catch(e){}
+  useProfile(null);route(false);
 }
-function syncPage(){
+function paintSync(){
+  var b=$('#syncBtn');if(b){b.textContent=ghState==='on'&&gh?gh.name:ghState==='error'?'Sign-in problem':ghState==='checking'?'Signing in':'Sign in';b.className='menu sync s-'+ghState}
+  var s=$('#gh-status');if(s){s.textContent=ghMsg||'';s.hidden=!ghMsg;s.className='ghs s-'+ghState}
+}
+function signPage(){
   var c=ghCfg()||{};
-  $('#main').innerHTML='<div class="libr"><header><span class="kind k-lesson">Settings</span><h1>Save progress to GitHub</h1><p>The course page is public and holds no personal data. Your completed sessions, quiz scores and notes are saved to a private repository that only you can read, using an access token kept in this browser.</p></header>'+
-  '<section><h2>Connection</h2><p id="gh-status" class="ghs"></p><form id="gh-form" class="ghf">'+
+  var h='<div class="libr signin"><header><span class="kind k-lesson">Shopfloor MBA</span><h1>'+(gh?'Signed in as '+esc(gh.name):'Sign in')+'</h1><p>Each person signs in with their own name and gets their own progress, quiz scores and notes. Everything is stored in a private GitHub repository, reached with an access token kept in this browser.</p></header>';
+  h+='<section><p id="gh-status" class="ghs" hidden></p><form id="gh-form" class="ghf">'+
+  '<label for="gh-name">Your name</label><input id="gh-name" class="plain" autocomplete="off" spellcheck="false" placeholder="For example, Aditya" value="'+esc(c.name||'')+'">'+
   '<label for="gh-repo">Private repository, as owner/name</label><input id="gh-repo" autocomplete="off" spellcheck="false" value="'+esc(c.repo||'aditykulkarni/shopfloor-mba-progress')+'">'+
   '<label for="gh-token">Access token</label><input id="gh-token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…" value="'+esc(c.token||'')+'">'+
-  '<div class="nav"><button class="btn" type="submit">Connect</button>'+(gh?'<button class="btn ghost" type="button" id="gh-off">Disconnect this browser</button>':'')+'</div></form></section>'+
-  '<section><h2>How to create the token</h2><ol class="steps"><li>Sign in to GitHub and open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Settings, Developer settings, Personal access tokens, Fine-grained tokens, Generate new token</a>.</li><li>Name it "Shopfloor MBA progress". Set an expiry of one year.</li><li>Under Repository access choose "Only select repositories" and pick the private progress repository.</li><li>Under Permissions, Repository permissions, set Contents to "Read and write". Leave everything else as it is.</li><li>Generate the token, copy it, paste it above and press Connect.</li><li>Repeat the paste on each browser or device you study on. Use the same token.</li></ol><p class="sync">The token can only read and write that one repository. It is stored in this browser and is never sent anywhere except GitHub. If a device is lost, delete the token in GitHub settings and create a new one.</p></section>'+
-  '<div class="foot"><div class="nav"><a href="#home">Course home</a></div></div></div>';
+  '<div class="nav"><button class="btn" type="submit">'+(gh?'Sign in again':'Sign in')+'</button>'+(gh?'<button class="btn ghost" type="button" id="gh-off">Sign out of this browser</button>':'<button class="linkbtn" type="button" id="gh-skip">Continue without signing in</button>')+'</div></form></section>';
+  h+='<section><h2>Two people, one course</h2><p class="steps-p">Use the same name every time and on every device, since the name decides which file your progress goes into. Signing out removes the token from this browser and leaves your saved progress on GitHub.</p><div class="entries"><div class="entry"><h3>Sharing one repository</h3><p>Both of you use the same repository and the same token, with different names. Each person gets a separate file. Anyone who holds the token can open both files, so this suits two people who trust each other.</p></div><div class="entry"><h3>Keeping things separate</h3><p>Your friend creates a private repository and a token in their own GitHub account and enters those here. Then neither of you can see the other\'s notes.</p></div></div></section>';
+  h+='<section><h2>How to create a token</h2><ol class="steps"><li>Sign in to GitHub and open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li><li>Name it "Shopfloor MBA progress" and set an expiry of one year.</li><li>Under Repository access choose "Only select repositories" and pick the private progress repository.</li><li>Under Repository permissions set Contents to "Read and write". Leave everything else as it is.</li><li>Generate the token, copy it and paste it above.</li></ol><p class="sync">The token can only read and write that one repository. It is stored in this browser and is sent only to GitHub. If a device is lost, delete the token in GitHub settings and create a new one. This sign-in separates people\'s progress; it is the token, not the name, that protects the data.</p></section>'+
+  (gh||skipped()?'<div class="foot"><div class="nav"><a href="#home">Course home</a></div></div>':'')+'</div>';
+  $('#main').innerHTML=h;
   paintSync();
-  $('#gh-form').addEventListener('submit',function(e){e.preventDefault();var repo=$('#gh-repo').value.trim().replace(/^https:\/\/github\.com\//,'').replace(/\/$/,''),tok=$('#gh-token').value.trim();if(!/^[\w.-]+\/[\w.-]+$/.test(repo)){ghState='error';ghMsg='Enter the repository as owner/name.';paintSync();return}if(!tok){ghState='error';ghMsg='Paste the access token.';paintSync();return}ghConnect({repo:repo,token:tok})});
-  var off=$('#gh-off');if(off)off.onclick=ghDisconnect;
+  $('#gh-form').addEventListener('submit',function(e){e.preventDefault();
+    var name=$('#gh-name').value.trim(),repo=$('#gh-repo').value.trim().replace(/^https:\/\/github\.com\//,'').replace(/\/$/,''),tok=$('#gh-token').value.trim();
+    function bad(m){ghState='error';ghMsg=m;paintSync()}
+    if(!slugOf(name))return bad('Enter your name, using letters or numbers.');
+    if(!/^[\w.-]+\/[\w.-]+$/.test(repo))return bad('Enter the repository as owner/name.');
+    if(!tok)return bad('Paste the access token.');
+    remote=null;ghConnect({name:name,repo:repo,token:tok});
+  });
+  var off=$('#gh-off');if(off)off.onclick=signOut;
+  var sk=$('#gh-skip');if(sk)sk.onclick=function(){try{localStorage.setItem(SKIP_LS,'1')}catch(e){}location.hash='home';route(false)};
 }
 
 function connect(){
-  if(!window.claude||!window.claude.use){var sb=$('#syncBtn');if(sb){sb.hidden=false;paintSync()}var c=ghCfg();if(c&&c.repo&&c.token)ghConnect(c);return}
+  if(HOSTED){var sb=$('#syncBtn');if(sb){sb.hidden=false;paintSync()}var c=ghCfg();if(c&&c.name&&c.repo&&c.token)ghConnect(c);else route(true);return}
   Promise.all([window.claude.use('db'),window.claude.use('user')]).then(function(r){
     var db=r[0],user=r[1];
     if(!db||!user)return;
@@ -549,9 +596,10 @@ function route(keep){
   if(keep&&it&&ae&&ae.tagName==='TEXTAREA'){meter();return}
   var cm=it?it.month.n:lib?lib.n:((nextUp()||items[0]||{month:{n:1}}).month.n);
   if(autoOpen!==cm){openM[cm]=true;autoOpen=cm}
-  if(keep&&id==='sync'&&ae&&ae.tagName==='INPUT'){meter();paintSync();return}
-  if(it)session(it);else if(lib)library(lib);else if(id==='sync'&&(!window.claude||!window.claude.use))syncPage();else home();
-  sidebar(it?it.id:lib?id:null,cm);meter();
+  var wantSign=HOSTED&&(id==='sync'||id==='signin'||(ready&&!gh&&ghState!=='checking'&&!skipped()));
+  if(keep&&wantSign&&$('#gh-form')&&ae&&ae.tagName==='INPUT'){meter();paintSync();return}
+  if(wantSign)signPage();else if(it)session(it);else if(lib)library(lib);else home();
+  sidebar(wantSign?null:it?it.id:lib?id:null,cm);meter();paintSync();
   $('#side').classList.remove('show');$('#menuBtn').setAttribute('aria-expanded','false');
   if(!keep)window.scrollTo(0,0);
 }
@@ -559,7 +607,7 @@ $('#menuBtn').onclick=function(){var s=$('#side').classList.toggle('show');this.
 window.addEventListener('hashchange',function(){route(false)});
 
 loadLocal();
-load().then(function(){route(false);connect()}).catch(function(){
+load().then(function(){var c=HOSTED?ghCfg():null;if(c&&c.name&&c.repo&&c.token){ghState='checking'}ready=true;route(false);connect()}).catch(function(){
   $('#main').innerHTML='<p class="empty">The course content did not load. Reload the page. </p>';
 });
 })();
